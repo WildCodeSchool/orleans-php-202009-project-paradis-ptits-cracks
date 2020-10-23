@@ -3,10 +3,6 @@
     --secondary-color: #F7882F;
     --light-color: #fff7ed;
     --dark-color: #2A2A2A;
-}
-html {
-    font-family: 'Roboto', sans-serif;
-}
-title {
-    font-family: 'Montserrat', sans-serif;
+    --font-family:’Roboto’, sans-serif ;
+    -–font-title:’Montserrat’, sans-serif ;
 }
