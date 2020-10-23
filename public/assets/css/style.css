@@ -1,0 +1,12 @@
+:root {
+    --main-color: #6B7A8F;
+    --secondary-color: #F7882F;
+    --light-color: #FFECD2;
+    --dark-color: #2A2A2A;
+}
+html {
+    font-family: 'Roboto', sans-serif;
+}
+title {
+    font-family: 'Montserrat', sans-serif;
+}
