@@ -17,11 +17,11 @@
 <body>
 
     <header>
-        {% block nav %}{% endblock %}
+        {% block nav %} {% endblock %}
     </header>
 
     <main>
-        {% block content %}{% endblock %}
+        {% block content %} {% endblock %}
     </main>
 
 
@@ -31,7 +31,7 @@
     {% block javascript %}{% endblock %}
 
     <footer>
-        {% block footer %}{% endblock %}
+        {% block footer %} {% include '_footer.html.twig'%} {% endblock %}
     </footer>
 </body>
 </html>
