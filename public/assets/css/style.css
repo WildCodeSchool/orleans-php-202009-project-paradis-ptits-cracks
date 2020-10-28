@@ -1,8 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@200;300;400;500;600&display=swap');
+
+
 :root {
-    --main-color: #6B7A8F;
-    --secondary-color: #F7882F;
+
+    --main-color: #F7882F;
+    --secondary-color: #EFD186;
     --light-color: #fff7ed;
     --dark-color: #2A2A2A;
-    --font-family:’Montserrat’, sans-serif ;
-    -–font-title:’Lobster’, sans-serif ;
+    --font-text: Montserrat, sans-serif ;
+    --font-title: Lobster, sans-serif ;
+
+    --spacing1: 8px;
+    --spacing2: calc(var(--spacing1)*2);
+    --spacing3: calc(var(--spacing1)*3);
+    --spacing4: calc(var(--spacing1)*4);
+
+    --body-padding-top : 80px
+}
+
+body {
+    padding-top: var(--body-padding-top);
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-title);
+    color: var(--main-color);
+}
+
+p {
+    font-family: var(--font-title);
+    color: var(--dark-color);
+
 }
