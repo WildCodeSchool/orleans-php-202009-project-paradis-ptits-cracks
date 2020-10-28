@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     {% block stylesheet %}{% endblock %}
     <link rel="icon" href="/assets/images/favicon.png">
 </head>
@@ -17,7 +18,7 @@
 <body>
 
     <header>
-        {% block nav %}{% endblock %}
+        {% block nav %}{% include 'include/_navBar.html.twig' %}{% endblock %}
     </header>
 
     <main>
