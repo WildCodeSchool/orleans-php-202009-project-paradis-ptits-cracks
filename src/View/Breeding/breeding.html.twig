@@ -1,10 +1,50 @@
+{% extends 'layout.html.twig' %}
 {% block content %}
-    <div class="container">
+    <div class="container-fluids carousel-board">
         <div class="row">
-            <div class="col-4">
-                <img src="../../../public/assets/images/dog_raiser.jpg" alt="raser_photo">
+            <div class="col-12 ">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <div>
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                    </div>
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block mx-auto" src="/assets/images/carousel_photo1.jpg" alt="First slide">
+                        </div>
+                        <div class="carousel-item ">
+                            <img class="d-block mx-auto" src="/assets/images/carousel_photo2.jpg" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block mx-auto" src="/assets/images/carousel_photo3.jpg" alt="Third slide">
+                        </div>
+                    </div>
+                    <div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="col-8">
+        </div>
+    </div>
+
+
+    <div class="container-fluids">
+        <div class="row" id ="raiser-descript">
+            <div class="col-4">
+                <img class="img-fluid raiser" src="/assets/images/dog_raiser.jpg" alt="raser_photo">
+            </div>
+            <div  class="col-8">
                 <section>
                     <div>
                         <h2>Présentation</h2>
@@ -38,14 +78,14 @@
                 </section>
             </div>
         </div>
-        <div class="row">
+        <div class="row d-flex flex-row-reverse align-content-end" id ="breeding-descript">
             <div class="col-4">
-
+                <img class="img-fluid breeding" src="/assets/images/breeding_photo.jpg " alt='sight_breeding'>
             </div>
             <div class="col-8">
                 <section>
                     <div>
-                        <h2>Mon élevage</h2>
+                        <h2>Mes Chiens</h2>
                     </div>
                     <div>
                         <h3>Chihuahuas Poils Longs Et Poils Courts</h3>
@@ -58,7 +98,7 @@
                             </span>
                             <span>Garantie de suivi et conseils toute la vie de votre petit compagnon.</span>
                         </p>
-                        <p>
+                        <p> <img class="img-fluid mx-auto  float-right  banner" src="/assets/images/club_banner.jpg" alt="banner_club_chihuahua">
                             Tous mes chiens adultes restants à l' élevage sont testés ADN,
                             ce test sera fait aussi pour les futurs reproducteurs, ce qui permet
                             de prouver la parenté de mes chiots, tous mes adultes reproducteurs sont
@@ -66,9 +106,7 @@
                             donc vous faire voir l' attestation rotules et la carte d' identification ADN
                             des parents de votre futur chiot.
                         </p>
-                        <div>
-                            <img src="../../../public/assets/images/club_banner.jpg" alt="banner_club_chihuahua">
-                        </div>
+
                     </div>
                 </section>
             </div>

@@ -1,0 +1,18 @@
+.raiser, .breeding{
+    height: 300px;
+    width: 300px;
+}
+
+.banner {
+    width: 100%;
+}
+
+div p {
+    line-height: 1.5;
+}
+
+div .d-block {
+    margin: auto;
+    width: 800px;
+    height: 400px;
+}
