@@ -1,9 +1,15 @@
+:root{
+    --size-small : 20px;
+    --size-large : 35px;
+
+}
+
 .section-legal{
     margin: 100px 0;
 }
 .titleLegal{
     font-family: var(--font-title);
-    font-size: 35px;
+    font-size: var(--size-large);
     color: var(--dark-color);
     background-color: var(--main-color);
     text-align: center;
@@ -11,12 +17,12 @@
 
 .font-weight-bold {
     font-family: var(--font-text);
-    font-size: 15px;
+    font-size: var(--size-small);
     color: var(--dark-color);
 }
 
 .article {
     font-family: var(--font-title);
-    font-size: 20px;
-    padding: 16px;
+    font-size: var(--size-small);
+    padding: var(--spacing2);
 }
