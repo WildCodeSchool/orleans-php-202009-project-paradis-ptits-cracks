@@ -1,0 +1,115 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    <h1> Ajouter un chien </h1>
+
+    {% for error in errors %}
+        <li class="list-group-item-danger"> {{ error }} </li>
+    {% endfor %}
+
+    <form action="" method="post" novalidate>
+
+        <div>
+            <span>Catégorie :</span>
+            {% for category in categories %}
+                <label for="age_category">{{ category.category }}</label>
+                <input type="radio" id="age_category" name="age_category" value="{{ category.id }}" required>
+            {% endfor %}
+        </div>
+
+        <div>
+            <label for="status_select">Statut :</label>
+            <select name="status_select" id="status_select" required>
+                <option value="">Choisir un statut</option>
+                {% for status in statuses %}
+                    <option value="{{ status.id }}">{{ status.dog_status}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="name">Nom du chien :</label>
+            <input type="text" id="name" name="name" value="{{ dogData.name }}" required>
+        </div>
+
+        <div>
+            <label for="birthday">Date de naissance</label>
+            <input type="date" id="birthday" name="birthday" value="{{ dogData.birthday }}" required>
+        </div>
+
+        <div>
+            <label for="picture">Ajouter une photo :</label>
+            <input type="text" id="picture" name="picture" {{ dogData.picture }}required>
+        </div>
+
+        <div>
+            <span>Sexe :</span>
+            {% for gender in  genders %}
+                <label for="gender">{{ gender.gender }}</label>
+                <input type="radio" id="gender" name="gender" value="{{ gender.id }}"
+                       {% if dogData.gender == gender.id %}
+                       {{ checked }}
+                       {% endif %}
+                       required>
+            {% endfor %}
+        </div>
+
+        <div>
+            <label for="color_select">Couleur :</label>
+            <select name="color_select" id="color_select" required>
+                <option value="">Choisir la couleur</option>
+                {% for color in colors %}
+                    <option value="{{ color.id }}">{{ color.dog_color}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="mother_select">Mère :</label>
+            <select name="mother_select" id="mother_select">
+                <option value="">Choisir la mère</option>
+                {% for adultFemale in adultFemales %}
+                    <option value="{{ adultFemale.id }}">{{ adultFemale.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="father_select">Père :</label>
+            <select name="father_select" id="father_select">
+                <option value="">Choisir le père</option>
+                {% for adultMale in adultMales %}
+                    <option value="{{ adultMale.id }}">{{ adultMale.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="chien_de_france">Lien Chien de France :</label>
+            <input type="text" id="chien_de_france" name="chien_de_france">
+        </div>
+
+        <div>
+            <label for="lof_number">Identifiant LOF :</label>
+            <input type="text" id="lof_number" name="lof_number">
+        </div>
+
+        <div>
+            <label for="dna_test">Test ADN :</label>
+                <label for="dna_test">Oui</label>
+                <input type="radio" id="dna_test" name="dna_test" value="1">
+                <label for="dna_test">Non</label>
+                <input type="radio" id="dna_test" name="dna_test" value="0">
+        </div>
+
+        <div>
+            <label for="description">Commentaires :</label>
+            <textarea name="description" id="description" placeholder="Hune Passion est une puce très énergique..."></textarea>
+        </div>
+
+        <button>Ajouter le chien</button>
+
+    </form>
+
+{% endblock %}
