@@ -17,7 +17,7 @@ class ItemManager extends AbstractManager
 {
     /**
      **/
-    const TABLE = 'item';
+    private const TABLE = 'item';
 
     /**
      *  Initializes this class.
