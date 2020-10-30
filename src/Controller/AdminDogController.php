@@ -27,6 +27,15 @@ class AdminDogController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      * @SuppressWarnings(PHPMD)
      */
+
+    public function list()
+    {
+        $dogManager = new DogManager();
+        $dogs = $dogManager->selectAllDogData();
+
+        return $this->twig->render('Admin/list_dog.html.twig', ['dogs' => $dogs]);
+    }
+
     public function add()
     {
         $dog = [];

@@ -1,8 +1,7 @@
-form {
+form, table {
     font-family: var(--font-text);
     color: var(--dark-color);
     padding-bottom: var(--spacing4);
-
 }
 
 .admin-title {
@@ -21,3 +20,5 @@ form {
     margin: var(--spacing3);
     padding: var(--spacing1) var(--spacing2);
 }
+
+
