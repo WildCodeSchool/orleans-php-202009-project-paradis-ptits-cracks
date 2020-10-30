@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file define config constants .
  *
