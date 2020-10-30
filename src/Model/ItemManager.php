@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sylvain
@@ -15,8 +16,7 @@ namespace App\Model;
 class ItemManager extends AbstractManager
 {
     /**
-     *
-     */
+     **/
     const TABLE = 'item';
 
     /**
@@ -60,7 +60,7 @@ class ItemManager extends AbstractManager
      * @param array $item
      * @return bool
      */
-    public function update(array $item):bool
+    public function update(array $item): bool
     {
 
         // prepared request
