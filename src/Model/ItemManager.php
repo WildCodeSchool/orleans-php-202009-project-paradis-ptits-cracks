@@ -16,7 +16,8 @@ namespace App\Model;
 class ItemManager extends AbstractManager
 {
     /**
-     **/
+     *
+     */
     private const TABLE = 'item';
 
     /**
