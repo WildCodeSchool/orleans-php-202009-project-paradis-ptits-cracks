@@ -1,18 +1,44 @@
-.raiser, .breeding{
-    height: 300px;
-    width: 300px;
+.container-fluids {
+    margin-bottom: calc(var(--spacing4)*2);
 }
 
-.banner {
-    width: 100%;
-}
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    background-color: var(--main-color);
 
-div p {
-    line-height: 1.5;
 }
 
 div .d-block {
-    margin: auto;
-    width: 800px;
-    height: 400px;
+    height: 480px;
+
+}
+.container-fluids {
+    margin-left: var(--body-padding-top);
+    margin-right: var(--body-padding-top);
+}
+.last-descript {
+    margin-left: 5px;
+}
+
+div.row {
+    margin-bottom: calc(var(--spacing1)*10);
+}
+
+p {
+    font-family: var(--font-text);
+}
+
+.border {
+    box-shadow: -5px -5px var(--main-color);
+
+}
+
+
+
+.breeding {
+    height: 230px;
+}
+
+
+.p-3 {
+    padding: calc(var(--spacing1)+ 2);
 }
