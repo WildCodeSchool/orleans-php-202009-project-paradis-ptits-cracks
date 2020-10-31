@@ -4,12 +4,14 @@
     <link rel="stylesheet" href="/assets/css/admindog.css">
 {% endblock %}
 
+{% block nav %}{% endblock %}
+
 {% block content %}
 
     <h1 class="admin-title"> Ajouter un chien </h1>
 
     <div class="container">
-        <form action="" method="post">
+        <form action="" method="post" novalidate>
 
             <ul class="form-errors">
                 {% for error in errors %}
@@ -20,8 +22,13 @@
             <div class="form-group">
                 <span >Catégorie :</span>
                 {% for category in categories %}
-                    <label for="age_category">{{ category.category }}</label>
-                    <input type="radio" id="age_category" name="age_category" value="{{ category.id }}" required>
+                    {% if category.id == dogData.age_category %}
+                        <label for="age_category">{{ category.category }}</label>
+                        <input type="radio" id="age_category" name="age_category" value="{{ category.id }}" checked required>
+                    {% else %}
+                        <label for="age_category">{{ category.category }}</label>
+                        <input type="radio" id="age_category" name="age_category" value="{{ category.id }}" required>
+                    {% endif %}
                 {% endfor %}
             </div>
 
@@ -30,7 +37,11 @@
                 <select name="status_select" id="status_select" class="form-control" required>
                     <option value="">Choisir un statut</option>
                     {% for status in statuses %}
-                        <option value="{{ status.id }}">{{ status.dog_status}}</option>
+                        {% if status.id == dogData.status_select %}
+                            <option value="{{ status.id }}" selected>{{ status.dog_status}}</option>
+                        {% else %}
+                            <option value="{{ status.id }}">{{ status.dog_status}}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>
@@ -48,14 +59,19 @@
 
             <div class="form-group">
                 <label for="picture">Ajouter une photo :</label>
-                <input type="text" class="form-control" id="picture" name="picture" value="{{ dogData.picture }}" required>
+                <input type="url" class="form-control" id="picture" name="picture" value="{{ dogData.picture }}" required>
             </div>
 
             <div class="form-group">
                 <span>Sexe :</span>
                 {% for gender in  genders %}
-                    <label for="gender">{{ gender.gender }}</label>
-                    <input type="radio" id="gender" name="gender" value="{{ gender.id }}" required>
+                    {% if gender.id == dogData.gender %}
+                        <label for="gender">{{ gender.gender }}</label>
+                        <input type="radio" id="gender" name="gender" value="{{ gender.id }}" checked required>
+                    {% else %}
+                        <label for="gender">{{ gender.gender }}</label>
+                        <input type="radio" id="gender" name="gender" value="{{ gender.id }}" checked required>
+                    {% endif %}
                 {% endfor %}
             </div>
 
@@ -64,7 +80,11 @@
                 <select name="color_select" class="form-control" id="color_select" required>
                     <option value="">Choisir la couleur</option>
                     {% for color in colors %}
-                        <option value="{{ color.id }}">{{ color.dog_color}}</option>
+                        {% if color.id == dogData.color_select %}
+                            <option value="{{ color.id }}" selected="selected">{{ color.dog_color}}</option>
+                        {% else %}
+                            <option value="{{ color.id }}">{{ color.dog_color}}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>
@@ -74,7 +94,11 @@
                 <select name="mother_select" class="form-control" id="mother_select">
                     <option value="">Choisir la mère</option>
                     {% for adultFemale in adultFemales %}
-                        <option value="{{ adultFemale.id }}">{{ adultFemale.name}}</option>
+                        {% if adultFemale.id == dogData.mother_select %}
+                            <option value="{{ adultFemale.id }}" selected="selected">{{ adultFemale.name}}</option>
+                        {% else %}
+                            <option value="{{ adultFemale.id }}" >{{ adultFemale.name}}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>
@@ -84,14 +108,18 @@
                 <select name="father_select" class="form-control" id="father_select">
                     <option value="">Choisir le père</option>
                     {% for adultMale in adultMales %}
-                        <option value="{{ adultMale.id }}">{{ adultMale.name}}</option>
+                        {% if adultMale.id == dogData.father_select %}
+                            <option value="{{ adultMale.id }}" selected="selected">{{ adultMale.name}}</option>
+                        {% else %}
+                            <option value="{{ adultMale.id }}" >{{ adultMale.name}}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="chien_de_france">Lien Chien de France :</label>
-                <input type="text" class="form-control" id="chien_de_france" name="chien_de_france" value="{{ dogData.chien_de_france }}">
+                <input type="url" class="form-control" id="chien_de_france" name="chien_de_france" value="{{ dogData.chien_de_france }}">
             </div>
 
             <div class="form-group">
@@ -102,9 +130,9 @@
             <div class="form-group">
             <span>Test ADN :</span>
 
-                <input type="radio" id="dna_test" name="dna_test" value="1">
+                <input type="radio" id="dna_test" name="dna_test" value="1" {{ dogData.dna_test == 1 ? 'checked'}}>
                 <label for="dna_test">Oui</label>
-                <input type="radio" id="dna_test" name="dna_test" value="0">
+                <input type="radio" id="dna_test" name="dna_test" value="0" {{ dogData.dna_test == 0 ? 'checked'}}>
                 <label for="dna_test">Non</label>
             </div>
 
@@ -121,3 +149,5 @@
     </div>
 
 {% endblock %}
+
+{% block footer %}{% endblock %}
