@@ -25,33 +25,40 @@
                     </div>
                     <div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
+                            <img src="/assets/images/dog-pat-arrow-prev.png" alt="prev-icon">
                         </a>
                         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
+                            <img src="/assets/images/dog-pat-arrow-next.png" alt="prev-icon">
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <div class="container-fluids content-top-background" >
+        <div class="row">
+            <div class="col-12">
+                <img class="top-background img-fluid" src="/assets/images/top-background1.png" alt="top-background">
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <section>
-            <div class="row border border-warning rounded " id ="raiser-descript">
-                <div  class="col-12 d-flex ">
-                    <div class=" w-50  p-3">
-                        <img class="img-fluid border raiser" src="/assets/images/dog_raiser.jpg" alt="raser_photo">
-                    </div>
-                    <div class="d-flex flex-column ">
-                        <div class="d-flex flex-column align-items-center">
-                            <h2>Présentation</h2>
+            <div class="row" id ="raiser-descript">
+                <div  class="col-12 d-flex">
+
+
+
+                    <div class="d-flex flex-column">
+
+
+                        <div class="d-flex flex-column align-items-center presentation">
+                            <h2 class="title">Présentation</h2>
+                            <img class="img-fluid border breeder" src="/assets/images/dog_raiser.jpg" alt="raser_photo">
                         </div>
 
-                        <div class="d-flex flex-column align-items-center">
+                        <div class="d-flex flex-column align-items-center text">
                             <p>
                                 Passionnée de nature et d'animaux depuis ma plus tendre enfance,
                                 je suis tombée il y a quelques années déjà sous le charme de ce petit
@@ -69,8 +76,8 @@
                             </p>
                         </div>
 
-                        <div class="d-flex flex-column align-items-center ">
-                            <h3>Me DUVAL Magali</h3>
+                        <div class="d-flex flex-column align-items-center text">
+                            <h3 class="title">Me DUVAL Magali</h3>
                             <ul>
                                 <li>Fixe : 02 38 31 69 13</li>
                                 <li>Mobile : 06 18 47 54 45</li>
@@ -81,23 +88,23 @@
                     </div>
 
                 </div>
+
             </div>
         </section>
 
-        <div class="row d-flex flex-row-reverse align-content-end border border-warning rounded" id ="breeding-descript">
+
+        <div class="row d-flex flex-row-reverse align-content-end" id ="breeding-descript">
             <section>
                 <div class="col-12 d-flex flex-row-reverse ">
-                    <div class=" w-50  p-3">
-                        <img class="img-fluid border breeding" src="/assets/images/breeding_photo.jpg " alt='sight_breeding'>
-                    </div>
 
+                    <div class="d-flex flex-column content-breeder">
 
-                    <div class="d-flex flex-column ">
-                        <div class="d-flex flex-column align-items-center">
+                        <div class="d-flex flex-column align-items-center presentation">
                             <h2>Mes Chiens</h2>
-                            <h3>Chihuahuas Poils Longs Et Poils Courts</h3>
+                            <h3 class="title">Chihuahuas Poils Longs Et Poils Courts</h3>
+                            <img class="img-fluid border breeding" src="/assets/images/breeding_photo.jpg " alt='sight_breeding'>
                         </div>
-                        <div class="d-flex flex-column align-items-center">
+                        <div class="d-flex flex-column align-items-center text">
                             <p>
                                 <span>Inscrits au livre des origines françaises.</span>
                                 <span>Excellentes origines.</span>
@@ -117,12 +124,21 @@
                             </p>
                         </div>
                         <div class="d-flex justify-items-center">
-                            <img class="img-fluid mx-auto  banner" src="/assets/images/club_banner.jpg" alt="banner_club_chihuahua">
+                            <a class="mx-auto" href="https://www.centrale-canine.fr/club-du-chihuahua-coton-de-tulear-et-des-exotiques" title="site du club"><img class="img-fluid mx-auto  banner" src="/assets/images/club_banner.jpg" alt="banner_club_chihuahua"></a>
                         </div>
+
                     </div>
+
                 </div>
             </section>
         </div>
     </div>
+    <div class="container-fluids content-bottom-background" >
+        <div class="col-12 bottom">
+            <img class="bottom-background img-fluid" src="/assets/images/bottom-background1.png" alt="bottom-background">
+        </div>
+    </div>
+
+
 {% endblock %}
 
