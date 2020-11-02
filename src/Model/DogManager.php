@@ -28,6 +28,14 @@ class DogManager extends AbstractManager
         parent::__construct(self::TABLE);
     }
 
+    public function selectAllDogData(): array
+    {
+        return $this->pdo->query("SELECT * FROM dog 
+            LEFT JOIN gender ON gender.id = dog.gender_id
+            LEFT JOIN status ON status.id = dog.status_id")->fetchAll();
+    }
+
+
     public function selectAllAdultMales(): array
     {
         return $this->pdo->query("SELECT * FROM dog 
