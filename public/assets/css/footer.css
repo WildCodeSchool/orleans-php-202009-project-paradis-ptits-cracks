@@ -1,0 +1,37 @@
+:root{
+    --size-small : 24px;
+    --size-large : 28px;
+
+}
+
+.footer{
+    background-color: var(--main-color);
+    color: var(--light-color);
+    font-size: 0.90em;
+    padding: var(--spacing2);
+}
+
+.footer h2{
+    font-family: var(--font-title);
+    font-size: var(--size-large);
+    border-bottom: 1px solid var(--light-color);
+    margin-bottom: var(--spacing1) ;
+    color: var(--dark-color);
+}
+
+.footer ul{
+    padding: 0;
+    font-size: var(--size-small);
+    color: var(--dark-color);
+    font-family: var(--font-text);
+
+}
+
+.footer li{
+    list-style: none;
+}
+
+.footer img{
+    width: 40px;
+    height: 40px;
+}
