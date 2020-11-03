@@ -1,0 +1,22 @@
+:root{
+    --font-size-navbar: 28px;
+}
+
+.navbar {
+    background-color: var(--secondary-color);
+    top: 0;
+    position: fixed;
+    width: 100%;
+    padding: var(--spacing2);
+}
+
+.nav-link{
+    color: var(--dark-color);
+    font-family: var(--font-title);
+    font-size: var(--font-size-navbar);
+}
+
+.nav-link:hover{
+    color: var(--main-color);
+}
+
