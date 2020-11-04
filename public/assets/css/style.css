@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@200;300;400;500;600&display=swap');
 @import "breeding.css";
+@import "footer.css";
+@import"legal.css";
+@import url(navBar.css);
 
 :root {
 
@@ -32,5 +35,6 @@ h1, h2, h3, h4 {
 p {
     font-family: var(--font-text);
     color: var(--dark-color);
+
 }
 
