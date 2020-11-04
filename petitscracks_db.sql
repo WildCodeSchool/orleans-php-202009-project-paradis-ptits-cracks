@@ -123,7 +123,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `petitscracks`.`actuality` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
-  `actuality` LONGTEXT NOT NULL,
+  `description` LONGTEXT NOT NULL,
   `date` DATE NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
