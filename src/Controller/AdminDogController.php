@@ -19,13 +19,12 @@ class AdminDogController extends AbstractController
 {
 
     /**
-     * Display dog page on admin
+     * Display dog list on admin
      *
      * @return string
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
-     * @SuppressWarnings(PHPMD)
      */
 
     public function list()
@@ -35,6 +34,16 @@ class AdminDogController extends AbstractController
 
         return $this->twig->render('Admin/list_dog.html.twig', ['dogs' => $dogs]);
     }
+
+    /**
+     * Display form to add dog on admin
+     *
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * @SuppressWarnings(PHPMD)
+     */
 
     public function add()
     {
@@ -80,6 +89,22 @@ class AdminDogController extends AbstractController
             'errors' => $errors,
             'dogData' => $dog,
         ]);
+    }
+
+     /**
+     * Display dog details on admin
+     *
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+
+    public function show($id)
+    {
+        $dogManager = new dogManager();
+        $dog = $dogManager->selectDogDataById($id);
+        return $this->twig->render('Admin/show_dog.html.twig', ['dog' => $dog]);
     }
 
     /**
