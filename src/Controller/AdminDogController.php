@@ -27,6 +27,15 @@ class AdminDogController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      * @SuppressWarnings(PHPMD)
      */
+
+    public function list()
+    {
+        $dogManager = new DogManager();
+        $dogs = $dogManager->selectAllDogData();
+
+        return $this->twig->render('Admin/list_dog.html.twig', ['dogs' => $dogs]);
+    }
+
     public function add()
     {
         $dog = [];
@@ -83,8 +92,8 @@ class AdminDogController extends AbstractController
     private function validator(array $dog): array
     {
         $errors = [];
-        $maxLengthShort = 45;
-        $maxLengthLong = 100;
+        $maxLengthShort = 100;
+        $maxLengthLong = 255;
 
         if (empty($dog['age_category'])) {
             $errors['age_category'] = 'Veuillez sélectionner une catégorie';
@@ -97,7 +106,7 @@ class AdminDogController extends AbstractController
         if (empty($dog['name'])) {
             $errors['name1'] = 'Veuillez ajouter un nom';
         } elseif (strlen($dog['name']) > $maxLengthShort) {
-            $errors['name2'] = 'Le titre ne doit pas dépasser ' . $maxLengthShort . ' caractères.';
+            $errors['name2'] = 'Le nom ne doit pas dépasser ' . $maxLengthShort . ' caractères.';
         }
 
         if (empty($dog['birthday'])) {
@@ -108,6 +117,14 @@ class AdminDogController extends AbstractController
             $errors['picture'] = 'Veuillez ajouter une photo';
         }
 
+        if (!filter_var($dog['picture'], FILTER_VALIDATE_URL)) {
+            $errors['picture2'] = 'Merci d\'ajouter une url valide pour la photo';
+        }
+
+        if (strlen($dog['picture']) > $maxLengthLong) {
+            $errors['picture3'] = 'Le lien ne doit pas dépasser ' . $maxLengthLong . ' caractères.';
+        }
+
         if (empty($dog['gender'])) {
             $errors['gender'] = 'Veuillez préciser le sexe du chien';
         }
@@ -116,11 +133,20 @@ class AdminDogController extends AbstractController
             $errors['color_select'] = 'Veuillez préciser la couleur du chien';
         }
 
-        if (strlen($dog['chien_de_france']) > $maxLengthLong) {
-            $errors['chien_de_france'] = 'Le titre ne doit pas dépasser ' . $maxLengthLong . ' caractères.';
+        if (!filter_var($dog['chien_de_france'], FILTER_VALIDATE_URL)) {
+            $errors['chien_de_france2'] = 'Merci d\'ajouter une url valide vers www.chiens-de-france.com';
         }
+
+        if (!strstr($dog['chien_de_france'], 'chiens-de-france')) {
+            $errors['chien_de_france2'] = 'Merci d\'ajouter une url valide vers www.chiens-de-france.com';
+        }
+
+        if (strlen($dog['chien_de_france']) > $maxLengthLong) {
+            $errors['chien_de_france'] = 'Le lien ne doit pas dépasser ' . $maxLengthLong . ' caractères.';
+        }
+
         if (strlen($dog['lof_number']) > $maxLengthShort) {
-            $errors['lof_number'] = 'Le titre ne doit pas dépasser ' . $maxLengthShort . ' caractères.';
+            $errors['lof_number'] = 'Le numéro de lof ne doit pas dépasser ' . $maxLengthShort . ' caractères.';
         }
 
         return $errors;
