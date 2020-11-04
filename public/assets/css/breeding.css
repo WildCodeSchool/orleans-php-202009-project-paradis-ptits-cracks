@@ -92,7 +92,7 @@ h2, h3, ul li {
 
  .banner {
     width: calc(var(--spacing4) * 10);
-     margin-bottom: calc(var(--spacing3) * 2);
+     margin-bottom: calc(var(--spacing1));
      position: relative;
 }
 
@@ -108,6 +108,8 @@ h2, h3, ul li {
     }
      .text p{
          font-size: var(--spacing2);
-
+     }
+     .text {
+         margin-top:calc(var(--spacing1) * 10);
      }
  }
