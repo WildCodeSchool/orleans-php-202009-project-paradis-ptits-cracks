@@ -27,8 +27,9 @@ class DogController extends AbstractController
         $dogManager = new DogManager();
         $males = $dogManager->selectAllAdultMales();
         $females = $dogManager->selectAllAdultFemales();
+        $puppies = $dogManager->selectAllPuppies();
         return $this->twig->render('Dog/index.html.twig', [
-        'males' => $males, 'females' => $females,
+        'males' => $males, 'females' => $females, 'puppies' => $puppies,
         ]);
     }
 }
