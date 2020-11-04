@@ -133,16 +133,18 @@ class AdminDogController extends AbstractController
             $errors['color_select'] = 'Veuillez préciser la couleur du chien';
         }
 
-        if (!filter_var($dog['chien_de_france'], FILTER_VALIDATE_URL)) {
-            $errors['chien_de_france2'] = 'Merci d\'ajouter une url valide vers www.chiens-de-france.com';
-        }
+        if (!empty($dog['chien_de_france'])) {
+            if (!filter_var($dog['chien_de_france'], FILTER_VALIDATE_URL)) {
+                $errors['chien_de_france2'] = 'Merci d\'ajouter une url valide vers www.chiens-de-france.com';
+            }
 
-        if (!strstr($dog['chien_de_france'], 'chiens-de-france')) {
-            $errors['chien_de_france2'] = 'Merci d\'ajouter une url valide vers www.chiens-de-france.com';
-        }
+            if (!strstr($dog['chien_de_france'], 'chiens-de-france')) {
+                $errors['chien_de_france2'] = 'Merci d\'ajouter une url valide vers www.chiens-de-france.com';
+            }
 
-        if (strlen($dog['chien_de_france']) > $maxLengthLong) {
-            $errors['chien_de_france'] = 'Le lien ne doit pas dépasser ' . $maxLengthLong . ' caractères.';
+            if (strlen($dog['chien_de_france']) > $maxLengthLong) {
+                $errors['chien_de_france'] = 'Le lien ne doit pas dépasser ' . $maxLengthLong . ' caractères.';
+            }
         }
 
         if (strlen($dog['lof_number']) > $maxLengthShort) {
