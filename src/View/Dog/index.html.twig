@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Nos Chiens{% endblock %}
+{% block stylesheet %} {% endblock %}
+{% block header %}<h1>Nos Chiens</h1>{% endblock %}
+{% block content %}
+    <h2>Nos Males</h2>
+    {% for male in males %}
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ male.name }}</h5>
+                <p class="card-text">{{ male.birthday }}</p>
+                <p class="card-text">{{ male.price }}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    {%  endfor %}
+
+    <h2>Nos Femelles</h2>
+
+
+    <h2>Nos Chiots</h2>
+{% endblock %}
