@@ -10,18 +10,16 @@
 }
 
 .contact .box{
-    padding:var(--spacing5) 0px;
+    padding:var(--spacing5) 0;
 }
 
 .contact .box-part{
     border-radius:8px ;
     padding:var(--spacing5) var(--spacing2);
-    margin:var(--spacing4) 0px;
-    border-color: var;
-}
+    margin:var(--spacing4) 0;}
 
 .contact .text{
-    margin:var(--spacing3) 0px;
+    margin:var(--spacing3) 0;
 }
 
 .contact img{
