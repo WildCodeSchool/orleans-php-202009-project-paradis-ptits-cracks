@@ -21,7 +21,7 @@ form, table {
     padding: var(--spacing1) var(--spacing2);
 }
 
+
 .alert:empty {
     display: none;
 }
-

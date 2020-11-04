@@ -1,0 +1,41 @@
+:root{
+    --size-small : 20px;
+    --size-large : 30px;
+    --spacing5 : calc(var(--spacing1)*8);
+
+}
+.contact span {
+    font-size: var(--size-small);
+    color: var(--dark-color);
+}
+
+.contact .box{
+    padding:var(--spacing5) 0;
+}
+
+.contact .box-part{
+    border-radius:8px ;
+    padding:var(--spacing5) var(--spacing2);
+    margin:var(--spacing4) 0;}
+
+.contact .text{
+    margin:var(--spacing3) 0;
+}
+
+.contact img{
+    width: 40px;
+    height: 40px;
+    margin-bottom: var(--spacing1) ;
+}
+
+.contact h4{
+    color: var(--dark-color);
+    font-size: var(--size-large);
+    margin-top: var(--spacing2);
+
+}
+
+.contact a{
+    font-size : var(--size-small);
+    color: var(--dark-color);
+}
