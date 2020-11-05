@@ -91,16 +91,72 @@ class AdminDogController extends AbstractController
         ]);
     }
 
-     /**
+    /**
+     * Display form to edit dog on admin
+     *
+     * @param int $id
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * @SuppressWarnings(PHPMD)
+     */
+
+    public function edit(int $id)
+    {
+        $errors = [];
+
+        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+            $dog = array_map('trim', $_POST);
+            $errors = $this->validator($dog);
+
+            if (empty($errors)) {
+                $dogManager = new DogManager();
+                $dogManager -> editDog($dog, $id);
+                header('Location: /AdminDog/show/' . $id);
+            }
+        }
+
+        $genderManager = new GenderManager();
+        $genders = $genderManager->selectAll();
+
+        $statusManager = new StatusManager();
+        $statuses = $statusManager -> selectAll();
+
+        $categoryManager = new AgeCategoryManager();
+        $categories = $categoryManager -> selectAll();
+
+        $colorManager = new ColorManager();
+        $colors = $colorManager -> selectAll();
+
+        $dogManager = new DogManager();
+        $dogsAdultMales = $dogManager->selectAllAdultMales();
+        $dogsAdultFemales = $dogManager->selectAllAdultFemales();
+        $dog = $dogManager->selectDogDataById($id);
+
+        return $this->twig->render('Admin/edit_dog.html.twig', [
+            'genders' => $genders,
+            'statuses' => $statuses,
+            'colors' => $colors,
+            'categories' => $categories,
+            'adultMales' => $dogsAdultMales,
+            'adultFemales' => $dogsAdultFemales,
+            'errors' => $errors,
+            'dogData' => $dog,
+        ]);
+    }
+
+    /**
      * Display dog details on admin
      *
+     * @param int $id
      * @return string
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
 
-    public function show($id)
+    public function show(int $id)
     {
         $dogManager = new dogManager();
         $dog = $dogManager->selectDogDataById($id);
@@ -114,6 +170,7 @@ class AdminDogController extends AbstractController
      * @return array $errors
      * @SuppressWarnings(PHPMD)
      */
+
     private function validator(array $dog): array
     {
         $errors = [];
