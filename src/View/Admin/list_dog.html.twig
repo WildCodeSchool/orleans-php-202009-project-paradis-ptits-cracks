@@ -21,9 +21,8 @@
                     <th scope="col">Sexe</th>
                     <th scope="col">Date de naissance</th>
                     <th scope="col">Statut</th>
-                    <th scope="col" colspan="2">Actions</th>
+                    <th scope="col">Action</th>
                 </tr>
- 
             </thead>
             <tbody>
                 {% for dog in dogs %}
@@ -33,7 +32,6 @@
                     <td>{{ dog.birthday }}</td>
                     <td>{{ dog.dog_status }}</td>
                     <td><a href="edit/{{ dog.id }}">Modifier</a></td>
-                    <td><a href="delete/{{ dog.id }}" class="text-danger">Effacer</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

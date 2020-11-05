@@ -13,7 +13,6 @@
             <a href="../list"><button class="btn btn-md submit-button">Revenir à la liste</button></a>
         </div>
     </div>
-
     <h1>Fiche chien</h1>
     <h2 class="admin-title">{{dog.name}}</h2>
 
@@ -79,10 +78,13 @@
             <a href="../edit/{{ dog.id }}"><button class="btn btn-lg submit-button">Modifier la fiche</button></a>
         </div>
         <div class="d-flex justify-content-end">
-            <a href="../delete/{{ dog.id }}"><button class="btn btn-lg btn-danger btn-danger-show">Effacer la fiche</button></a>
+            {% if children.children == 0 %}
+                <a href="../delete/{{ dog.id }}"><button class="btn btn-lg btn-danger btn-danger-show">Effacer la fiche</button></a>
+            {% else %}
+                <p>Ce chien est parent d'un autre chien,<br>impossible de supprimer cette fiche</p>
+            {% endif %}
         </div>
     </div>
-
 {% endblock %}
 
 {% block footer %}{% endblock %}
