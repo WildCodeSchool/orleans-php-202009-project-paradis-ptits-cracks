@@ -57,7 +57,7 @@ class AdminDogController extends AbstractController
             if (empty($errors)) {
                 $dogManager = new DogManager();
                 $dogManager -> saveDog($dog);
-                header('Location: /AdminDog/add');
+                header('Location: /AdminDog/list');
             }
         }
 
