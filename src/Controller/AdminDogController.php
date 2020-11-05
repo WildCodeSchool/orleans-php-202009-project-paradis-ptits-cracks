@@ -112,18 +112,20 @@ class AdminDogController extends AbstractController
     /**
      * Delete dog from de database
      *
-     * @param int $id
      * @return string
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
 
-    public function delete(int $id)
+    public function delete()
     {
-        $dogManager = new dogManager();
-        $dogManager->deleteDog($id);
-        header('Location:/AdminDog/list');
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $id = $_POST['id'];
+            $dogManager = new dogManager();
+            $dogManager->deleteDog($id);
+            header('Location:/AdminDog/list');
+        }
     }
 
     /**
