@@ -65,10 +65,11 @@ class AdminDogController extends AbstractController
         $colors = $colorManager -> selectAll();
 
         $dogManager = new DogManager();
-        $dogsAdultMales = $dogManager->selectAllAdultMales();
+        $dogsAdultMales = $dogManager->selectAllAdultType();
 
         $dogManager = new DogManager();
-        $dogsAdultFemales = $dogManager->selectAllAdultFemales();
+        $dogsAdultFemales = $dogManager->selectAllAdultType();
+
 
         return $this->twig->render('Admin/add_dog.html.twig', [
             'genders' => $genders,
