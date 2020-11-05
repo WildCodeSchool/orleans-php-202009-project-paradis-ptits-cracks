@@ -4,6 +4,13 @@ form, table {
     padding-bottom: var(--spacing4);
 }
 
+h1 {
+     text-align: center;
+ }
+
+h2 {
+    color: var(--dark-color);
+}
 .admin-title {
     text-align: center;
     margin-bottom: var(--spacing4);
@@ -21,4 +28,10 @@ form, table {
     padding: var(--spacing1) var(--spacing2);
 }
 
+.btn-danger-show {
+    font-family: var(--font-title);
+}
 
+.img-thumbnail {
+    max-width: 300px;
+}
