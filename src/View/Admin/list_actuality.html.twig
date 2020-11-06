@@ -1,0 +1,35 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Admin | Liste des actualités{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/adminactuality.css">
+{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block content %}
+
+    <h1 class="admin-title"> Toutes les actualités </h1>
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Titre</th>
+                <th scope="col">Date</th>
+                <th scope="col">Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for actuality in actualities %}
+                <tr>
+                    <th scope="row">{{ actuality.title }}</th>
+                    <td>{{ actuality.date }}</td>
+                    <td>{{ actuality.description }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block footer %}{% endblock %}
