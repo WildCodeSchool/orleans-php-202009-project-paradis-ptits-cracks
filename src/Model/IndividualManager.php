@@ -16,12 +16,13 @@ class IndividualManager extends AbstractManager
 
     public function selectDogById(int $id)
     {
-        $statement = $this->pdo->prepare("SELECT d.*, g.label, g.gender, c.dog_color, ac.category, ac.label, s.dog_status FROM dog d
+        $query = "SELECT d.*, g.label, g.gender, c.dog_color, ac.category, ac.label, s.dog_status FROM dog d
                                             JOIN gender g ON g.id=d.gender_id
                                             JOIN color c ON c.id=d.color_id
                                             JOIN age_category ac ON ac.id=d.age_category_id
                                             JOIN status s ON s.id=d.status_id
-                                            WHERE d.id=:id");
+                                            WHERE d.id=:id";
+        $statement = $this->pdo->prepare($query);
         $statement->bindValue('id', $id, \PDO::PARAM_STR);
         $statement->execute();
         return $statement->fetch();
