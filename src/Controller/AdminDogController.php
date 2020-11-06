@@ -19,7 +19,24 @@ class AdminDogController extends AbstractController
 {
 
     /**
-     * Display dog page on admin
+     * Display dog list on admin
+     *
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+
+    public function list()
+    {
+        $dogManager = new DogManager();
+        $dogs = $dogManager->selectAllDogData();
+
+        return $this->twig->render('Admin/list_dog.html.twig', ['dogs' => $dogs]);
+    }
+
+    /**
+     * Display form to add dog on admin
      *
      * @return string
      * @throws \Twig\Error\LoaderError
@@ -27,6 +44,7 @@ class AdminDogController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      * @SuppressWarnings(PHPMD)
      */
+
     public function add()
     {
         $dog = [];
@@ -39,7 +57,7 @@ class AdminDogController extends AbstractController
             if (empty($errors)) {
                 $dogManager = new DogManager();
                 $dogManager -> saveDog($dog);
-                header('Location: /AdminDog/add');
+                header('Location: /AdminDog/list');
             }
         }
 
@@ -74,17 +92,110 @@ class AdminDogController extends AbstractController
     }
 
     /**
+     * Display form to edit dog on admin
+     *
+     * @param int $id
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * @SuppressWarnings(PHPMD)
+     */
+
+    public function edit(int $id)
+    {
+        $errors = [];
+
+        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+            $dog = array_map('trim', $_POST);
+            $errors = $this->validator($dog);
+
+            if (empty($errors)) {
+                $dogManager = new DogManager();
+                $dogManager -> editDog($dog, $id);
+                header('Location: /AdminDog/show/' . $id);
+            }
+        }
+
+        $genderManager = new GenderManager();
+        $genders = $genderManager->selectAll();
+
+        $statusManager = new StatusManager();
+        $statuses = $statusManager -> selectAll();
+
+        $categoryManager = new AgeCategoryManager();
+        $categories = $categoryManager -> selectAll();
+
+        $colorManager = new ColorManager();
+        $colors = $colorManager -> selectAll();
+
+        $dogManager = new DogManager();
+        $dogsAdultMales = $dogManager->selectAllAdultMales();
+        $dogsAdultFemales = $dogManager->selectAllAdultFemales();
+        $dog = $dogManager->selectDogDataById($id);
+
+        return $this->twig->render('Admin/edit_dog.html.twig', [
+            'genders' => $genders,
+            'statuses' => $statuses,
+            'colors' => $colors,
+            'categories' => $categories,
+            'adultMales' => $dogsAdultMales,
+            'adultFemales' => $dogsAdultFemales,
+            'errors' => $errors,
+            'dogData' => $dog,
+        ]);
+    }
+
+    /**
+     * Display dog details on admin
+     *
+     * @param int $id
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+
+    public function show(int $id)
+    {
+        $dogManager = new dogManager();
+        $dog = $dogManager->selectDogDataById($id);
+        $children = $dogManager->howManyPuppies($id);
+        return $this->twig->render('Admin/show_dog.html.twig', ['dog' => $dog, 'children' => $children]);
+    }
+
+    /**
+     * Delete dog from de database
+     *
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+
+    public function delete()
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $id = $_POST['id'];
+            $dogManager = new dogManager();
+            $dogManager->deleteDog($id);
+            header('Location:/AdminDog/list');
+        }
+    }
+
+    /**
      * Form post validation
      *
      * @param array $dog
      * @return array $errors
      * @SuppressWarnings(PHPMD)
      */
+
     private function validator(array $dog): array
     {
         $errors = [];
-        $maxLengthShort = 45;
-        $maxLengthLong = 100;
+        $maxLengthShort = 100;
+        $maxLengthLong = 255;
 
         if (empty($dog['age_category'])) {
             $errors['age_category'] = 'Veuillez sélectionner une catégorie';
@@ -97,7 +208,7 @@ class AdminDogController extends AbstractController
         if (empty($dog['name'])) {
             $errors['name1'] = 'Veuillez ajouter un nom';
         } elseif (strlen($dog['name']) > $maxLengthShort) {
-            $errors['name2'] = 'Le titre ne doit pas dépasser ' . $maxLengthShort . ' caractères.';
+            $errors['name2'] = 'Le nom ne doit pas dépasser ' . $maxLengthShort . ' caractères.';
         }
 
         if (empty($dog['birthday'])) {
@@ -108,6 +219,14 @@ class AdminDogController extends AbstractController
             $errors['picture'] = 'Veuillez ajouter une photo';
         }
 
+        if (!filter_var($dog['picture'], FILTER_VALIDATE_URL)) {
+            $errors['picture2'] = 'Merci d\'ajouter une url valide pour la photo';
+        }
+
+        if (strlen($dog['picture']) > $maxLengthLong) {
+            $errors['picture3'] = 'Le lien ne doit pas dépasser ' . $maxLengthLong . ' caractères.';
+        }
+
         if (empty($dog['gender'])) {
             $errors['gender'] = 'Veuillez préciser le sexe du chien';
         }
@@ -116,11 +235,22 @@ class AdminDogController extends AbstractController
             $errors['color_select'] = 'Veuillez préciser la couleur du chien';
         }
 
-        if (strlen($dog['chien_de_france']) > $maxLengthLong) {
-            $errors['chien_de_france'] = 'Le titre ne doit pas dépasser ' . $maxLengthLong . ' caractères.';
+        if (!empty($dog['chien_de_france'])) {
+            if (!filter_var($dog['chien_de_france'], FILTER_VALIDATE_URL)) {
+                $errors['chien_de_france2'] = 'Merci d\'ajouter une url valide vers www.chiens-de-france.com';
+            }
+
+            if (!strstr($dog['chien_de_france'], 'chiens-de-france')) {
+                $errors['chien_de_france2'] = 'Merci d\'ajouter une url valide vers www.chiens-de-france.com';
+            }
+
+            if (strlen($dog['chien_de_france']) > $maxLengthLong) {
+                $errors['chien_de_france'] = 'Le lien ne doit pas dépasser ' . $maxLengthLong . ' caractères.';
+            }
         }
+
         if (strlen($dog['lof_number']) > $maxLengthShort) {
-            $errors['lof_number'] = 'Le titre ne doit pas dépasser ' . $maxLengthShort . ' caractères.';
+            $errors['lof_number'] = 'Le numéro de lof ne doit pas dépasser ' . $maxLengthShort . ' caractères.';
         }
 
         return $errors;

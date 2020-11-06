@@ -1,21 +1,9 @@
-body {
-    padding-top: calc(var(--spacing4)*4);
-}
-
 form, table {
     font-family: var(--font-text);
     color: var(--dark-color);
     padding-bottom: var(--spacing4);
 }
 
-h1 {
-    text-align: center;
-    margin-top: var(--spacing2);
- }
-
-h3 {
-    color: var(--dark-color);
-}
 .admin-title {
     text-align: center;
     margin-bottom: var(--spacing4);
@@ -33,10 +21,7 @@ h3 {
     padding: var(--spacing1) var(--spacing2);
 }
 
-.btn-danger-show {
-    font-family: var(--font-title);
-}
 
-.img-thumbnail {
-    max-width: 300px;
+.alert:empty {
+    display: none;
 }

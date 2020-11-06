@@ -28,9 +28,41 @@ class DogManager extends AbstractManager
         parent::__construct(self::TABLE);
     }
 
+    public function selectAllDogData(): array
+    {
+        return $this->pdo->query("SELECT d.*, g.gender, c.dog_color, s.dog_status, m.name AS mothername,
+            f.name AS fathername, ac.category FROM dog d
+            LEFT JOIN gender g ON g.id = d.gender_id
+            LEFT JOIN status s ON s.id = d.status_id
+            LEFT JOIN dog m ON m.id = d.mother_id
+            LEFT JOIN dog f ON f.id = d.father_id
+            LEFT JOIN color c ON c.id = d.color_id
+            LEFT JOIN age_category ac ON ac.id = d.age_category_id
+            ORDER BY d.id DESC
+            ")->fetchAll();
+    }
+
+    public function selectDogDataById(int $id): array
+    {
+        $statement = $this->pdo->prepare("SELECT d.*, g.gender, c.dog_color, s.dog_status, 
+            m.name AS mothername, f.name AS fathername, ac.category FROM dog d
+            LEFT JOIN gender g ON g.id = d.gender_id
+            LEFT JOIN status s ON s.id = d.status_id
+            LEFT JOIN dog m ON m.id = d.mother_id
+            LEFT JOIN dog f ON f.id = d.father_id
+            LEFT JOIN color c ON c.id = d.color_id
+            LEFT JOIN age_category ac ON ac.id = d.age_category_id
+            WHERE d.id=:id
+            ");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
+
     public function selectAllAdultMales(): array
     {
-        return $this->pdo->query("SELECT * FROM dog 
+        return $this->pdo->query("SELECT dog.name, dog.id, age_category.label, gender.label FROM dog 
             LEFT JOIN gender ON gender.id = dog.gender_id
             LEFT JOIN age_category ON age_category.id = dog.age_category_id
             WHERE gender.label = 'male'
@@ -39,23 +71,40 @@ class DogManager extends AbstractManager
 
     public function selectAllAdultFemales(): array
     {
-        return $this->pdo->query("SELECT * FROM dog 
+        return $this->pdo->query("SELECT dog.name, dog.id, age_category.label, gender.label FROM dog 
             LEFT JOIN gender ON gender.id = dog.gender_id
             LEFT JOIN age_category ON age_category.id = dog.age_category_id
             WHERE gender.label = 'female'
             AND age_category.label = 'adult'")->fetchAll();
     }
 
-    public function saveDog($dog)
+    public function saveDog($dog): void
     {
-        empty($dog['mother_select']) ? $dog['mother_select'] = null : $dog['mother_select'];
-        empty($dog['father_select']) ? $dog['father_select'] = null : $dog['father_select'];
-
         $statement = $this->pdo->prepare("INSERT INTO dog
         (name, picture, birthday, description, link_chiendefrance, lof_number, is_dna_tested, gender_id, color_id, 
         age_category_id, status_id, mother_id, father_id)
         VALUES (:name, :picture, :birthday, :description, :link_chiendefrance, :lof_number, :is_dna_tested, :gender_id, 
         :color_id, :age_category_id, :status_id, :mother_id, :father_id)");
+        $this->bindDogValues($statement, $dog);
+        $statement->execute();
+    }
+
+    public function editDog($dog, $id): void
+    {
+        $statement = $this->pdo->prepare("UPDATE dog SET name=:name, picture=:picture, birthday=:birthday, 
+        description=:description, link_chiendefrance=:link_chiendefrance, lof_number=:lof_number, color_id=:color_id,
+        is_dna_tested=:is_dna_tested, gender_id=:gender_id, age_category_id=:age_category_id, status_id=:status_id,
+        mother_id=:mother_id, father_id=:father_id
+        WHERE id=:id");
+        $this->bindDogValues($statement, $dog);
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+    }
+
+    private function bindDogValues(\PDOStatement $statement, array $dog): void
+    {
+        empty($dog['mother_select']) ? $dog['mother_select'] = null : $dog['mother_select'];
+        empty($dog['father_select']) ? $dog['father_select'] = null : $dog['father_select'];
         $statement->bindValue('name', $dog['name'], \PDO::PARAM_STR);
         $statement->bindValue('picture', $dog['picture'], \PDO::PARAM_STR);
         $statement->bindValue('birthday', $dog['birthday']);
@@ -69,6 +118,22 @@ class DogManager extends AbstractManager
         $statement->bindValue('status_id', $dog['status_select'], \PDO::PARAM_INT);
         $statement->bindValue('mother_id', $dog['mother_select'], \PDO::PARAM_INT);
         $statement->bindValue('father_id', $dog['father_select'], \PDO::PARAM_INT);
+    }
+
+    public function howManyPuppies(int $id)
+    {
+        $statement = $this->pdo->prepare("SELECT count(*) children FROM dog 
+        WHERE father_id=:id OR mother_id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
+
+    public function deleteDog(int $id)
+    {
+        $statement = $this->pdo->prepare("DELETE FROM " . self::TABLE . " WHERE id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();
     }
 }
