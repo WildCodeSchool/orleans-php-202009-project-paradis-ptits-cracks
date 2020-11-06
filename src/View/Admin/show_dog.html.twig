@@ -1,0 +1,88 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/admindog.css">
+{% endblock %}
+
+{% block title %}Admin | Fiche {{dog.name}}{% endblock %}
+{% block nav %}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="d-flex justify-content-left">
+            <a href="../list"><button class="btn btn-md submit-button">Revenir à la liste</button></a>
+        </div>
+    </div>
+
+    <h1>Fiche chien</h1>
+    <h2 class="admin-title">{{dog.name}}</h2>
+
+    <div class="container mb-5">
+        <div class="text-center my-5">
+            <img src="{{ dog.picture }}" alt="Photo de chien" class="img-thumbnail">
+        </div>
+        <table class="table table-hover mb-5">
+            <tbody>
+            <tr>
+                <th scope="row">Nom</th>
+                <td>{{ dog.name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Catégorie</th>
+                <td>{{ dog.category }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Statut</th>
+                <td>{{ dog.dog_status }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Date de naissance</th>
+                <td>{{ dog.birthday }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Sexe</th>
+                <td>{{ dog.gender }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Couleur</th>
+                <td>{{ dog.dog_color }}</td>
+            </tr>
+            <tr>
+                <th scope="row">LOF</th>
+                <td>{{ dog.lof_number }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Mère</th>
+                <td>{{ dog.mothername }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Père</th>
+                <td>{{ dog.fathername }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Test ADN</th>
+                <td>{{ dog.is_dna_tested == 1 ? 'Oui' : 'Non' }}</td>
+            </tr>          
+            <tr>
+                <th scope="row">Chien de France</th>
+                <td><a href="{{ dog.link_chiendefrance }}">{{ dog.link_chiendefrance }}</a></td>
+            </tr>
+            <tr>
+                <th scope="row" colspan="2">Description</th>
+            </tr>
+            <tr>
+                <td colspan="2">{{ dog.description}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center">
+            <a href="../edit/{{ dog.id }}"><button class="btn btn-lg submit-button">Modifier la fiche</button></a>
+        </div>
+        <div class="d-flex justify-content-end">
+            <a href="../delete/{{ dog.id }}"><button class="btn btn-lg btn-danger btn-danger-show">Effacer la fiche</button></a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer %}{% endblock %}
