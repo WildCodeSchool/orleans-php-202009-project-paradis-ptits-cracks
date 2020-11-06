@@ -57,7 +57,7 @@ class AdminDogController extends AbstractController
             if (empty($errors)) {
                 $dogManager = new DogManager();
                 $dogManager -> saveDog($dog);
-                header('Location: /AdminDog/add');
+                header('Location: /AdminDog/list');
             }
         }
 
@@ -80,6 +80,61 @@ class AdminDogController extends AbstractController
         $dogsAdultFemales = $dogManager->selectAllAdultFemales();
 
         return $this->twig->render('Admin/add_dog.html.twig', [
+            'genders' => $genders,
+            'statuses' => $statuses,
+            'colors' => $colors,
+            'categories' => $categories,
+            'adultMales' => $dogsAdultMales,
+            'adultFemales' => $dogsAdultFemales,
+            'errors' => $errors,
+            'dogData' => $dog,
+        ]);
+    }
+
+    /**
+     * Display form to edit dog on admin
+     *
+     * @param int $id
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * @SuppressWarnings(PHPMD)
+     */
+
+    public function edit(int $id)
+    {
+        $errors = [];
+
+        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+            $dog = array_map('trim', $_POST);
+            $errors = $this->validator($dog);
+
+            if (empty($errors)) {
+                $dogManager = new DogManager();
+                $dogManager -> editDog($dog, $id);
+                header('Location: /AdminDog/show/' . $id);
+            }
+        }
+
+        $genderManager = new GenderManager();
+        $genders = $genderManager->selectAll();
+
+        $statusManager = new StatusManager();
+        $statuses = $statusManager -> selectAll();
+
+        $categoryManager = new AgeCategoryManager();
+        $categories = $categoryManager -> selectAll();
+
+        $colorManager = new ColorManager();
+        $colors = $colorManager -> selectAll();
+
+        $dogManager = new DogManager();
+        $dogsAdultMales = $dogManager->selectAllAdultMales();
+        $dogsAdultFemales = $dogManager->selectAllAdultFemales();
+        $dog = $dogManager->selectDogDataById($id);
+
+        return $this->twig->render('Admin/edit_dog.html.twig', [
             'genders' => $genders,
             'statuses' => $statuses,
             'colors' => $colors,

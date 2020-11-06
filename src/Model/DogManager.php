@@ -42,7 +42,7 @@ class DogManager extends AbstractManager
             ")->fetchAll();
     }
 
-    public function selectDogDataById(int $id)
+    public function selectDogDataById(int $id): array
     {
         $statement = $this->pdo->prepare("SELECT d.*, g.gender, c.dog_color, s.dog_status, 
             m.name AS mothername, f.name AS fathername, ac.category FROM dog d
@@ -78,16 +78,33 @@ class DogManager extends AbstractManager
             AND age_category.label = 'adult'")->fetchAll();
     }
 
-    public function saveDog($dog)
+    public function saveDog($dog): void
     {
-        empty($dog['mother_select']) ? $dog['mother_select'] = null : $dog['mother_select'];
-        empty($dog['father_select']) ? $dog['father_select'] = null : $dog['father_select'];
-
         $statement = $this->pdo->prepare("INSERT INTO dog
         (name, picture, birthday, description, link_chiendefrance, lof_number, is_dna_tested, gender_id, color_id, 
         age_category_id, status_id, mother_id, father_id)
         VALUES (:name, :picture, :birthday, :description, :link_chiendefrance, :lof_number, :is_dna_tested, :gender_id, 
         :color_id, :age_category_id, :status_id, :mother_id, :father_id)");
+        $this->bindDogValues($statement, $dog);
+        $statement->execute();
+    }
+
+    public function editDog($dog, $id): void
+    {
+        $statement = $this->pdo->prepare("UPDATE dog SET name=:name, picture=:picture, birthday=:birthday, 
+        description=:description, link_chiendefrance=:link_chiendefrance, lof_number=:lof_number, color_id=:color_id,
+        is_dna_tested=:is_dna_tested, gender_id=:gender_id, age_category_id=:age_category_id, status_id=:status_id,
+        mother_id=:mother_id, father_id=:father_id
+        WHERE id=:id");
+        $this->bindDogValues($statement, $dog);
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+    }
+
+    private function bindDogValues(\PDOStatement $statement, array $dog): void
+    {
+        empty($dog['mother_select']) ? $dog['mother_select'] = null : $dog['mother_select'];
+        empty($dog['father_select']) ? $dog['father_select'] = null : $dog['father_select'];
         $statement->bindValue('name', $dog['name'], \PDO::PARAM_STR);
         $statement->bindValue('picture', $dog['picture'], \PDO::PARAM_STR);
         $statement->bindValue('birthday', $dog['birthday']);
@@ -101,7 +118,6 @@ class DogManager extends AbstractManager
         $statement->bindValue('status_id', $dog['status_select'], \PDO::PARAM_INT);
         $statement->bindValue('mother_id', $dog['mother_select'], \PDO::PARAM_INT);
         $statement->bindValue('father_id', $dog['father_select'], \PDO::PARAM_INT);
-        $statement->execute();
     }
 
     public function howManyPuppies(int $id)
