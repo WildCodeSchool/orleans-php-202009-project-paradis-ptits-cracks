@@ -9,52 +9,23 @@
     <h2 class="ml-3">Nos Males</h2>
     <div class="row">
     {% for male in males %}
-        <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card text-center m-3">
-            <img class="card-img-top rounded-circle mt-3 mx-auto" src="{{ male.picture }}" alt="image du chien">
-            <div class="card-body">
-                <h5 class="card-title font-weight-bold">{{ male.name }}</h5>
-                <p class="card-text">{{ male.birthday }}</p>
-                <p class="card-text">{{ male.price }}</p>
-                <a href="#" class="btn btn-primary">En Savoir Plus</a>
-            </div>
-        </div>
-        </div>
+        {%include 'Dog/card.html.twig' with {'dog': male}
+        %}
     {%  endfor %}
     </div>
 
     <h2 class="ml-3">Nos Femelles</h2>
     <div class="row">
     {% for female in females %}
-    <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card text-center m-3">
-            <img class="card-img-top rounded-circle mt-3 mx-auto" src="{{ female.picture }}" alt="image du chien">
-            <div class="card-body">
-                <h5 class="card-title font-weight-bold">{{ female.name }}</h5>
-                <p class="card-text">{{ female.birthday }}</p>
-                <p class="card-text">{{ female.price }}</p>
-                <a href="#" class="btn btn-primary">En Savoir Plus</a>
-            </div>
-        </div>
-    </div>
-    {%  endfor %}
+        {%include 'Dog/card.html.twig' with {'dog': female} %}
+            {%  endfor %}
     </div>
 
     <h2 class="ml-3">Nos Chiots</h2>
         <div class="row">
             {% for puppie in puppies %}
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card text-center m-3">
-                        <img class="card-img-top rounded-circle mt-3 mx-auto" src="{{ puppie.picture }}" alt="image du chien">
-                        <div class="card-body">
-                            <h5 class="card-title font-weight-bold">{{ puppie.name }}</h5>
-                            <p class="card-text">{{ puppie.birthday }}</p>
-                            <p class="card-text">{{ puppie.price }}</p>
-                            <a href="#" class="btn btn-primary">En Savoir Plus</a>
-                        </div>
-                    </div>
-                </div>
-            {%  endfor %}
+            {%include 'Dog/card.html.twig' with {'dog': puppie}%}
+                {%  endfor %}
         </div>
     </section>
 {% endblock %}
