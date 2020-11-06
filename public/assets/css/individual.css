@@ -1,0 +1,11 @@
+.container-fluids {
+    margin: 0 auto;
+    padding-top: var(--body-padding-top) ;
+    padding-bottom: var(--body-padding-top) ;
+}
+
+.row {
+    margin-bottom: var(--spacing4);
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -2,9 +2,42 @@
 
 {% block content %}
 
-    <div class="container">
-        <div class="row">
-            <img src="" alt="dogs-photo">
+    <div class="container-fluids ">
+
+        <a class="" href="" title="back to the previous page"><button>Back</button></a>
+        <div class="row ">
+            <div class="col-12 d-flex flex-column justify-content-center*">
+                <img src="/assets/images/{{ details.picture }}" alt="dogs-photo">
+
+                <ul>
+                    {{ details.name }}
+                    <li>Née le : {{ details.birthday }}</li>
+                    <li>{{ details.dog_color }}</li>
+                </ul>
+            </div>
+
+            <div class="col-6">
+                <img src="https://via.placeholder.com/320
+
+C/O https://placeholder.com/" alt="father">
+            </div>
+            <div class="col-6">
+                <img src="https://via.placeholder.com/320
+
+C/O https://placeholder.com/ " alt="mother">
+            </div>
+
+            <div class="col-6">
+                <h2>Trophée</h2>
+            </div>
+            <div class="col-6 blo">
+                <img src="https://via.placeholder.com/320
+
+C/O https://placeholder.com/ " alt="mother">
+            </div>
+
         </div>
+
     </div>
+
 {% endblock %}

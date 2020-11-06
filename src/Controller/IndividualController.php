@@ -16,11 +16,10 @@ class IndividualController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function index()
+    public function index(int $id)
     {
         $individualdog = new IndividualManager();
-
-        $details = $individualdog->selectOneById($id);
-        return $this->twig->render('Individual/individual.html.twig');
+        $details = $individualdog->selectDogById($id);
+        return $this->twig->render('Individual/individual.html.twig', ["details" => $details]);
     }
 }
