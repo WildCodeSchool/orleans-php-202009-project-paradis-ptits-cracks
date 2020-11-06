@@ -69,9 +69,17 @@ class DogManager extends AbstractManager
             AND age_category.label = 'adult'")->fetchAll();
     }
 
-    public function selectAllAdultType(string $type): array
+    public function selectAllAdultFemales(): array
     {
         return $this->pdo->query("SELECT dog.name, dog.id, age_category.label, gender.label FROM dog 
+            LEFT JOIN gender ON gender.id = dog.gender_id
+            LEFT JOIN age_category ON age_category.id = dog.age_category_id
+            WHERE gender.label = 'female'
+            AND age_category.label = 'adult'")->fetchAll();
+    }
+    public function selectAllAdultType(string $type): array
+    {
+        return $this->pdo->query("SELECT * FROM dog 
             LEFT JOIN gender ON gender.id = dog.gender_id
             LEFT JOIN age_category ON age_category.id = dog.age_category_id
             WHERE gender.label = '$type'

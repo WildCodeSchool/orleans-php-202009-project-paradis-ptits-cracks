@@ -9,8 +9,7 @@
     <h2 class="ml-3">Nos Males</h2>
     <div class="row">
     {% for male in males %}
-        {%include 'Dog/card.html.twig' with {'dog': male}
-        %}
+        {%include 'Dog/card.html.twig' with {'dog': male} %}
     {%  endfor %}
     </div>
 
