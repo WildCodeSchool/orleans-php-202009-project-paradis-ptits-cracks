@@ -56,4 +56,10 @@ class ActualityManager extends AbstractManager
         $actualityFetch = $statement->fetch(\PDO::FETCH_ASSOC);
         return $actualityFetch;
     }
+    public function deleteActuality(int $id)
+    {
+        $statement = $this->pdo->prepare("DELETE FROM " . self::TABLE . " WHERE id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+    }
 }
