@@ -15,15 +15,14 @@
             <tr>
                 <th scope="col">Titre</th>
                 <th scope="col">Date</th>
-                <th scope="col">Description</th>
             </tr>
             </thead>
             <tbody>
             {% for actuality in actualities %}
                 <tr>
-                    <th scope="row">{{ actuality.title }}</th>
+                    <th scope="row"><a href="show/{{ actuality.id }}" class="text-decoration-none">{{ actuality.title }}</a></th>
                     <td>{{ actuality.date }}</td>
-                    <td>{{ actuality.description }}</td>
+                    <td><a href="edit/{{ actuality.id }}">Modifier</a></td>
                 </tr>
             {% endfor %}
             </tbody>
