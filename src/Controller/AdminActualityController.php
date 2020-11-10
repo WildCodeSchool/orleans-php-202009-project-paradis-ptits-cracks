@@ -45,9 +45,9 @@ class AdminActualityController extends AbstractController
                 $actualityManager->saveActuality($actuality);
                 header('Location: /AdminActuality/list');
             }
-            return $this->twig->render('Admin/add_actuality.html.twig', ['errors' => $errors ?? [],
-                'actuality' => $actuality ?? [],]);
         }
+        return $this->twig->render('Admin/add_actuality.html.twig', ['errors' => $errors ?? [],
+            'actuality' => $actuality ?? [],]);
     }
     private function validateActuality(array $actuality): array
     {
