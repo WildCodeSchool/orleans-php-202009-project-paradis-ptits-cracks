@@ -59,24 +59,6 @@ class DogManager extends AbstractManager
 
         return $statement->fetch();
     }
-
-    public function selectAllAdultMales(): array
-    {
-        return $this->pdo->query("SELECT dog.name, dog.id, age_category.label, gender.label FROM dog 
-            LEFT JOIN gender ON gender.id = dog.gender_id
-            LEFT JOIN age_category ON age_category.id = dog.age_category_id
-            WHERE gender.label = 'male'
-            AND age_category.label = 'adult'")->fetchAll();
-    }
-
-    public function selectAllAdultFemales(): array
-    {
-        return $this->pdo->query("SELECT dog.name, dog.id, age_category.label, gender.label FROM dog 
-            LEFT JOIN gender ON gender.id = dog.gender_id
-            LEFT JOIN age_category ON age_category.id = dog.age_category_id
-            WHERE gender.label = 'female'
-            AND age_category.label = 'adult'")->fetchAll();
-    }
     public function selectAllAdultType(string $type): array
     {
         return $this->pdo->query("SELECT * FROM dog 
@@ -85,7 +67,6 @@ class DogManager extends AbstractManager
             WHERE gender.label = '$type'
             AND age_category.label = 'adult'")->fetchAll();
     }
-
 
     public function selectAllPuppies(): array
     {
@@ -135,22 +116,5 @@ class DogManager extends AbstractManager
         $statement->bindValue('status_id', $dog['status_select'], \PDO::PARAM_INT);
         $statement->bindValue('mother_id', $dog['mother_select'], \PDO::PARAM_INT);
         $statement->bindValue('father_id', $dog['father_select'], \PDO::PARAM_INT);
-    }
-
-    public function howManyPuppies(int $id)
-    {
-        $statement = $this->pdo->prepare("SELECT count(*) children FROM dog 
-        WHERE father_id=:id OR mother_id=:id");
-        $statement->bindValue('id', $id, \PDO::PARAM_INT);
-        $statement->execute();
-
-        return $statement->fetch();
-    }
-
-    public function deleteDog(int $id)
-    {
-        $statement = $this->pdo->prepare("DELETE FROM " . self::TABLE . " WHERE id=:id");
-        $statement->bindValue('id', $id, \PDO::PARAM_INT);
-        $statement->execute();
     }
 }
