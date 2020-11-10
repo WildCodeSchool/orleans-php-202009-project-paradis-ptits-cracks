@@ -1,5 +1,26 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %} Home | Élevage du paradis des Petits Cracks {% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/home.css">
+{% endblock %}
+
 {% block content %}
-    <h1>Hello Wilder !</h1>
+    <header class="header-background container-fluid">
+        <h1>Elevage du paradis des petits cracks</h1>
+        <img src="/assets/images/logo-ptits-cracks-du-paradis.png">
+        <p>Élevage de chihuahua poils courts
+            et poils longs inscrit au LOF
+            En région Centre à une heure
+            de Paris et d’Orléans </p>
+        <a href="Breeding/index" class="btn btn-lg submit-button">Plus d'informations</a>
+
+    </header>
+    <section class="home-puppies">
+
+    </section>
+
+    <section class="home-actualities">
+
+    </section>
 {% endblock %}
