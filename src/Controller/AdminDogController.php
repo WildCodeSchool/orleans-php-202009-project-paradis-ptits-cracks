@@ -161,7 +161,27 @@ class AdminDogController extends AbstractController
     {
         $dogManager = new dogManager();
         $dog = $dogManager->selectDogDataById($id);
-        return $this->twig->render('Admin/show_dog.html.twig', ['dog' => $dog]);
+        $children = $dogManager->howManyPuppies($id);
+        return $this->twig->render('Admin/show_dog.html.twig', ['dog' => $dog, 'children' => $children]);
+    }
+
+    /**
+     * Delete dog from de database
+     *
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+
+    public function delete()
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $id = $_POST['id'];
+            $dogManager = new dogManager();
+            $dogManager->deleteDog($id);
+            header('Location:/AdminDog/list');
+        }
     }
 
     /**

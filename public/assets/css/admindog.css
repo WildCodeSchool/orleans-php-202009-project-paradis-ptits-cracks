@@ -1,3 +1,7 @@
+body {
+    padding-top: calc(var(--spacing4)*4);
+}
+
 form, table {
     font-family: var(--font-text);
     color: var(--dark-color);
@@ -5,10 +9,11 @@ form, table {
 }
 
 h1 {
-     text-align: center;
+    text-align: center;
+    margin-top: var(--spacing2);
  }
 
-h2 {
+h3 {
     color: var(--dark-color);
 }
 .admin-title {

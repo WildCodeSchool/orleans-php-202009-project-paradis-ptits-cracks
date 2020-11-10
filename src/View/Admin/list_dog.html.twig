@@ -3,10 +3,12 @@
 {% block title %}Admin | Tous les chiens{% endblock %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" href="/assets/css/adminactuality.css">
+    <link rel="stylesheet" href="/assets/css/admindog.css">
+    <link rel="stylesheet" href="/assets/css/adminNavBar.css">
+
 {% endblock %}
 
-{% block nav %}{% endblock %}
+{% block nav %}{% include 'include/_adminNavBar.html.twig'%}{% endblock %}
 
 {% block content %}
 
@@ -27,9 +29,8 @@
                     <th scope="col">Sexe</th>
                     <th scope="col">Date de naissance</th>
                     <th scope="col">Statut</th>
-                    <th scope="col" colspan="2">Actions</th>
+                    <th scope="col">Action</th>
                 </tr>
- 
             </thead>
             <tbody>
                 {% for dog in dogs %}
@@ -39,7 +40,6 @@
                     <td>{{ dog.birthday }}</td>
                     <td>{{ dog.dog_status }}</td>
                     <td><a href="edit/{{ dog.id }}">Modifier</a></td>
-                    <td><a href="delete/{{ dog.id }}" class="text-danger">Effacer</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
