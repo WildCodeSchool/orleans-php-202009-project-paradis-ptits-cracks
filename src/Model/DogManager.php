@@ -117,4 +117,21 @@ class DogManager extends AbstractManager
         $statement->bindValue('mother_id', $dog['mother_select'], \PDO::PARAM_INT);
         $statement->bindValue('father_id', $dog['father_select'], \PDO::PARAM_INT);
     }
+
+    public function howManyPuppies(int $id)
+    {
+        $statement = $this->pdo->prepare("SELECT count(*) children FROM dog 
+        WHERE father_id=:id OR mother_id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
+
+    public function deleteDog(int $id)
+    {
+        $statement = $this->pdo->prepare("DELETE FROM " . self::TABLE . " WHERE id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+    }
 }
