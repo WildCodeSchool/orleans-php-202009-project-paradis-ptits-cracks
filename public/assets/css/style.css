@@ -39,3 +39,10 @@ p {
 
 }
 
+.button-pc {
+    background-color: var(--main-color);
+    font-family: var(--font-title);
+    margin: var(--spacing3);
+    padding: var(--spacing1) var(--spacing2);
+}
+
