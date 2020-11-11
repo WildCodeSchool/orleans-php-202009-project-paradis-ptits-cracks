@@ -6,25 +6,35 @@
 {% block header %}<h1>Nos Chiens</h1>{% endblock %}
 {% block content %}
     <section class = "dog">
-    <h3 class="ml-3">Nos Males</h3>
-    <div class="row">
-    {% for male in males %}
-        {%include 'Dog/card.html.twig' with {'dog': male} %}
-    {%  endfor %}
-    </div>
-
-    <h3 class="ml-3">Nos Femelles</h3>
-    <div class="row">
-    {% for female in females %}
-        {%include 'Dog/card.html.twig' with {'dog': female} %}
+    <div class=" section card m-xl-5">
+        <div class="card-body">
+            <h3 class="titleDog">Nos Males</h3>
+            <div class="row">
+            {% for male in males %}
+                {%include 'Dog/card.html.twig' with {'dog': male} %}
             {%  endfor %}
+            </div>
+        </div>
     </div>
-
-    <h3 class="ml-3">Nos Chiots</h3>
-        <div class="row">
-            {% for puppie in puppies %}
-            {%include 'Dog/card.html.twig' with {'dog': puppie}%}
-                {%  endfor %}
+        <div class=" section card m-xl-5">
+        <div class="card-body">
+        <h3 class="titleDog">Nos Femelles</h3>
+            <div class="row">
+            {% for female in females %}
+                {%include 'Dog/card.html.twig' with {'dog': female} %}
+                    {%  endfor %}
+            </div>
+            </div>
+        </div>
+        <div class=" section card m-xl-5">
+        <div class="card-body">
+           <h3 class="titleDog">Nos Chiots</h3>
+           <div class="row">
+               {% for puppie in puppies %}
+               {%include 'Dog/card.html.twig' with {'dog': puppie}%}
+               {%  endfor %}
+           </div>
+           </div>
         </div>
     </section>
 {% endblock %}
