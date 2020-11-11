@@ -10,7 +10,7 @@
     --main-color: #F7882F;
     --secondary-color: #EFD186;
     --light-color: #fff7ed;
-    --dark-color: #2A2A2A;
+    --dark-color: #2a2a2a;
     --font-text: Montserrat, sans-serif ;
     --font-title: Lobster, sans-serif ;
 
@@ -44,5 +44,9 @@ p {
     font-family: var(--font-title);
     margin: var(--spacing3);
     padding: var(--spacing1) var(--spacing2);
+}
+
+.dark-shadow {
+    box-shadow: 1px 1px 5px rgba(42, 42 , 42, 0.3);
 }
 

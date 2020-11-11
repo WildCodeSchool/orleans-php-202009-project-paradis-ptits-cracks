@@ -9,6 +9,8 @@
 
 namespace App\Controller;
 
+use App\Model\DogManager;
+
 class HomeController extends AbstractController
 {
 
@@ -22,6 +24,8 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig');
+        $dogManager = new DogManager();
+        $puppies = $dogManager->selectThreePuppies();
+        return $this->twig->render('Home/index.html.twig', ['puppies' => $puppies]);
     }
 }

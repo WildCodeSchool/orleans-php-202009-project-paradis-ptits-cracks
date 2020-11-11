@@ -4,5 +4,9 @@
     background-repeat: no-repeat;
     min-height: 60vh;
     background-position: center;
+    background-attachment: fixed;
+    top: 0;
+    ;
 }
 
+git
