@@ -9,6 +9,7 @@
 
 namespace App\Controller;
 
+use App\Model\ActualityManager;
 use App\Model\DogManager;
 
 class HomeController extends AbstractController
@@ -26,6 +27,8 @@ class HomeController extends AbstractController
     {
         $dogManager = new DogManager();
         $puppies = $dogManager->selectThreePuppies();
-        return $this->twig->render('Home/index.html.twig', ['puppies' => $puppies]);
+        $actualityManager = new ActualityManager();
+        $actualities = $actualityManager->selectTwoLastActualities();
+        return $this->twig->render('Home/index.html.twig', ['puppies' => $puppies, 'actualities' => $actualities]);
     }
 }

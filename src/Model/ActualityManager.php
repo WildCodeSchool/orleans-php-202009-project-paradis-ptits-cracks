@@ -32,4 +32,11 @@ class ActualityManager extends AbstractManager
         $statement->bindValue(':description', $actuality['description'], \PDO::PARAM_STR);
         $statement->execute();
     }
+
+    public function selectTwoLastActualities(): array
+    {
+        return $this->pdo->query("SELECT id, title, date, description FROM " . self::TABLE . " AS a
+            ORDER BY a.id DESC
+            LIMIT 2")->fetchAll();
+    }
 }
