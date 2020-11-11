@@ -6,10 +6,10 @@
 {% block header %}<h1>Nos Chiens</h1>{% endblock %}
 {% block content %}
     <section class = "dog">
-    <div class=" section card m-xl-5">
+    <div class=" section card m-xl-5 ">
         <div class="card-body">
             <h3 class="titleDog">Nos Males</h3>
-            <div class="row">
+            <div class=" container-fluid row mx-auto justify-content-center">
             {% for male in males %}
                 {%include 'Dog/card.html.twig' with {'dog': male} %}
             {%  endfor %}
@@ -17,9 +17,9 @@
         </div>
     </div>
         <div class=" section card m-xl-5">
-        <div class="card-body">
+        <div class="femelle card-body">
         <h3 class="titleDog">Nos Femelles</h3>
-            <div class="row">
+            <div class="container-fluid row mx-auto justify-content-center ">
             {% for female in females %}
                 {%include 'Dog/card.html.twig' with {'dog': female} %}
                     {%  endfor %}
@@ -29,7 +29,7 @@
         <div class=" section card m-xl-5">
         <div class="card-body">
            <h3 class="titleDog">Nos Chiots</h3>
-           <div class="row">
+           <div class="container-fluid row mx-auto justify-content-center">
                {% for puppie in puppies %}
                {%include 'Dog/card.html.twig' with {'dog': puppie}%}
                {%  endfor %}

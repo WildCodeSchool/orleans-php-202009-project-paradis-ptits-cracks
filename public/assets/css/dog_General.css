@@ -3,22 +3,36 @@
 }
 .section{
     background-color: var(--secondary-color);
+
 }
 .card img{
-    width: 60%;
-    height: 50%;
-    max-width: 150px;
+    width: 70%;
+    height: 70%;
+    max-width: 200px;
+    max-height: 200px;
 }
 
 .cardDog{
-    background-color: #c1c1c1;
-    height: 380px;
+    background-color: var(--light-color);
+    height: 400px;
+    max-width: 400px;
 }
 .dogName{
     font-family: var(--font-title);
+    font-size: 25px;
 }
 .titleDog{
     color: var(--dark-color);
+}
+
+.femelle{
+    background-color: var(--light-color);
+}
+.femelle .cardDog{
+    background-color: var(--secondary-color);
+}
+.row{
+    width: 90%;
 }
 .birthday{
     font-size: 15px;
