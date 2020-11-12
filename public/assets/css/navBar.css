@@ -18,6 +18,6 @@
 }
 
 .nav-link:hover{
-    color: var(--main-color);
+    color: var(--secondary-color);
 }
 
