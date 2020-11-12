@@ -29,8 +29,9 @@ h4{
 }
 
 .contact a{
-    font-size : var(--size-small);
+    font-family: var(--font-text);
     color: var(--dark-color);
+    font-size: var(--fontsize-text);
 }
 
 label{
