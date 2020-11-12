@@ -24,7 +24,6 @@ class ActualityManager extends AbstractManager
     {
         parent::__construct(self::TABLE);
     }
-
     public function saveActuality(array $actuality)
     {
         $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (title, date, description)
@@ -34,7 +33,6 @@ class ActualityManager extends AbstractManager
         $statement->bindValue(':description', $actuality['description'], \PDO::PARAM_STR);
         $statement->execute();
     }
-
     public function editActuality($actuality, $id)
     {
         $statement = $this->pdo->prepare("UPDATE actuality SET title=:title, date=:date,
@@ -46,7 +44,6 @@ class ActualityManager extends AbstractManager
 
         $statement->execute();
     }
-
     public function selectOneById(int $id)
     {
         $statement = $this->pdo->prepare("SELECT * FROM $this->table WHERE id=:id");
