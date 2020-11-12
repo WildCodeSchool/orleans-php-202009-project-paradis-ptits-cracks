@@ -4,9 +4,11 @@
 
 {% block stylesheet %}
     <link rel="stylesheet" href="/assets/css/adminactuality.css">
+    <link rel="stylesheet" href="/assets/css/adminNavBar.css">
+
 {% endblock %}
 
-{% block nav %}{% endblock %}
+{% block nav %}{% include 'include/_adminNavBar.html.twig'%}{% endblock %}
 
 {% block content %}
     <div class="container">

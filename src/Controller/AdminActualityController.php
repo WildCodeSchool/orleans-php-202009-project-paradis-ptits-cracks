@@ -49,6 +49,12 @@ class AdminActualityController extends AbstractController
         return $this->twig->render('Admin/add_actuality.html.twig', ['errors' => $errors ?? [],
             'actuality' => $actuality ?? [],]);
     }
+
+    /**
+     * @param array $actuality
+     * @return array
+     */
+
     private function validateActuality(array $actuality): array
     {
         $errors = [];
@@ -56,7 +62,7 @@ class AdminActualityController extends AbstractController
         if (empty($actuality['title'])) {
             $errors [] = 'Le titre ne doit pas être vide.';
         }
-            $maxLength = 255;
+        $maxLength = 255;
         if (strlen($actuality['title']) > $maxLength) {
             $errors [] = 'Le titre ne doit pas dépasser ' . $maxLength . ' caractères.';
         }
@@ -66,6 +72,29 @@ class AdminActualityController extends AbstractController
         if (empty($actuality['description'])) {
             $errors [] = 'La description ne doit pas être vide.';
         }
-            return $errors ?? [];
+        return $errors ?? [];
+    }
+    public function edit(int $id)
+    {
+        $actuality = [];
+        $actualityManager = new ActualityManager();
+        $actuality = $actualityManager->selectOneById($id);
+
+        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+            $actuality = array_map('trim', $_POST);
+            $errors = $this->validateActuality($actuality);
+
+            if (empty($errors)) {
+                $actuality = $actualityManager->editActuality($actuality, $id);
+                header('Location: /AdminActuality/list');
+            }
+        }
+        return $this->twig->render('Admin/edit_actuality.html.twig', ['actuality' => $actuality]);
+    }
+    public function show(int $id)
+    {
+        $actualityManager = new ActualityManager();
+        $actuality = $actualityManager->selectOneById($id);
+        return $this->twig->render('Admin/show_actuality.html.twig', ['actuality' => $actuality]);
     }
 }
