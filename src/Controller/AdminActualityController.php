@@ -68,4 +68,13 @@ class AdminActualityController extends AbstractController
         }
             return $errors ?? [];
     }
+    public function delete()
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $id = $_POST['id'];
+            $actualityManager = new actualityManager();
+            $actualityManager->deleteActuality($id);
+            header('Location:/AdminActuality/list');
+        }
+    }
 }

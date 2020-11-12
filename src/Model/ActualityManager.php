@@ -32,4 +32,10 @@ class ActualityManager extends AbstractManager
         $statement->bindValue(':description', $actuality['description'], \PDO::PARAM_STR);
         $statement->execute();
     }
+    public function deleteActuality(int $id)
+    {
+        $statement = $this->pdo->prepare("DELETE FROM " . self::TABLE . " WHERE id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+    }
 }
