@@ -3,7 +3,7 @@
 }
 
 .navbar {
-    background-color: var(--secondary-color);
+    background-color: var(--main-color);
     top: 0;
     position: fixed;
     width: 100%;
@@ -18,6 +18,6 @@
 }
 
 .nav-link:hover{
-    color: var(--main-color);
+    color: var(--secondary-color);
 }
 

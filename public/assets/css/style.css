@@ -8,11 +8,18 @@
 :root {
 
     --main-color: #F7882F;
-    --secondary-color: #EFD186;
+    --secondary-color: #efd186;
     --light-color: #fff7ed;
-    --dark-color: #2A2A2A;
+    --dark-color: #2a2a2a;
+    --secondary-color-alpha: rgba(239, 209, 134, 0.5);
+    --shadow-color: rgba(42, 42 , 42, 0.3);
     --font-text: Montserrat, sans-serif ;
     --font-title: Lobster, sans-serif ;
+
+    --fontsize-text: 16pt;
+    --fontsize-small-text: 14pt;
+    --fontsize-main-title: 48pt;
+    --fontsize-card-title: 20pt;
 
     --spacing1: 8px;
     --spacing2: calc(var(--spacing1)*2);
@@ -28,14 +35,47 @@ body {
     box-sizing: border-box;
 }
 
-h1, h2, h3, h4 {
+h1, h2 {
     font-family: var(--font-title);
     color: var(--main-color);
+    font-size: var(--fontsize-main-title);
+}
+
+h3, h4 {
+    font-family: var(--font-title);
+    color: var(--dark-color);
+    font-size: var(--fontsize-card-title);
 }
 
 p {
     font-family: var(--font-text);
     color: var(--dark-color);
-
+    font-size: var(--fontsize-text);
 }
 
+.small-p {
+    font-size: var(--fontsize-small-text);
+}
+
+.button-main {
+    background-color: var(--main-color);
+    font-family: var(--font-title);
+    font-size: var(--fontsize-text);
+    margin: var(--spacing3);
+    padding: var(--spacing1) var(--spacing2);
+}
+
+.button-secondary {
+    background-color: var(--secondary-color);
+    font-family: var(--font-title);
+    font-size: var(--fontsize-text);
+    padding: var(--spacing1);
+}
+
+.dark-shadow {
+    box-shadow: 1px 1px 5px var(--shadow-color);
+}
+
+.orange-solid {
+    box-shadow: -8px -8px 0px var(--main-color);
+}
