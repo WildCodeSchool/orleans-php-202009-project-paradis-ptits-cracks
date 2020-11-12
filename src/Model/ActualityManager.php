@@ -46,14 +46,4 @@ class ActualityManager extends AbstractManager
 
         $statement->execute();
     }
-
-    public function selectOneById(int $id)
-    {
-        $statement = $this->pdo->prepare("SELECT * FROM $this->table WHERE id=:id");
-        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
-        $statement->execute();
-
-        $actualityFetch = $statement->fetch(\PDO::FETCH_ASSOC);
-        return $actualityFetch;
-    }
 }

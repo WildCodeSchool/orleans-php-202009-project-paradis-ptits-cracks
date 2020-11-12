@@ -79,9 +79,8 @@ class AdminActualityController extends AbstractController
     public function edit(int $id)
     {
         $actuality = [];
-        $actualityFetch = [];
         $actualityManager = new ActualityManager();
-
+        $actuality = $actualityManager->selectOneById($id);
 
         if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             $actuality = array_map('trim', $_POST);
@@ -92,8 +91,7 @@ class AdminActualityController extends AbstractController
                 header('Location: /AdminActuality/list');
             }
         }
-        $actualityFetch = $actualityManager->selectOneById($id);
-        return $this->twig->render('Admin/edit_actuality.html.twig', ['actuality' => $actualityFetch]);
+        return $this->twig->render('Admin/edit_actuality.html.twig', ['actuality' => $actuality]);
     }
     public function show(int $id)
     {
