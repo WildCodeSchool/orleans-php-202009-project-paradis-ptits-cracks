@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Nos Chiens{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/dog_General.css">
+{% endblock %}
+{% block header %}<h1>Nos Chiens</h1>{% endblock %}
+{% block content %}
+    <section class = "dog">
+    <h3 class="ml-3">Nos Males</h3>
+    <div class="row">
+    {% for male in males %}
+        {%include 'Dog/card.html.twig' with {'dog': male} %}
+    {%  endfor %}
+    </div>
+
+    <h3 class="ml-3">Nos Femelles</h3>
+    <div class="row">
+    {% for female in females %}
+        {%include 'Dog/card.html.twig' with {'dog': female} %}
+            {%  endfor %}
+    </div>
+
+    <h3 class="ml-3">Nos Chiots</h3>
+        <div class="row">
+            {% for puppie in puppies %}
+            {%include 'Dog/card.html.twig' with {'dog': puppie}%}
+                {%  endfor %}
+        </div>
+    </section>
+{% endblock %}
