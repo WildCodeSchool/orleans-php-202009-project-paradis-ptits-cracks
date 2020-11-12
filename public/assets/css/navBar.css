@@ -8,6 +8,7 @@
     position: fixed;
     width: 100%;
     padding: var(--spacing2);
+    z-index: 1;
 }
 
 .nav-link{
