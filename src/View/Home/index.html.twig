@@ -1,5 +1,68 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %} Home | Élevage du paradis des Petits Cracks {% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/home.css">
+{% endblock %}
+
 {% block content %}
-    <h1>Hello Wilder !</h1>
+    <header class="header-background container-fluid h  ">
+        <div class="col-lg-6 col-md-12 d-flex flex-column align-self-center my-auto">
+            <div class="d-flex flex-column m-5">
+                <h1 class="d-none">Elevage du paradis des petits cracks</h1>
+                <img src="/assets/images/logo-ptits-cracks-du-paradis.png" alt="logo-paradis des petits cracks" class="align-self-center m-5 logo">
+                <p class="header-p align-self-center text-center p-1">Élevage de <strong>chihuahuas poils courts et poils longs</strong> inscrit au <strong>LOF</strong></p>
+                <p class="header-p align-self-center text-center p-1">En <strong>région Centre</strong> à une heure de Paris et d’Orléans </p>
+                <a href="Breeding/index" class="btn btn-lg button-main align-self-center m-5 dark-shadow" >Plus d'informations</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="home-puppies">
+        <div class="container text-center mt-5 pt-4 mb-5 pb-5">
+            <h2 class="mt-5"> Nos chiots</h2>
+            <div class="row justify-content-center my-3">
+                {% for puppy in puppies %}
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="card mx-3 p-5 border-0">
+                            <div class="thumbnail-container">
+                                <img src="{{ puppy.picture }}" alt="category icon" class="card-img-top align-self-center thumbnail  ">
+                            </div>
+                            <div class="card-body text-center">
+                                <h4 class="card-title m-0"> {{ puppy.name }} </h4>
+                                <p class="card-text m-0"> {{ puppy.birthday }}</p>
+                                <p class="card-text m-0"> {{ puppy.gender }}</p>
+                                <a href="#" class="btn btn-md dark-shadow button-secondary m-2" >Voir le chien</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="dog/index" class="btn btn-lg button-main align-self-center mt-3 mb-5 dark-shadow" >Tous nos chiens</a>
+        </div>
+    </section>
+
+    <section class="home-actualities">
+        <div class="container text-center p-5">
+            <h2 class="m-5 pb-3"> Nos actualités</h2>
+            <div class="row justify-content-center">
+                {% for actuality in actualities %}
+                    <div class="col-lg-6 col-12 mb-4 mt-2 ">
+                        <div class="card mx-2 mb-5 border-0 rounded-0">
+                            <img src="{{ actuality.image ?? '/assets/images/petits-crack_actu-default.jpg' }}" alt="actuality-picture" class="card-img-top align-self-center orange-solid rounded-0">
+                            <div class="card-description mx-auto p-0 dark-shadow">
+                            <div class="card-body ">
+                                <h4 class="card-title text-left text-truncate"> {{ actuality.title }} </h4>
+                                <p class="card-text small-p text-left"> {{ actuality.date }}</p>
+                                <p class="card-text small-p text-left text-justify text-truncate"> {{ actuality.description }}</p>
+                                <a href="#" class="btn btn-md dark-shadow button-secondary m-3" >En savoir plus</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="actuality/index" class="btn btn-lg button-main align-self-center mb-5 dark-shadow" >Toutes nos actualités</a>
+        </div>
+    </section>
 {% endblock %}
