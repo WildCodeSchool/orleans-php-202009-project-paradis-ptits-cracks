@@ -1,4 +1,9 @@
 {% extends 'layout.html.twig' %}
+{% block title %} Contact | Élevage du paradis des Petits Cracks {% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/contact.css">
+{% endblock %}
+
 {% block content %}
     <section class="contact">
         <div class="box">
@@ -12,9 +17,9 @@
                                 <h4>Téléphone</h4>
                             </div>
                             <div class="text">
-                                <span>Fixe : 02 38 31 69 13 </span>
+                                <p>Fixe : 02 38 31 69 13 </p>
                                 </br>
-                                <span>Mobile : 06 18 47 54 45 </span>
+                                <p>Mobile : 06 18 47 54 45 </p>
                             </div>
                         </div>
                     </div>
@@ -26,7 +31,7 @@
                                 <h4>Adresse</h4>
                             </div>
                             <div class="text">
-                                <span>1 Route des Carres Les Perdreaux, 45630 Beaulieu-sur-Loire</span>
+                                <p>1 Route des Carres Les Perdreaux, 45630 Beaulieu-sur-Loire</p>
                             </div>
                         </div>
                     </div>
@@ -38,7 +43,7 @@
                                 <h4>Mail</h4>
                             </div>
                             <div class="text">
-                                <span>magali.duval@elevage.fr</span>
+                                <p>magali.duval@elevage.fr</p>
                             </div>
 
                         </div>
@@ -51,7 +56,7 @@
                                 <h4>Facebook</h4>
                             </div>
                             <div class="text">
-                                <span>Retrouvez nos actualitées sur <a href="https://www.facebook.com/Magaliduval4/"> facebook </a> </span>
+                                <p>Retrouvez nos actualitées sur <a href="https://www.facebook.com/Magaliduval4/"> facebook </a> </p>
                             </div>
                         </div>
                     </div>
@@ -63,7 +68,7 @@
                                 <h4>Chiots de france</h4>
                             </div>
                             <div class="text">
-                                <span>Venez voir nos autres chiens disponible sur <a href="https://www.chiots-de-france.com/">chiots de france</a> </span>
+                                <p>Venez voir nos autres chiens disponible sur <a href="https://www.chiots-de-france.com/">chiots de france</a> </p>
                             </div>
                         </div>
                     </div>
@@ -75,7 +80,7 @@
                                 <h4>CCCE</h4>
                             </div>
                             <div class="text">
-                                <span>Rejoignez nous au <a href="http://www.ccce.org/index.html"> club du chihuahua, du coton de tulear et des exotiques</a> </span>
+                                <p>Rejoignez nous au <a href="http://www.ccce.org/index.html"> club du chihuahua, du coton de tulear et des exotiques</a> </p>
                             </div>
                         </div>
                     </div>
@@ -84,28 +89,28 @@
             </div>
         </div>
     </section>
-    <section class="contact container">
-        <h2 class="text-center">Nous Contacter</h2>
-        <form action="#" method="post" class="mx-md-5 mt-5 mb-3">
+       <section class="contact container">
+        <h2 class="text-center">Contactez-moi</h2>
+        <form action="mailto:sandra.louchart@gmail.com" method="post" class="mx-md-5 mt-5 mb-3">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="firstname">Prénom :</label>
-                    <input type="text" class="form-control" name="firstname" id="firstname" placeholder="John">
+                    <input type="text" class="form-control" name="firstname" id="firstname" placeholder="John" value="{{ control.lastname ?? '' }}" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="lastname">Nom :</label>
-                    <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Doe">
+                    <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Doe" value="{{ control.firstname ?? '' }}" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">E-mail :</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="john.doe@test.com">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="john.doe@test.com" value="{{ control.email ?? '' }}" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="phone">Téléphone :</label>
                     <input type="tel" class="form-control" name="phone" id="phone"
-                           placeholder="0203040506">
+                           placeholder="0203040506" value="{{ control.phone ?? '' }}">
                 </div>
             </div>
             <div class="form-group">
@@ -122,8 +127,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="comment">Message :</label>
-                <textarea class="form-control" rows="5" name="comment" id="comment"></textarea>
+                <label for="message">Message :</label>
+                <textarea class="form-control" rows="5" name="message" id="message" required>{{ control.message ?? '' }}</textarea>
             </div>
             <div class="form-check mt-5">
                 <input type="checkbox" class="form-check-input" name="policy" id="check">
