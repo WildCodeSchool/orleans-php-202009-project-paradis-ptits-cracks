@@ -11,6 +11,8 @@
     --secondary-color: #efd186;
     --light-color: #fff7ed;
     --dark-color: #2a2a2a;
+    --secondary-color-alpha: rgba(239, 209, 134, 0.5);
+    --shadow-color: rgba(42, 42 , 42, 0.3);
     --font-text: Montserrat, sans-serif ;
     --font-title: Lobster, sans-serif ;
 
@@ -51,11 +53,11 @@ p {
     font-size: var(--fontsize-text);
 }
 
-.smallp {
+.small-p {
     font-size: var(--fontsize-small-text);
 }
 
-.button-pc {
+.button-main {
     background-color: var(--main-color);
     font-family: var(--font-title);
     font-size: var(--fontsize-text);
@@ -63,7 +65,7 @@ p {
     padding: var(--spacing1) var(--spacing2);
 }
 
-.button-seemore {
+.button-secondary {
     background-color: var(--secondary-color);
     font-family: var(--font-title);
     font-size: var(--fontsize-text);
@@ -71,7 +73,7 @@ p {
 }
 
 .dark-shadow {
-    box-shadow: 1px 1px 5px rgba(42, 42 , 42, 0.3);
+    box-shadow: 1px 1px 5px var(--shadow-color);
 }
 
 .orange-solid {

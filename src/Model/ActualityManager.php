@@ -33,10 +33,13 @@ class ActualityManager extends AbstractManager
         $statement->execute();
     }
 
-    public function selectTwoLastActualities(): array
+    public function selectLastActualities(int $limit): array
     {
-        return $this->pdo->query("SELECT id, title, date, description FROM " . self::TABLE . " AS a
+        $statement = $this->pdo->prepare("SELECT id, title, date, description FROM " . self::TABLE . " AS a
             ORDER BY a.id DESC
-            LIMIT 2")->fetchAll();
+            LIMIT :limit");
+        $statement->bindValue('limit', $limit, \PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetchAll();
     }
 }

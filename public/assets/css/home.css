@@ -2,14 +2,14 @@
     background-image: url("/assets/images/header_background.jpg");
     background-size:cover;
     background-repeat: no-repeat;
-    height: 60vh;
+    min-height: 70vh;
     background-position-x: center;
-    background-position-y: -200px;
+    background-position-y: -50px;
     background-attachment: fixed;
 }
 
 .header-p {
-    background-color: rgba(239, 209, 134, 0.4);
+    background-color: var(--secondary-color-alpha);
 }
 
 .logo {
@@ -45,4 +45,3 @@
 .card {
     background: transparent;
 }
-
