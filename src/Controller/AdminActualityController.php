@@ -33,7 +33,6 @@ class AdminActualityController extends AbstractController
 
         return $this->twig->render('Admin/list_actuality.html.twig', ['actualities' => $actualities]);
     }
-
     public function add()
     {
         $errors = [];
@@ -75,7 +74,6 @@ class AdminActualityController extends AbstractController
         }
         return $errors ?? [];
     }
-
     public function edit(int $id)
     {
         $actuality = [];
