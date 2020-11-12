@@ -1,17 +1,42 @@
 .dog{
     margin-top: 50px;
 }
+.section{
+    background-color: var(--secondary-color);
 
+}
 .card img{
-    width: 200px;
-    height: 250px;
+    width: 70%;
+    height: 70%;
+    max-width: 200px;
+    max-height: 200px;
 }
 
-.card{
+.cardDog{
+    background-color: var(--light-color);
+    height: 400px;
+    max-width: 400px;
+}
+.dogName{
+    font-family: var(--font-title);
+    font-size: 25px;
+}
+.titleDog{
+    color: var(--dark-color);
+}
+
+.femelle{
+    background-color: var(--light-color);
+}
+.femelle .cardDog{
     background-color: var(--secondary-color);
 }
-
-
+.row{
+    width: 90%;
+}
+.birthday{
+    font-size: 15px;
+}
 .card-body a {
     background-color: var(--dark-color);
     border: none;
