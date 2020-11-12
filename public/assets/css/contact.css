@@ -1,10 +1,5 @@
 :root{
     --spacing5 : calc(var(--spacing1)*8);
-    --fontsize-text: 16pt;
-    --fontsize-small-text: 14pt;
-    --fontsize-main-title: 48pt;
-    --fontsize-card-title: 20pt;
-
 }
 
 .contact .box{
