@@ -4,9 +4,11 @@
 
 {% block stylesheet %}
     <link rel="stylesheet" href="/assets/css/adminactuality.css">
+    <link rel="stylesheet" href="/assets/css/adminNavBar.css">
+
 {% endblock %}
 
-{% block nav %}{% endblock %}
+{% block nav %}{% include 'include/_adminNavBar.html.twig'%}{% endblock %}
 
 {% block content %}
     <div class="container">
@@ -16,7 +18,7 @@
                 {%- endfor -%}
             </ul>
         <h1 class="admin-title"> Ajouter une actualité </h1>
-        <form method="POST" action="" novalidate>
+        <form method="POST" action="">
             <div class="form-group">
                 <label for="title">Titre</label>
                 <input class="form-control" type="text" id="title" name="title" placeholder="Championnat de Chien de France" value="{{ actuality.title }}" required>

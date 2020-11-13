@@ -59,23 +59,36 @@ class DogManager extends AbstractManager
 
         return $statement->fetch();
     }
-
-    public function selectAllAdultMales(): array
+    public function selectAllAdultType(string $type): array
     {
-        return $this->pdo->query("SELECT dog.name, dog.id, age_category.label, gender.label FROM dog 
+        return $this->pdo->query("SELECT * FROM dog 
             LEFT JOIN gender ON gender.id = dog.gender_id
             LEFT JOIN age_category ON age_category.id = dog.age_category_id
-            WHERE gender.label = 'male'
+            WHERE gender.label = '$type'
             AND age_category.label = 'adult'")->fetchAll();
     }
 
-    public function selectAllAdultFemales(): array
+    public function selectAllPuppies(): array
     {
-        return $this->pdo->query("SELECT dog.name, dog.id, age_category.label, gender.label FROM dog 
+        return $this->pdo->query("SELECT * FROM dog 
             LEFT JOIN gender ON gender.id = dog.gender_id
             LEFT JOIN age_category ON age_category.id = dog.age_category_id
-            WHERE gender.label = 'female'
-            AND age_category.label = 'adult'")->fetchAll();
+            WHERE age_category.label = 'puppies'")->fetchAll();
+    }
+
+    public function selectLastPuppies(int $limit): array
+    {
+        $statement = $this->pdo->prepare("SELECT d.id, d.name, d.picture, d.birthday, g.gender 
+            FROM " . self::TABLE . " d 
+            LEFT JOIN gender g ON g.id = d.gender_id
+            LEFT JOIN age_category ac ON ac.id = d.age_category_id
+            WHERE ac.label = 'puppies'
+            ORDER BY d.id DESC
+            LIMIT :limit");
+        $statement->bindValue('limit', $limit, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll();
     }
 
     public function saveDog($dog): void
