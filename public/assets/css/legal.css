@@ -1,36 +1,17 @@
-:root{
-    --size-small : 20px;
-    --size-large : 35px;
-}
-
 .section-legal{
     margin: 50px 0;
 }
-.titleLegal{
-    font-family: var(--font-title);
-    font-size: var(--size-large);
-    color: var(--dark-color);
-    background-color: var(--main-color);
+h2{
     text-align: center;
     margin-bottom: var(--spacing2);
-
 }
 
-.font-weight-bold {
-    font-family: var(--font-text);
-    font-size: var(--size-small);
-    color: var(--dark-color);
-}
-
-.article {
-    font-family: var(--font-title);
-    font-size: var(--size-small);
-    margin-bottom: var(--spacing2);
-    color : var(--dark-color);
+h3{
+    margin-top: var(--spacing4);
+    margin-bottom: 0;
 }
 
 .text{
-    color :var(--dark-color);
-    font-family: var(--font-text);
-    margin-bottom: var(--spacing2);
+    margin-top: var(--spacing4);
+
 }
