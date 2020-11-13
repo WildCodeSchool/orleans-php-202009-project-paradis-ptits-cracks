@@ -97,4 +97,13 @@ class AdminActualityController extends AbstractController
         $actuality = $actualityManager->selectOneById($id);
         return $this->twig->render('Admin/show_actuality.html.twig', ['actuality' => $actuality]);
     }
+    public function delete()
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $id = $_POST['id'];
+            $actualityManager = new actualityManager();
+            $actualityManager->deleteActuality($id);
+            header('Location:/AdminActuality/list');
+        }
+    }
 }
