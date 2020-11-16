@@ -1,0 +1,23 @@
+<div class="container-fluid m-2">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card w-sm-80 justify-content-center">
+                <div class="card-horizontal  d-lg-flex">
+                    <div class="img-square-wrapper d-flex div-img-actuality justify-content-center">
+                        <img src="https://via.placeholder.com/400x250 " class="card-img-top img-actuality" alt="{{ actuality.title }}">
+                    </div>
+                    <div class="container card-body d-flex flex-column align-items-center">
+                        <div class="container actuality-text mt-md-3">
+                        <h3 class="card-title-actuality text-wrap">{{ actuality.title }}</h3>
+                        <p class="descText text-truncate card-text text-center text-justify  mt-3">{{ actuality.description }}</p>
+                        <p class="card-date text-center">{{ actuality.date }}</p>
+                        </div>
+                        <div class=" div-btn d-flex justify-content-end mt-4">
+                        <a href="/actuality/show/{{ actuality.id }}" class="btn  btn-primary">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
