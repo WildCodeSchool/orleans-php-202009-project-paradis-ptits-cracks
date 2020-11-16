@@ -7,14 +7,15 @@
 
 {% block content %}
     <div>
-    <h1>{{ actuality.title }}</h1>
+    <h1 class="text-center m-5">{{ actuality.title }}</h1>
     </div>
     <div class="container">
         <div class="card">
-            <img src="https://via.placeholder.com/500" class="card" alt="{{ actuality.title }}">
+            <img src="https://via.placeholder.com/500" class="img-fluid" alt="{{ actuality.title }}">
         </div>
-            <p>{{ actuality.description }}</p>
+            <p class="mt-5 mb-5">{{ actuality.description }}</p>
     </div>
-
-    <a href="/actuality/index" class="btn btn-warning">Retour à la liste des actualités</a>
+    <div class="d-flex justify-content-center m-5">
+    <a href="/actuality/index" class="btn btn-warning ">Retour à la liste des actualités</a>
+    </div>
 {% endblock %}

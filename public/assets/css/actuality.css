@@ -20,7 +20,10 @@
     background-color: var(--main-color);
     border-color: var(--main-color);
 }
-
+.btn:active{
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
 .div-btn{
     max-height: 40px;
     max-width: 140px;
