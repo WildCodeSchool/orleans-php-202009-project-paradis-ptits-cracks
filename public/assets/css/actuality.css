@@ -1,3 +1,7 @@
+:root{
+    --max-height-card : 40px
+}
+
 .card-horizontal {
     background-color: var(--secondary-color);
     flex: 1 1 auto;
@@ -7,14 +11,14 @@
 }
 .img-actuality{
     max-width: 600px;
-    max-height: 400px;
+    max-height: calc(var(--max-height-card)*10);
     object-fit: fill;
 }
 .btn{
    background-color: var(--dark-color);
     border-color: var(--dark-color);
     width: 130px;
-    max-height: 40px;
+    max-height: var(--max-height-card);
 }
 .btn:hover{
     background-color: var(--main-color);
@@ -25,16 +29,16 @@
     border-color: var(--main-color);
 }
 .div-btn{
-    max-height: 40px;
+    max-height: var(--max-height-card);
     max-width: 140px;
 }
 .card-title{
-    font-size: 30px;
+    font-size:var(--fontsize-card-title);
     object-fit: contain;
 }
 
 .card-date{
-    font-size: 16px;
+    font-size: var(--fontsize-small-text);
 }
 
 .actuality-text{
@@ -42,7 +46,7 @@
 }
 
 .descText{
-    font-size: 20px;
+    font-size: var(--fontsize-text);
 }
 .card-title-actuality{
     color: var(--dark-color);
