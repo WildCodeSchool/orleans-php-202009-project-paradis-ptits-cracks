@@ -26,11 +26,13 @@ class ActualityManager extends AbstractManager
     }
     public function saveActuality(array $actuality)
     {
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (title, date, description)
-     VALUES (:title, :date, :description)");
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (title, date, description, image)
+     VALUES (:title, :date, :description, :image)");
         $statement->bindValue(':title', $actuality['title'], \PDO::PARAM_STR);
         $statement->bindValue(':date', $actuality['date']);
         $statement->bindValue(':description', $actuality['description'], \PDO::PARAM_STR);
+        $statement->bindValue(':image', $actuality['image'], \PDO::PARAM_STR);
+
         $statement->execute();
     }
 
