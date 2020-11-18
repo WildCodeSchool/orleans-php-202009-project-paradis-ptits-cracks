@@ -35,7 +35,6 @@ class DogManager extends AbstractManager
 
     /**
      * @return array
-     * @SuppressWarning(PHPMD.ExcessivePublicCount)
      */
     public function selectAllDogData(): array
     {
