@@ -1,41 +1,84 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/individual.css">
+{% endblock %}
+
 {% block content %}
 
-    <div class="container-fluids ">
+    <div class="container-fluids">
+        <a href="/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Back</a>
+        <div class="row row-content">
+            <divc class="col-12 d-flex  justify-content-center ">
+                <div class="d-flex  justify-content-center justify-content-center border rounded border-warning title-content-name">
+                    <h2>{{ details.name }}</h2>
+                </div>
+            </divc>
+            <div class="col-12 d-flex flex-column align-items-center ">
+                <img src="/assets/images/{{ details.picture }}" alt="dogs-photo" class="border border-picture focus-picture-individual rounded-circle border-warning">
 
-        <a class="" href="" title="back to the previous page"><button>Back</button></a>
-        <div class="row ">
-            <div class="col-12 d-flex flex-column justify-content-center*">
-                <img src="/assets/images/{{ details.picture }}" alt="dogs-photo">
+                <table class="table table-bordered  rounded w-50">
+                    <tbody>
+                        <tr>
+                            <th scope="row">État</th>
+                            <td>{{ details.dog_status}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Age</th>
+                            <td>{{ details.birthday}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Color</th>
+                            <td>{{ details.dog_color}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Numéro de LOF</th>
+                            <td>{{ details.lof_number}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Test ADN</th>
+                            <td>{{ details.is_dna_tested}}</td>
+                        </tr>
+                        <tr>
+                            <th id="d1" headers="blank" scope="row" colspan="2">Description</th>
+                        </tr>
+                        <tr>
+                            <td headers="d01 d1" colspan="2">{{ details.description }}</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                <ul>
-                    {{ details.name }}
-                    <li>Née le : {{ details.birthday }}</li>
-                    <li>{{ details.dog_color }}</li>
-                </ul>
+                <div class="row">
+                    <p></p>
+                </div>
             </div>
 
-            <div class="col-6">
-                <img src="https://via.placeholder.com/320
+        </div>
 
-C/O https://placeholder.com/" alt="father">
+        <div class="row d-flex flex-row row-content">
+            <div class="col-6 d-flex justify-content-center">
+                <a href="/Individual/index/{{ details.father_id }}"><img src="/assets/images/{{father.picture}}" alt="father" class="border-picture rounded-circle"></a>
             </div>
-            <div class="col-6">
-                <img src="https://via.placeholder.com/320
-
-C/O https://placeholder.com/ " alt="mother">
+            <div class="col-6 d-flex justify-content-center">
+                <a href="/Individual/index/{{ details.father_id }}"><img src="/assets/images/{{ mother.picture}}" alt="mother" class="border-picture rounded-circle"></a>
             </div>
+        </div>
 
-            <div class="col-6">
-                <h2>Trophée</h2>
+        <div class="row d-flex flex-row justify-content-center row-content w-100">
+            <div class="col-6 ">
+                <div class="d-flex flex-row justify-content-between border rounded " >
+                    <div class="recorded-content">
+                        <div class="border my-0">
+                            <h2>Trophée</h2>
+                        </div>
+
+                        {buihububuv}
+                    </div>
+                    <div class="content-picture-recorded">
+                        <img src="https://via.placeholder.com/320C/O https://placeholder.com/ " alt="mother" class="border-left rounded">
+                    </div>
+                </div>
             </div>
-            <div class="col-6 blo">
-                <img src="https://via.placeholder.com/320
-
-C/O https://placeholder.com/ " alt="mother">
-            </div>
-
         </div>
 
     </div>

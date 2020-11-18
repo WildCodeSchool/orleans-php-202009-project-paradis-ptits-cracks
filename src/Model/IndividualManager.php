@@ -27,4 +27,13 @@ class IndividualManager extends AbstractManager
         $statement->execute();
         return $statement->fetch();
     }
+
+    public function selectDogPictureByID(int $id)
+    {
+        $query = "SELECT picture FROM dog WHERE id=:id";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue('id', $id, \PDO::PARAM_STR);
+        $statement->execute();
+        return $statement->fetch();
+    }
 }

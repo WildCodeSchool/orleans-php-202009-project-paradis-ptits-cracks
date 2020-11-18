@@ -1,11 +1,70 @@
 .container-fluids {
-    margin: 0 auto;
+
     padding-top: var(--body-padding-top) ;
     padding-bottom: var(--body-padding-top) ;
 }
+.row-content {
+    margin-bottom: 0;
 
-.row {
+}
+
+img.focus-picture-individual {
     margin-bottom: var(--spacing4);
-    margin-left: auto;
-    margin-right: auto;
+}
+
+.footer {
+    margin-bottom: 0;
+}
+
+.btn-primary {
+    margin-left: var(--spacing4);
+    width: 100px;
+    height: 40px;
+
+}
+a btn {
+    font-size: large ;
+}
+.btn {
+
+    background-color: var(--main-color) !important;
+    border-color: var(--main-color) !important;
+}
+
+.border-picture {
+    width: auto;
+    height: 320px;
+    border-width: 10px !important;
+    border-color: var(--main-color) !important;
+    width: fit-content;
+}
+.title-content-name{
+    width: 40%;
+}
+
+div {
+    margin: var(--spacing4) 0;
+}
+
+
+.recorded-content {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+div.border.w-100 {
+    margin: 0;
+}
+
+.content-picture-recorded {
+    margin: 0;
+}
+
+.w-50 {
+    width: 40% !important;
+}
+
+@media screen and (min-width: ) {
+
 }
