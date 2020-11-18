@@ -114,8 +114,7 @@ class AdminDogController extends AbstractController
 
         if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             $dog = array_map('trim', $_POST);
-            $errors = $this->validator($dog);
-
+            $errors = $this->validator($dog, $_FILES['picture']); // had to update this to pass the test on github
 
             if (empty($errors)) {
                 $dogManager = new DogManager();
