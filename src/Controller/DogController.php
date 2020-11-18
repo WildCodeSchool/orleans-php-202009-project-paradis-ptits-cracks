@@ -9,10 +9,9 @@
 
 namespace App\Controller;
 
-use App\Model\ActualityManager;
 use App\Model\DogManager;
 
-class HomeController extends AbstractController
+class DogController extends AbstractController
 {
 
     /**
@@ -26,9 +25,11 @@ class HomeController extends AbstractController
     public function index()
     {
         $dogManager = new DogManager();
-        $puppies = $dogManager->selectLastPuppies(3);
-        $actualityManager = new ActualityManager();
-        $actualities = $actualityManager->selectLastActualities(2);
-        return $this->twig->render('Home/index.html.twig', ['puppies' => $puppies, 'actualities' => $actualities]);
+        $males = $dogManager->selectAllAdultType('male');
+        $females = $dogManager->selectAllAdultType('female');
+        $puppies = $dogManager->selectAllPuppies();
+        return $this->twig->render('Dog/index.html.twig', [
+        'males' => $males, 'females' => $females, 'puppies' => $puppies,
+        ]);
     }
 }

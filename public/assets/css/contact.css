@@ -1,0 +1,55 @@
+:root{
+    --spacing5 : calc(var(--spacing1)*8);
+}
+
+.contact .box{
+    padding:var(--spacing5) 0;
+}
+
+.contact .box-part{
+    border-radius:8px ;
+    padding:var(--spacing5) var(--spacing2);
+    margin:var(--spacing4) 0;
+
+}
+
+.contact .text{
+    margin:var(--spacing3) 0;
+}
+
+.contact img{
+    width: 40px;
+    height: 40px;
+    margin-bottom: var(--spacing1) ;
+}
+
+h4{
+    margin-top: var(--spacing2);
+
+}
+
+.contact a{
+    font-family: var(--font-text);
+    color: var(--dark-color);
+    font-size: var(--fontsize-text);
+}
+
+label{
+    font-family: var(--font-text);
+    color: var(--dark-color);
+    font-size: var(--fontsize-text);
+}
+
+h2{
+    font-family: var(--font-title);
+    color: var(--main-color);
+    font-size: var(--fontsize-main-title);
+}
+
+.btn {
+    background-color: var(--secondary-color);
+    font-family: var(--font-title);
+    font-size: var(--fontsize-text);
+    padding: var(--spacing1) var(--spacing2);
+    margin: var(--spacing3);
+}
