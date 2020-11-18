@@ -40,3 +40,7 @@ h3 {
 .img-thumbnail {
     max-width: 300px;
 }
+
+h2 {
+    font-size: calc(var(--fontsize-main-title) * 0.8);
+}

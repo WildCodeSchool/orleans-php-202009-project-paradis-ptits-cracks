@@ -10,7 +10,11 @@
 
 namespace App\Model;
 
+use PDOStatement;
+
 /**
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  *
  */
 class DogManager extends AbstractManager
@@ -22,12 +26,17 @@ class DogManager extends AbstractManager
 
     /**
      *  Initializes this class.
+     *
      */
     public function __construct()
     {
         parent::__construct(self::TABLE);
     }
 
+    /**
+     * @return array
+     * @SuppressWarning(PHPMD.ExcessivePublicCount)
+     */
     public function selectAllDogData(): array
     {
         return $this->pdo->query("SELECT d.*, g.gender, c.dog_color, s.dog_status, m.name AS mothername,
@@ -42,6 +51,10 @@ class DogManager extends AbstractManager
             ")->fetchAll();
     }
 
+    /**
+     * @param int $id
+     * @return array
+     */
     public function selectDogDataById(int $id): array
     {
         $statement = $this->pdo->prepare("SELECT d.*, g.gender, c.dog_color, s.dog_status, 
@@ -59,6 +72,11 @@ class DogManager extends AbstractManager
 
         return $statement->fetch();
     }
+
+    /**
+     * @param string $type
+     * @return array
+     */
     public function selectAllAdultType(string $type): array
     {
         return $this->pdo->query("SELECT * FROM dog 
@@ -68,6 +86,9 @@ class DogManager extends AbstractManager
             AND age_category.label = 'adult'")->fetchAll();
     }
 
+    /**
+     * @return array
+     */
     public function selectAllPuppies(): array
     {
         return $this->pdo->query("SELECT * FROM dog 
@@ -76,6 +97,10 @@ class DogManager extends AbstractManager
             WHERE age_category.label = 'puppies'")->fetchAll();
     }
 
+    /**
+     * @param int $limit
+     * @return array
+     */
     public function selectLastPuppies(int $limit): array
     {
         $statement = $this->pdo->prepare("SELECT d.id, d.name, d.picture, d.birthday, g.gender 
@@ -91,7 +116,29 @@ class DogManager extends AbstractManager
         return $statement->fetchAll();
     }
 
-    public function saveDog($dog): void
+    /**
+     * @param int $limit
+     * @return array
+     */
+    public function selectLastDogs(int $limit): array
+    {
+        $statement = $this->pdo->prepare("SELECT d.id, d.name, d.picture, d.birthday, g.gender 
+            FROM " . self::TABLE . " d 
+            LEFT JOIN gender g ON g.id = d.gender_id
+            LEFT JOIN age_category ac ON ac.id = d.age_category_id
+            ORDER BY d.id DESC
+            LIMIT :limit");
+        $statement->bindValue('limit', $limit, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    /**
+     * @param array $dog
+     * @return void
+     */
+    public function saveDog(array $dog): void
     {
         $statement = $this->pdo->prepare("INSERT INTO dog
         (name, picture, birthday, description, link_chiendefrance, lof_number, is_dna_tested, gender_id, color_id, 
@@ -102,7 +149,11 @@ class DogManager extends AbstractManager
         $statement->execute();
     }
 
-    public function editDog($dog, $id): void
+    /**
+     * @param array $dog
+     * @param int $id
+     */
+    public function editDog(array $dog, int $id): void
     {
         $statement = $this->pdo->prepare("UPDATE dog SET name=:name, picture=:picture, birthday=:birthday, 
         description=:description, link_chiendefrance=:link_chiendefrance, lof_number=:lof_number, color_id=:color_id,
@@ -114,7 +165,12 @@ class DogManager extends AbstractManager
         $statement->execute();
     }
 
-    private function bindDogValues(\PDOStatement $statement, array $dog): void
+    /**
+     * @param PDOStatement $statement
+     * @param array $dog
+     * @return void
+     */
+    private function bindDogValues(PDOStatement $statement, array $dog): void
     {
         empty($dog['mother_select']) ? $dog['mother_select'] = null : $dog['mother_select'];
         empty($dog['father_select']) ? $dog['father_select'] = null : $dog['father_select'];
@@ -133,7 +189,11 @@ class DogManager extends AbstractManager
         $statement->bindValue('father_id', $dog['father_select'], \PDO::PARAM_INT);
     }
 
-    public function howManyPuppies(int $id)
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function howManyPuppies(int $id): array
     {
         $statement = $this->pdo->prepare("SELECT count(*) children FROM dog 
         WHERE father_id=:id OR mother_id=:id");
@@ -143,6 +203,9 @@ class DogManager extends AbstractManager
         return $statement->fetch();
     }
 
+    /**
+     * @param int $id
+     */
     public function deleteDog(int $id)
     {
         $statement = $this->pdo->prepare("DELETE FROM " . self::TABLE . " WHERE id=:id");
