@@ -13,7 +13,7 @@
     <h1 class="admin-title"> Modifier une fiche </h1>
 
     <div class="container">
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
 
             <ul class="form-errors">
                 {% for error in errors %}
@@ -73,7 +73,7 @@
 
             <div class="form-group">
                 <label for="picture">Ajouter une photo :</label>
-                <input type="url"
+                <input type="file"
                        class="form-control"
                        id="picture"
                        name="picture"
