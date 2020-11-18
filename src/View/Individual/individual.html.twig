@@ -7,80 +7,101 @@
 {% block content %}
 
     <div class="container-fluids">
-        <a href="/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Back</a>
-        <div class="row row-content">
-            <divc class="col-12 d-flex  justify-content-center ">
-                <div class="d-flex  justify-content-center justify-content-center border rounded border-warning title-content-name">
-                    <h2>{{ details.name }}</h2>
+        <div class="row content-top-parent mb-1 mx-auto">
+            <div class="col-12 mb-1 mb-top">
+                <a href="/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Back</a>
+            </div>
+            <div class="col-12 d-flex flex-column">
+                <div class="d-flex  flex-column align-items-center">
+                    <img src="{{ details.picture }}" alt="dogs-photo" class="border border-picture  rounded-circle border-warning individual-dog-picture img-fluid">
+                    <h2 class="d-flex justify-content-center border rounded border-warning title-content-name "><span>{{ details.name }}</span></h2>
+                    <h3 class="mb-1">{{ details.category }}</h3>
                 </div>
-            </divc>
-            <div class="col-12 d-flex flex-column align-items-center ">
-                <img src="/assets/images/{{ details.picture }}" alt="dogs-photo" class="border border-picture focus-picture-individual rounded-circle border-warning">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex flex-column align-items-center mb-1">
 
                 <table class="table table-bordered  rounded w-50">
+                    <thead>
+                    <tr>
+                        <th class="characteristic description" id="d1" headers="blank" scope="row" colspan="2">Description</th>
+                    </tr>
+                    </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">État</th>
-                            <td>{{ details.dog_status}}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Age</th>
-                            <td>{{ details.birthday}}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Color</th>
-                            <td>{{ details.dog_color}}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Numéro de LOF</th>
-                            <td>{{ details.lof_number}}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Test ADN</th>
-                            <td>{{ details.is_dna_tested}}</td>
-                        </tr>
-                        <tr>
-                            <th id="d1" headers="blank" scope="row" colspan="2">Description</th>
-                        </tr>
-                        <tr>
-                            <td headers="d01 d1" colspan="2">{{ details.description }}</td>
-                        </tr>
+                    {% if details.description is not empty or null %}
+                    <tr>
+                        <td class="text" headers="d01 d1" colspan="2">{{ details.description }}</td>
+                    </tr>
+                    {% endif %}
                     </tbody>
                 </table>
+                <table class="table table-bordered  rounded w-50">
+                    <tbody>
+                    <tr>
+                        <th class="characteristic" scope="row">État</th>
+                        <td class="text">{{ details.dog_status}}</td>
+                    </tr>
+                    <tr>
+                        <th class="characteristic" scope="row">Age</th>
+                        <td class="text">{{ details.birthday}}</td>
+                    </tr>
+                    <tr>
+                        <th class="characteristic" scope="row">Color</th>
+                        <td class="text">{{ details.dog_color}}</td>
+                    </tr>
+                    {% if  details.lof_number is not empty %}
+                    <tr>
+                        <th class="characteristic" scope="row">Numéro de LOF</th>
+                        <td class="text">{{ details.lof_number}}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <th class="characteristic" scope="row">Test ADN</th>
+                        <td class="text">{{ details.is_dna_tested}}</td>
+                    </tr>
+                    {% if  details.link_chiendefrance is not empty or null%}
+                    <tr>
+                        <th class="characteristic" scope="row">Liens Chien de France</th>
+                        <td class="text"><a href="{{ details.link_chiendefrance}}">Cliquer ici pour voir sa fiche sur le site Chien de France</a></td>
+                    </tr>
+                    {% endif %}
+                    {% if  details.father_id is not empty or null %}
+                    <tr>
+                        <th class="characteristic" scope="row">Pere</th>
+                        <td class="text">{{ father.name}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if  details.mother_id is not null or null%}
+                    <tr>
+                        <th class="characteristic" scope="row">Mère</th>
+                        <td class="text">{{ mother.name}}</td>
+                    </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-                <div class="row">
-                    <p></p>
+        <div class="row  d-flex content-parent mx-auto">
+            <div class="col-6 d-flex flex-column  father-content mx-auto ">
+                <div class="border rounded-top title-parent">
+                    <h2>Père</h2>
+                </div>
+                <div class="border-right border-picture2">
+                    <a href="/Individual/index/{{ father.id }}" title="father_picture"><img src="{{ father.picture }}" alt="father" class=" border img-fluid parent-img "></a>
                 </div>
             </div>
 
-        </div>
-
-        <div class="row d-flex flex-row row-content">
-            <div class="col-6 d-flex justify-content-center">
-                <a href="/Individual/index/{{ details.father_id }}"><img src="/assets/images/{{father.picture}}" alt="father" class="border-picture rounded-circle"></a>
-            </div>
-            <div class="col-6 d-flex justify-content-center">
-                <a href="/Individual/index/{{ details.father_id }}"><img src="/assets/images/{{ mother.picture}}" alt="mother" class="border-picture rounded-circle"></a>
-            </div>
-        </div>
-
-        <div class="row d-flex flex-row justify-content-center row-content w-100">
-            <div class="col-6 ">
-                <div class="d-flex flex-row justify-content-between border rounded " >
-                    <div class="recorded-content">
-                        <div class="border my-0">
-                            <h2>Trophée</h2>
-                        </div>
-
-                        {buihububuv}
-                    </div>
-                    <div class="content-picture-recorded">
-                        <img src="https://via.placeholder.com/320C/O https://placeholder.com/ " alt="mother" class="border-left rounded">
-                    </div>
+            <div class="col-6 d-flex flex-column mother-content mx-auto">
+                <div class="border rounded-top title-parent">
+                    <h2>Mère</h2>
+                </div>
+                <div class="border-right border-picture2">
+                    <a href="/Individual/index/{{ mother.id }}" title="mother_picture"><img src="{{ mother.picture }}" alt="mother" class="border img-fluid parent-img"></a>
                 </div>
             </div>
         </div>
 
-    </div>
 
 {% endblock %}

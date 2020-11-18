@@ -20,10 +20,10 @@ class IndividualController extends AbstractController
     {
         $individualdog = new IndividualManager();
         $details = $individualdog->selectDogById($id);
-        $parentindividual1= new IndividualManager();
-        $fatherIndividualDog = $parentindividual1->selectDogPictureByID($details['father_id']);
-        $parentindividual2= new IndividualManager();
-        $motherIndividualDog = $parentindividual2->selectDogPictureByID($details['mother_id']);
+        $parentindividual1 = new IndividualManager();
+        $fatherIndividualDog = $parentindividual1->selectDogByID($details['father_id']);
+        $parentindividual2 = new IndividualManager();
+        $motherIndividualDog = $parentindividual2->selectDogByID($details['mother_id']);
         return $this->twig->render('Individual/individual.html.twig', ["details" => $details,
                                                                             "father" => $fatherIndividualDog,
                                                                             "mother" => $motherIndividualDog]);
