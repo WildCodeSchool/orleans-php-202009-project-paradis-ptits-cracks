@@ -1,0 +1,53 @@
+:root{
+    --max-height-card : 40px
+}
+
+.card-horizontal {
+    background-color: var(--secondary-color);
+    flex: 1 1 auto;
+}
+.actuality-text{
+    object-fit: contain;
+}
+.img-actuality{
+    max-width: 600px;
+    max-height: calc(var(--max-height-card)*10);
+    object-fit: fill;
+}
+.btn{
+    background-color: var(--dark-color);
+    border-color: var(--dark-color);
+    width: 130px;
+    max-height: var(--max-height-card);
+}
+.btn:hover{
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+.btn:active{
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+.div-btn{
+    max-height: var(--max-height-card);
+    max-width: 140px;
+}
+.card-title{
+    font-size:var(--fontsize-card-title);
+    object-fit: contain;
+}
+
+.card-date{
+    font-size: var(--fontsize-small-text);
+}
+
+.actuality-text{
+    max-width: 550px;
+}
+
+.descText{
+    font-size: var(--fontsize-text);
+}
+.card-title-actuality{
+    color: var(--dark-color);
+}
