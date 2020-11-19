@@ -9,6 +9,11 @@ form, table {
     margin-bottom: var(--spacing4);
 }
 
+h1 {
+    text-align: center;
+    margin-top: var(--spacing2);
+}
+
 .form-errors {
     color: darkred;
     padding: var(--spacing2) 0;

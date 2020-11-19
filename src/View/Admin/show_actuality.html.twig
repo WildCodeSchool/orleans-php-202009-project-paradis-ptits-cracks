@@ -1,0 +1,58 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/adminactuality.css">
+    <link rel="stylesheet" href="/assets/css/adminNavBar.css">
+
+{% endblock %}
+
+{% block title %}Admin | Fiche {{ actuality.name }}{% endblock %}
+{% block nav %}{% include 'include/_adminNavBar.html.twig' %}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="d-flex justify-content-left">
+            <a href="../list">
+                <button class="btn btn-md submit-button">Revenir à la liste</button>
+            </a>
+        </div>
+    </div>
+
+    <h1 class="admin-title">Fiche actualité</h1>
+
+
+    <div class="container mb-5">
+        <div class="text-center my-5">
+            <img src="/uploads/{{ actuality.image }}" alt="{{ actuality.title}}" >
+        </div>
+        <table class="table table-hover mb-5">
+            <tbody>
+            <tr>
+                <th scope="row">Titre</th>
+                <td>{{ actuality.title }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Date</th>
+                <td>{{ actuality.date }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td colspan="2">{{ actuality.description }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center">
+            <a href="../edit/{{ actuality.id }}">
+                <button class="btn btn-lg submit-button">Modifier l'actualité</button>
+            </a>
+        </div>
+        <div class="d-flex justify-content-end">
+            <form action="/AdminActuality/delete" method="POST">
+                <input type="hidden" name="id" value="{{ actuality.id }}">
+                <button class="btn btn-lg btn-danger btn-danger-show">Effacer l'actualité</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

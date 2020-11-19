@@ -1,0 +1,47 @@
+.header-background {
+    background-image: url("/assets/images/header_background.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    min-height: 70vh;
+    background-position-x: center;
+    background-position-y: -50px;
+    background-attachment: fixed;
+}
+
+.header-p {
+    background-color: var(--secondary-color-alpha);
+}
+
+.logo {
+    max-width: 400px;
+}
+
+.thumbnail-container {
+    position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+    border-radius: 50%;
+    border: 5px solid var(--main-color) ;
+}
+
+.thumbnail {
+    position: absolute;
+    width: auto;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.home-actualities {
+    background-color: var(--secondary-color);
+}
+
+.card-description {
+    width: 90%;
+    margin-top: -3em;
+    background-color: var(--light-color);
+}
+.card {
+    background: transparent;
+}
