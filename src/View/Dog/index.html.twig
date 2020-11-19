@@ -3,8 +3,8 @@
 {% block stylesheet %}
     <link rel="stylesheet" href="/assets/css/dog_General.css">
 {% endblock %}
-{% block header %}<h1>Nos Chiens</h1>{% endblock %}
 {% block content %}
+    <h1 class="text-center mt-5">Nos Chiens</h1>
     <section class = "dog">
     <div class=" section card m-xl-5 ">
         <div class="card-body">
@@ -19,7 +19,7 @@
         <div class=" section card m-xl-5">
         <div class="femelle card-body">
         <h3 class="titleDog">Nos Femelles</h3>
-            <div class="container-fluid row mx-auto justify-content-center ">
+            <div class="forDog container-fluid row mx-auto justify-content-center ">
             {% for female in females %}
                 {%include 'Dog/card.html.twig' with {'dog': female} %}
                     {%  endfor %}
