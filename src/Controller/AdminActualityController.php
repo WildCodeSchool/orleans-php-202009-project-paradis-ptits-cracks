@@ -39,8 +39,12 @@ class AdminActualityController extends AbstractController
         $actuality = [];
         if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             $actuality = array_map('trim', $_POST);
-            $errors = $this->validateActuality($actuality);
+            $errors = $this->validateActuality($actuality, $_FILES['image']);
+
             if (empty($errors)) {
+                $filename = uniqid() . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+                move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $filename);
+                $actuality['image'] = $filename;
                 $actualityManager = new ActualityManager();
                 $actualityManager->saveActuality($actuality);
                 header('Location: /AdminActuality/list');
@@ -52,12 +56,15 @@ class AdminActualityController extends AbstractController
 
     /**
      * @param array $actuality
+     * @param array $file
      * @return array
      */
 
-    private function validateActuality(array $actuality): array
+    private function validateActuality(array $actuality, array $file): array
     {
         $errors = [];
+        $maxSize = 1000000;
+        $authorizedMimes = ['image/jpeg', 'image/png'];
 
         if (empty($actuality['title'])) {
             $errors [] = 'Le titre ne doit pas être vide.';
@@ -72,6 +79,12 @@ class AdminActualityController extends AbstractController
         if (empty($actuality['description'])) {
             $errors [] = 'La description ne doit pas être vide.';
         }
+        if ($file['size'] > $maxSize) {
+            $errors [] = 'L\'image est trop volumineuse, elle ne doit pas dépasser' . $maxSize / 1000000 . ' Mo.';
+        }
+        if (!in_array(mime_content_type($file['tmp_name']), $authorizedMimes)) {
+            $errors[] = 'Le fichier doit être de type png ou jpeg';
+        }
         return $errors ?? [];
     }
     public function edit(int $id)
@@ -82,7 +95,7 @@ class AdminActualityController extends AbstractController
 
         if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             $actuality = array_map('trim', $_POST);
-            $errors = $this->validateActuality($actuality);
+            $errors = $this->validateActuality($actuality, $_FILES['image']);
 
             if (empty($errors)) {
                 $actuality = $actualityManager->editActuality($actuality, $id);
