@@ -157,7 +157,7 @@ class DogManager extends AbstractManager
         $statement = $this->pdo->prepare("UPDATE dog SET name=:name, picture=:picture, birthday=:birthday, 
         description=:description, link_chiendefrance=:link_chiendefrance, lof_number=:lof_number, color_id=:color_id,
         is_dna_tested=:is_dna_tested, gender_id=:gender_id, age_category_id=:age_category_id, status_id=:status_id,
-        mother_id=:mother_id, father_id=:father_id
+        mother_id=:mother_id, father_id=:father_id, isOnHomepage=:isOnHomepage
         WHERE id=:id");
         $this->bindDogValues($statement, $dog);
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
@@ -173,6 +173,7 @@ class DogManager extends AbstractManager
     {
         empty($dog['mother_select']) ? $dog['mother_select'] = null : $dog['mother_select'];
         empty($dog['father_select']) ? $dog['father_select'] = null : $dog['father_select'];
+        empty($dog['isOnHomepage']) ? $dog['isOnHomepage'] = 0 : $dog['isOnHomepage'];
         $statement->bindValue('name', $dog['name'], \PDO::PARAM_STR);
         $statement->bindValue('picture', $dog['picture'], \PDO::PARAM_STR);
         $statement->bindValue('birthday', $dog['birthday']);
