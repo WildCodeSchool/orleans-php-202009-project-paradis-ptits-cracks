@@ -91,6 +91,7 @@ class AdminActualityController extends AbstractController
         $actuality = [];
         $actualityManager = new ActualityManager();
         $actuality = $actualityManager->selectOneById($id);
+        $actualImg = $actuality['image'];
 
         if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             $actuality = array_map('trim', $_POST);
@@ -99,6 +100,9 @@ class AdminActualityController extends AbstractController
             if (empty($errors)) {
                 if (!empty($_FILES['image'])) {
                     $actuality['image'] = $this->addImage($_FILES['image']);
+                    if (!empty($actualImg)) {
+                        unlink(__DIR__ . '/../../public/uploads/' . $actualImg);
+                    }
                 }
                 $actualityManager = new ActualityManager();
                 $actuality = $actualityManager->editActuality($actuality, $id);
