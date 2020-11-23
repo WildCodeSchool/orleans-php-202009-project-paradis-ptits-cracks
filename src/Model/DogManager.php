@@ -38,8 +38,10 @@ class DogManager extends AbstractManager
      */
     public function selectAllDogData(): array
     {
-        return $this->pdo->query("SELECT d.*, g.gender, c.dog_color, s.dog_status, m.name AS mothername,
-            f.name AS fathername, ac.category FROM dog d
+        return $this->pdo->query("SELECT d.id, d.name, d.picture, d.birthday, d.description, 
+            d.link_chiendefrance, d.lof_number, d.is_dna_tested, d.gender_id, d.color_id, d.color_id, d.age_category_id,
+            d.status_id, d.mother_id, d.father_id, d.isOnHomepage, g.gender, c.dog_color, s.dog_status, 
+            m.name AS mothername, f.name AS fathername, ac.category FROM dog d
             LEFT JOIN gender g ON g.id = d.gender_id
             LEFT JOIN status s ON s.id = d.status_id
             LEFT JOIN dog m ON m.id = d.mother_id
@@ -56,7 +58,9 @@ class DogManager extends AbstractManager
      */
     public function selectDogDataById(int $id): array
     {
-        $statement = $this->pdo->prepare("SELECT d.*, g.gender, c.dog_color, s.dog_status, 
+        $statement = $this->pdo->prepare("SELECT d.id, d.name, d.picture, d.birthday, d.description, 
+            d.link_chiendefrance, d.lof_number, d.is_dna_tested, d.gender_id, d.color_id, d.color_id, d.age_category_id,
+            d.status_id, d.mother_id, d.father_id, d.isOnHomepage, g.gender, c.dog_color, s.dog_status, 
             m.name AS mothername, f.name AS fathername, ac.category FROM dog d
             LEFT JOIN gender g ON g.id = d.gender_id
             LEFT JOIN status s ON s.id = d.status_id
@@ -78,9 +82,11 @@ class DogManager extends AbstractManager
      */
     public function selectAllAdultType(string $type): array
     {
-        return $this->pdo->query("SELECT * FROM dog 
-            LEFT JOIN gender ON gender.id = dog.gender_id
-            LEFT JOIN age_category ON age_category.id = dog.age_category_id
+        return $this->pdo->query("SELECT d.id, d.name, d.picture, d.birthday, d.description, 
+            d.link_chiendefrance, d.lof_number, d.is_dna_tested, d.gender_id, d.color_id, d.color_id, d.age_category_id,
+            d.status_id, d.mother_id, d.father_id, d.isOnHomepage FROM dog d
+            LEFT JOIN gender ON gender.id = d.gender_id
+            LEFT JOIN age_category ON age_category.id = d.age_category_id
             WHERE gender.label = '$type'
             AND age_category.label = 'adult'")->fetchAll();
     }
@@ -90,9 +96,11 @@ class DogManager extends AbstractManager
      */
     public function selectAllPuppies(): array
     {
-        return $this->pdo->query("SELECT * FROM dog 
-            LEFT JOIN gender ON gender.id = dog.gender_id
-            LEFT JOIN age_category ON age_category.id = dog.age_category_id
+        return $this->pdo->query("SELECT d.id, d.name, d.picture, d.birthday, d.description, 
+            d.link_chiendefrance, d.lof_number, d.is_dna_tested, d.gender_id, d.color_id, d.color_id, d.age_category_id,
+            d.status_id, d.mother_id, d.father_id, d.isOnHomepage FROM dog d
+            LEFT JOIN gender ON gender.id = d.gender_id
+            LEFT JOIN age_category ON age_category.id = d.age_category_id
             WHERE age_category.label = 'puppies'")->fetchAll();
     }
 
@@ -210,6 +218,7 @@ class DogManager extends AbstractManager
     }
 
     /**
+     * Used in show to display or not the delete button (if a dog has puppies, not possible to delete it)
      * @param int $id
      * @return array
      */
