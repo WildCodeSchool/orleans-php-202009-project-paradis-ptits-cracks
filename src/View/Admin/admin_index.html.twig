@@ -30,11 +30,11 @@
             <tbody>
             {% for dog in dogs %}
                 <tr>
-                    <th scope="row"><a href="show/{{ dog.id }}" class="text-decoration-none">{{ dog.name }}</a></th>
+                    <th scope="row"><a href="/AdminDog/show/{{ dog.id }}" class="text-decoration-none">{{ dog.name }}</a></th>
                     <td>{{ dog.gender }}</td>
                     <td>{{ dog.birthday }}</td>
                     <td>{{ dog.dog_status }}</td>
-                    <td><a href="edit/{{ dog.id }}">Modifier</a></td>
+                    <td><a href="/AdminDog/edit/{{ dog.id }}">Modifier</a></td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -63,9 +63,9 @@
             <tbody>
             {% for actuality in actualities %}
                 <tr>
-                    <th scope="row"><a href="show/{{ actuality.id }}" class="text-decoration-none">{{ actuality.title }}</a></th>
+                    <th scope="row"><a href="/AdminActuality/show/{{ actuality.id }}" class="text-decoration-none">{{ actuality.title }}</a></th>
                     <td>{{ actuality.date }}</td>
-                    <td><a href="edit/{{ actuality.id }}">Modifier</a></td>
+                    <td><a href="/AdminActuality/edit/{{ actuality.id }}">Modifier</a></td>
                 </tr>
             {% endfor %}
             </tbody>
