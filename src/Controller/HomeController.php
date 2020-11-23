@@ -26,9 +26,9 @@ class HomeController extends AbstractController
     public function index()
     {
         $dogManager = new DogManager();
-        $puppies = $dogManager->selectLastPuppies(3);
+        $dogs = $dogManager->selectHomeDogs(3);
         $actualityManager = new ActualityManager();
         $actualities = $actualityManager->selectLastActualities(2);
-        return $this->twig->render('Home/index.html.twig', ['puppies' => $puppies, 'actualities' => $actualities]);
+        return $this->twig->render('Home/index.html.twig', ['dogs' => $dogs, 'actualities' => $actualities]);
     }
 }

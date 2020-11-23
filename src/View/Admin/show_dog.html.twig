@@ -24,6 +24,7 @@
         <div class="text-center my-5">
             <img src="/uploads/{{ dog.picture }}" alt="Photo de chien" class="img-thumbnail">
         </div>
+        <h4>{{ dog.isOnHomepage == 1 ? 'Visible sur la page d\'accueil' : '' }}</h4>
         <table class="table table-hover mb-5">
             <tbody>
             <tr>
