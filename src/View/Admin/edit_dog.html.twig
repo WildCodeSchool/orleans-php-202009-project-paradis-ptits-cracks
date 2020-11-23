@@ -22,6 +22,15 @@
             </ul>
 
             <div class="form-group">
+                <label for="dna_test">Afficher sur la page d'accueil </label>
+                <input type="checkbox"
+                       id="isOnHomepage"
+                       name="isOnHomepage"
+                       value="1"
+                        {{ dogData.isOnHomepage == 1 ? 'checked'}}>
+            </div>
+
+            <div class="form-group">
                 <span >Catégorie :</span>
                 {% for category in categories %}
                         <label for="age_category">{{ category.category }}</label>
