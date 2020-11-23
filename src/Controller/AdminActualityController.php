@@ -98,8 +98,8 @@ class AdminActualityController extends AbstractController
 
             if (empty($errors)) {
                 if (!empty($_FILES['image'])) {
-                $actuality['image'] = $this->addImage($_FILES['image']);
-            }
+                    $actuality['image'] = $this->addImage($_FILES['image']);
+                }
                 $actualityManager = new ActualityManager();
                 $actuality = $actualityManager->editActuality($actuality, $id);
                 header('Location: /AdminActuality/list');
