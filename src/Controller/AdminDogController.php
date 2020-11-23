@@ -105,7 +105,7 @@ class AdminDogController extends AbstractController
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
-     * @SuppressWarnings(PHPMD)
+     * @SuppressWarnings(PHPMD)description
      */
 
     public function edit(int $id)
