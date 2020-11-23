@@ -13,7 +13,7 @@
             </div>
             <div class="col-12 d-flex flex-column">
                 <div class="d-flex  flex-column align-items-center">
-                    <img src="{{ details.picture }}" alt="dogs-photo" class="border border-picture  rounded-circle border-warning individual-dog-picture img-fluid">
+                    <img src="{{ details.picture }}" alt="dogs-photo" class="border border-picture  rounded-circle border-warning individual-dog-picture img-fluid w-50">
                     <h2 class="d-flex justify-content-center border rounded border-warning title-content-name "><span>{{ details.name }}</span></h2>
                     <h3 class="mb-1">{{ details.category }}</h3>
                 </div>
@@ -71,11 +71,21 @@
                         <th class="characteristic" scope="row">Pere</th>
                         <td class="text">{{ father.name}}</td>
                     </tr>
+                    {% else %}
+                    <tr>
+                        <th class="characteristic" scope="row">Pere</th>
+                        <td class="text">Père Inconnu</td>
+                    </tr>
                     {% endif %}
                     {% if  details.mother_id is not null or null%}
                     <tr>
                         <th class="characteristic" scope="row">Mère</th>
                         <td class="text">{{ mother.name}}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <th class="characteristic" scope="row">Mère</th>
+                        <td class="text">Mère Inconnu</td>
                     </tr>
                     {% endif %}
                     </tbody>
@@ -89,7 +99,12 @@
                     <h2>Père</h2>
                 </div>
                 <div class="border-right border-picture2">
+                    {% if father.id is not empty or null %}
                     <a href="/Individual/index/{{ father.id }}" title="father_picture"><img src="{{ father.picture }}" alt="father" class=" border img-fluid parent-img "></a>
+                    {% else %}
+                    <img src="/assets/images/unknown_dog.jpeg" alt="father" class=" border img-fluid parent-img unknow">
+                    {% endif %}
+
                 </div>
             </div>
 
@@ -98,7 +113,11 @@
                     <h2>Mère</h2>
                 </div>
                 <div class="border-right border-picture2">
+                    {% if mother.id is not empty or null %}
                     <a href="/Individual/index/{{ mother.id }}" title="mother_picture"><img src="{{ mother.picture }}" alt="mother" class="border img-fluid parent-img"></a>
+                    {% else %}
+                        <img src="/assets/images/unknown_dog.jpeg" alt="mother" class="border img-fluid parent-img unknow">
+                    {% endif %}
                 </div>
             </div>
         </div>
