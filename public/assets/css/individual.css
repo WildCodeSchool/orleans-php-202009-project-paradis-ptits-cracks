@@ -1,3 +1,8 @@
+:root {
+    --box-shadow-color: rgba(227, 220, 204, 1);
+    --font-medium-title: medium;
+}
+
 main {
     margin: var(--spacing4);
 }
@@ -16,12 +21,10 @@ main {
 .individual-dog-picture {
     width: max-content;
     height: calc(var(--spacing4)*10);
-    object-fit: fill;
-
 }
 
-.parent-img {
-    object-fit: fill;
+.parent-img, .individual-dog-picture {
+    object-fit: cover;
 }
 
 .fact {
@@ -34,11 +37,9 @@ main {
     height: calc(var(--spacing1)*5);
 
 }
-a.btn {
-    font-size: large !important;
-}
-.btn {
 
+.btn {
+    text-align: center;
     background-color: var(--main-color) !important;
     border-color: var(--main-color) !important;
 }
@@ -70,7 +71,7 @@ td {
 }
 
 .title-parent .h2 {
-    color: white !important;
+    color: var(--light-color) !important;
 }
 .title-parent {
     height: calc(var(--spacing1)*5);
@@ -82,8 +83,8 @@ td {
 }
 
 .title-content-name, .title-parent {
-    background-color: white;
-    box-shadow: 2px 2px var(--spacing1) var(--spacing1) rgb(227, 220, 204) inset;
+    background-color: var(--light-color);
+    box-shadow: 2px 2px var(--spacing1) var(--spacing1) var(--box-shadow-color) inset;
 }
 
 .recorded-content {
@@ -97,7 +98,7 @@ td {
 
 #id, .text {
     text-align: center;
-    font-size: medium;
+    font-size: var(--font-medium-title);
     font-style: var(--font-text);
 }
 
@@ -105,19 +106,19 @@ td {
     background-color: var(--secondary-color);
     border: 1px solid unset;
     padding: var(--spacing2) 0;
-    box-shadow: 0 var(--spacing2) var(--spacing3) var(--spacing1) rgba(227, 220, 204, 1);
+    box-shadow: 0 var(--spacing2) var(--spacing3) var(--spacing1) var(--box-shadow-color);
     width: 70%;
 }
 .content-top-parent {
     background-color: var(--secondary-color);
     border: 1px solid unset;
-    box-shadow: 0 var(--spacing2) var(--spacing3) var(--spacing1) rgba(227, 220, 204, 1);
+    box-shadow: 0 var(--spacing2) var(--spacing3) var(--spacing1) var(--box-shadow-color);
     width: 70%;
 }
 
 .characteristic {
     background-color: var(--secondary-color);
-    box-shadow: 1px 0 1px 1px rgb(227, 220, 204);
+    box-shadow: 1px 0 1px 1px var(--box-shadow-color);
 }
 
 .description {
@@ -126,7 +127,7 @@ td {
 
 h2, h3 {
     font-style: var(--font-title);
-    color: black;
+    color: var(--dark-color);
     text-align: center;
 }
 
@@ -135,7 +136,7 @@ span {
 }
 
 h3 {
-    color: black;
+    color: var(--dark-color);
 }
 @media screen and (max-width: 680px){
 
