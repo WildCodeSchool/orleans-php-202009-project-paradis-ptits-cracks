@@ -141,9 +141,9 @@ class DogManager extends AbstractManager
     {
         $statement = $this->pdo->prepare("INSERT INTO dog
         (name, picture, birthday, description, link_chiendefrance, lof_number, is_dna_tested, gender_id, color_id, 
-        age_category_id, status_id, mother_id, father_id)
+        age_category_id, status_id, mother_id, father_id, isOnHomepage)
         VALUES (:name, :picture, :birthday, :description, :link_chiendefrance, :lof_number, :is_dna_tested, :gender_id, 
-        :color_id, :age_category_id, :status_id, :mother_id, :father_id)");
+        :color_id, :age_category_id, :status_id, :mother_id, :father_id, :isOnHomepage)");
         $this->bindDogValues($statement, $dog);
         $statement->execute();
     }
@@ -186,6 +186,7 @@ class DogManager extends AbstractManager
         $statement->bindValue('status_id', $dog['status_select'], \PDO::PARAM_INT);
         $statement->bindValue('mother_id', $dog['mother_select'], \PDO::PARAM_INT);
         $statement->bindValue('father_id', $dog['father_select'], \PDO::PARAM_INT);
+        $statement->bindValue('isOnHomepage', $dog['isOnHomepage'], \PDO::PARAM_INT);
     }
 
     /**
