@@ -22,7 +22,7 @@ class IndividualController extends AbstractController
         $details = $individualdog->selectDogById($id);
         var_dump($details);
 
-        if($details['father_id'] !== null) {
+        if ($details['father_id'] !== null) {
             $parentindividual1 = new IndividualManager();
             $fatherIndividualDog = $parentindividual1->selectDogByID($details['father_id']);
         } else {
@@ -31,7 +31,7 @@ class IndividualController extends AbstractController
 
         var_dump($fatherIndividualDog);
 
-        if($details['mother_id'] !== null) {
+        if ($details['mother_id'] !== null) {
             $parentindividual2 = new IndividualManager();
             $motherIndividualDog = $parentindividual2->selectDogByID($details['mother_id']);
         } else {
