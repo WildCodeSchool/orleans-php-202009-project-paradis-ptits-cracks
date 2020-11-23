@@ -20,20 +20,15 @@ class IndividualController extends AbstractController
     {
         $individualdog = new IndividualManager();
         $details = $individualdog->selectDogById($id);
-        var_dump($details);
 
         if ($details['father_id'] !== null) {
-            $parentindividual1 = new IndividualManager();
-            $fatherIndividualDog = $parentindividual1->selectDogByID($details['father_id']);
+            $fatherIndividualDog = $individualdog->selectDogByID($details['father_id']);
         } else {
             $fatherIndividualDog = null;
         }
 
-        var_dump($fatherIndividualDog);
-
         if ($details['mother_id'] !== null) {
-            $parentindividual2 = new IndividualManager();
-            $motherIndividualDog = $parentindividual2->selectDogByID($details['mother_id']);
+            $motherIndividualDog = $individualdog->selectDogByID($details['mother_id']);
         } else {
             $motherIndividualDog = null;
         }
