@@ -35,6 +35,24 @@ class DogManager extends AbstractManager
             LEFT JOIN status ON status.id = dog.status_id")->fetchAll();
     }
 
+    public function selectDogDataById(int $id): array
+    {
+        $statement = $this->pdo->prepare("SELECT d.*, g.gender, c.dog_color, s.dog_status, 
+        m.name AS mothername, m.picture AS motherpicture
+        , f.name AS fathername, f.picture AS fatherpicture, ac.category FROM dog d
+        LEFT JOIN gender g ON g.id = d.gender_id
+        LEFT JOIN status s ON s.id = d.status_id
+        LEFT JOIN dog m ON m.id = d.mother_id
+        LEFT JOIN dog f ON f.id = d.father_id
+        LEFT JOIN color c ON c.id = d.color_id
+        LEFT JOIN age_category ac ON ac.id = d.age_category_id
+        WHERE d.id=:id
+        ");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetch();
+    }
+
 
     public function selectAllAdultMales(): array
     {
