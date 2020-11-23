@@ -17,7 +17,7 @@ class ContactController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function index(): string
+    public function index()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $contact = array_map('trim', $_POST);
@@ -32,7 +32,6 @@ class ContactController extends AbstractController
                     ->subject('Message du site le paradis des petits cracks')
                     ->html($this->twig->render('Contact/email.html.twig', ['contact' => $contact,]));
                 $mailer->send($email);
-//                $this->session->set('notification', 'Le mail a bien été envoyé');
                 header("Location: /Home/index");
                 return 'Redirection to home';
             }
