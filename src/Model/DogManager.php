@@ -119,6 +119,25 @@ class DogManager extends AbstractManager
      * @param int $limit
      * @return array
      */
+    public function selectHomeDogs(int $limit): array
+    {
+        $statement = $this->pdo->prepare("SELECT d.id, d.name, d.picture, d.birthday, g.gender 
+            FROM " . self::TABLE . " d 
+            LEFT JOIN gender g ON g.id = d.gender_id
+            LEFT JOIN age_category ac ON ac.id = d.age_category_id
+            WHERE d.isOnHomePage = 1
+            ORDER BY d.id DESC
+            LIMIT :limit");
+        $statement->bindValue('limit', $limit, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    /**
+     * @param int $limit
+     * @return array
+     */
     public function selectLastDogs(int $limit): array
     {
         $statement = $this->pdo->prepare("SELECT d.id, d.name, d.picture, d.birthday, g.gender 
