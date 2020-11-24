@@ -22,6 +22,7 @@
 
     <div class="container">
 
+
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -29,6 +30,7 @@
                     <th scope="col">Sexe</th>
                     <th scope="col">Date de naissance</th>
                     <th scope="col">Statut</th>
+                    <th scope="col">Accueil</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -39,6 +41,7 @@
                     <td>{{ dog.gender }}</td>
                     <td>{{ dog.birthday }}</td>
                     <td>{{ dog.dog_status }}</td>
+                    <td>{{ dog.isOnHomepage == 1 ? 'Oui' : '' }}</td>
                     <td><a href="edit/{{ dog.id }}">Modifier</a></td>
                 </tr>
                 {% endfor %}

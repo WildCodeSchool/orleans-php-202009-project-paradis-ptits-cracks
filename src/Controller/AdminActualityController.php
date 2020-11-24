@@ -39,10 +39,13 @@ class AdminActualityController extends AbstractController
         $actuality = [];
         if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             $actuality = array_map('trim', $_POST);
-            $errors = $this->validateActuality($actuality);
+            $errors = $this->validateActuality($actuality, $_FILES['image']);
+
             if (empty($errors)) {
+                $actuality['image'] = $this->addImage($_FILES['image']);
                 $actualityManager = new ActualityManager();
                 $actualityManager->saveActuality($actuality);
+
                 header('Location: /AdminActuality/list');
             }
         }
@@ -52,12 +55,15 @@ class AdminActualityController extends AbstractController
 
     /**
      * @param array $actuality
+     * @param array $file
      * @return array
      */
 
-    private function validateActuality(array $actuality): array
+    private function validateActuality(array $actuality, array $file): array
     {
         $errors = [];
+        $maxSize = 1000000;
+        $authorizedMimes = ['image/jpeg', 'image/png'];
 
         if (empty($actuality['title'])) {
             $errors [] = 'Le titre ne doit pas être vide.';
@@ -72,6 +78,12 @@ class AdminActualityController extends AbstractController
         if (empty($actuality['description'])) {
             $errors [] = 'La description ne doit pas être vide.';
         }
+        if ($file['size'] > $maxSize) {
+            $errors [] = 'L\'image est trop volumineuse, elle ne doit pas dépasser' . $maxSize / 1000000 . ' Mo.';
+        }
+        if (!empty($file['tmp_name']) && !in_array(mime_content_type($file['tmp_name']), $authorizedMimes)) {
+            $errors[] = 'Le fichier doit être de format png ou jpeg';
+        }
         return $errors ?? [];
     }
     public function edit(int $id)
@@ -79,12 +91,20 @@ class AdminActualityController extends AbstractController
         $actuality = [];
         $actualityManager = new ActualityManager();
         $actuality = $actualityManager->selectOneById($id);
+        $actualImg = $actuality['image'];
 
         if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             $actuality = array_map('trim', $_POST);
-            $errors = $this->validateActuality($actuality);
+            $errors = $this->validateActuality($actuality, $_FILES['image']);
 
             if (empty($errors)) {
+                if (!empty($_FILES['image'])) {
+                    $actuality['image'] = $this->addImage($_FILES['image']);
+                    if (!empty($actualImg)) {
+                        unlink(__DIR__ . '/../../public/uploads/' . $actualImg);
+                    }
+                }
+                $actualityManager = new ActualityManager();
                 $actuality = $actualityManager->editActuality($actuality, $id);
                 header('Location: /AdminActuality/list');
             }
@@ -105,5 +125,11 @@ class AdminActualityController extends AbstractController
             $actualityManager->deleteActuality($id);
             header('Location:/AdminActuality/list');
         }
+    }
+    private function addImage(array $image): string
+    {
+        $filename = uniqid() . '.' . pathinfo($image['name'], PATHINFO_EXTENSION);
+        move_uploaded_file($image['tmp_name'], 'uploads/' . $filename);
+        return $filename;
     }
 }

@@ -57,9 +57,7 @@ class AdminDogController extends AbstractController
             $errors = $this->validator($dog, $_FILES['picture']);
 
             if (empty($errors)) {
-                $filename = uniqid() . '.' . pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION);
-                move_uploaded_file($_FILES['picture']['tmp_name'], 'uploads/' . $filename);
-                $dog['picture'] = $filename;
+                $dog['picture'] = $this->addPicture($_FILES['picture']);
                 $dogManager = new DogManager();
                 $dogManager -> saveDog($dog);
                 header('Location: /AdminDog/list');
@@ -112,17 +110,6 @@ class AdminDogController extends AbstractController
     {
         $errors = [];
 
-        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-            $dog = array_map('trim', $_POST);
-            $errors = $this->validator($dog, $_FILES['picture']); // had to update this to pass the test on github
-
-            if (empty($errors)) {
-                $dogManager = new DogManager();
-                $dogManager -> editDog($dog, $id);
-                header('Location: /AdminDog/show/' . $id);
-            }
-        }
-
         $genderManager = new GenderManager();
         $genders = $genderManager->selectAll();
 
@@ -139,6 +126,27 @@ class AdminDogController extends AbstractController
         $dogsAdultMales = $dogManager->selectAllAdultType('male');
         $dogsAdultFemales = $dogManager->selectAllAdultType('female');
         $dog = $dogManager->selectDogDataById($id);
+        $initialImage = $dog['picture'];
+
+
+
+        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+            $dog = array_map('trim', $_POST);
+            $errors = $this->validator($dog, $_FILES['picture']);
+
+            if (empty($errors)) {
+                if (!empty($_FILES['picture']['tmp_name'])) {
+                    $dog['picture'] = $this->addPicture($_FILES['picture']);
+                    unlink('uploads/' . $initialImage);
+                } else {
+                    $dog['picture'] = $initialImage;
+                }
+
+                $dogManager = new DogManager();
+                $dogManager -> editDog($dog, $id);
+                header('Location: /AdminDog/show/' . $id);
+            }
+        }
 
         return $this->twig->render('Admin/edit_dog.html.twig', [
             'genders' => $genders,
@@ -254,9 +262,16 @@ class AdminDogController extends AbstractController
             $errors['picture'] = 'Le fichier ne doit pas excéder ' . floor($maxSize / 1000000) . ' Mo';
         }
 
-        if (!in_array(mime_content_type($file['tmp_name']), $authorizedMimes)) {
+        if (!empty($file['tmp_name']) && !in_array(mime_content_type($file['tmp_name']), $authorizedMimes)) {
             $errors['picture2'] = 'Le fichier doit être de type png ou jpeg';
         }
         return $errors;
+    }
+
+    private function addPicture($picture): string
+    {
+        $filename = uniqid() . '.' . pathinfo($picture['name'], PATHINFO_EXTENSION);
+        move_uploaded_file($picture['tmp_name'], 'uploads/' . $filename);
+        return $filename;
     }
 }
