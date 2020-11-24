@@ -1,11 +1,10 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" href="/assets/css/individual.css">
+    <link rel="stylesheet" href="/assets/css/dogShow.css">
 {% endblock %}
 
 {% block content %}
-
 
     <section class="main-info">
         <div class="row content-top-parent mb-1 mx-auto">
@@ -121,14 +120,11 @@
                     {% if details.mother_id is not empty or null %}
                         <a href="/Individual/index/{{ details.mother_id }}" title="mother_picture"><img src="{{ details.motherpicture }}" alt="mother" class="border img-fluid parent-img"></a>
                     {% else %}
+
                         <img src="/assets/images/unknown_dog.jpeg" alt="mother" class="border img-fluid parent-img unknow">
                     {% endif %}
                 </div>
             </div>
         </div>
-
-
-
-
 
 {% endblock %}

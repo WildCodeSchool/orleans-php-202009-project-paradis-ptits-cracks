@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Model\DogManager;
 
-class IndividualController extends AbstractController
+class DogController extends AbstractController
 {
 
     /**
@@ -16,10 +16,10 @@ class IndividualController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function index(int $id)
+    public function show(int $id)
     {
-        $individualdog = new DogManager();
-        $details = $individualdog->selectDogDataById($id);
-        return $this->twig->render('Individual/individual.html.twig', ["details" => $details]);
+        $individualDog = new DogManager();
+        $details = $individualDog->selectDogDataById($id);
+        return $this->twig->render('Dog/show.html.twig', ["details" => $details]);
     }
 }
