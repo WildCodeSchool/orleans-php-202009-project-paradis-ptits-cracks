@@ -3,24 +3,33 @@
     --font-medium-title: medium;
 }
 
-main {
-    margin: var(--spacing4);
+
+.main-info, .parents-info {
+    background-color: var(--secondary-color);
 }
+
+.secondary-info {
+    background-color: var(--light-color);
+}
+
 .footer {
     margin-bottom: 0;
 }
 
 
 .mb-1, .individual-dog-picture {
-    margin-bottom: var(--spacing4) !important;
+    margin-bottom: var(--spacing4);
 }
 
 .mb-top {
     margin-top: var(--spacing4);
 }
 .individual-dog-picture {
-    width: calc(var(--spacing4)*10);;
+    width: calc(var(--spacing4)*10);
     height: calc(var(--spacing4)*10);
+    border: var(--spacing1) solid var(--main-color);
+    border-radius: 50%;
+    height: content-box;
 }
 
 .parent-img, .individual-dog-picture {
@@ -42,16 +51,10 @@ main {
 
 }
 
-.btn {
+.btn-primary:not(:disabled):not(.disabled).active {
     text-align: center;
-    background-color: var(--main-color) !important;
-    border-color: var(--main-color) !important;
-}
-
-.border-picture {
-    border-width: 10px !important;
-    border-color: var(--main-color) !important;
-    height: content-box;
+    background-color: var(--main-color) ;
+    border-color: var(--main-color) ;
 }
 
 th {
@@ -63,25 +66,19 @@ td {
     font-size: large;
 }
 
-.border-picture2 {
-    box-shadow: -2px -4px 0 2px var(--main-color);
-
-}
-
 .father-content, .mother-content {
-    max-width: max-content !important;
-    text-align: center;
+    max-width: max-content;
 }
 
 .mother-content {
     padding-right: 15px;
 }
 .title-parent .h2 {
-    color: var(--light-color) !important;
+    color: var(--light-color);
 }
 .title-parent {
     height: calc(var(--spacing1)*5);
-    margin-bottom: 16px;
+    margin-bottom: var(--spacing2);
 }
 
 .title-content-name, .title-parent {
@@ -107,15 +104,12 @@ td {
 .content-parent {
     background-color: var(--secondary-color);
     border: 1px solid unset;
-    padding: var(--spacing2) 0;
-    box-shadow: 0 var(--spacing2) var(--spacing3) var(--spacing1) var(--box-shadow-color);
+    padding: calc(var(--spacing4)*2);
     width: 70%;
 }
 .content-top-parent {
     background-color: var(--secondary-color);
     border: 1px solid unset;
-    box-shadow: 0 var(--spacing2) var(--spacing3) var(--spacing1) var(--box-shadow-color);
-    width: 70%;
 }
 
 .characteristic {
@@ -176,20 +170,6 @@ caption {
     color: var(--dark-color);
 }
 
-@media screen and (max-width: 680px){
-
-    main {
-        margin: 0;
-    }
-    .mother-content {
-        margin-top: var(--spacing1);
-    }
-
-    .content-top-parent, .content-parent, .table, .title-content-name{
-        width: 100% !important;
-    }
-
-    .content-parent {
-        flex-direction: column;
-    }
+.orange-solid {
+    box-shadow: -(var(--spacing1) var(--spacing1)) 0px var(--main-color);
 }
