@@ -1,0 +1,144 @@
+{% extends 'layout.html.twig' %}
+{% block title %} Contact | Élevage du paradis des Petits Cracks {% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/contact.css">
+{% endblock %}
+
+{% block content %}
+    <section class="contact">
+        <div class="box">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="box-part text-center">
+                            <img src="/assets/images/call.png">
+                            <div class="title">
+                                <h4>Téléphone</h4>
+                            </div>
+                            <div class="text">
+                                <p>Fixe : 02 38 31 69 13 </p>
+                                </br>
+                                <p>Mobile : 06 18 47 54 45 </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="box-part text-center">
+                            <img src="/assets/images/home.png">
+                            <div class="title">
+                                <h4>Adresse</h4>
+                            </div>
+                            <div class="text">
+                                <p>1 Route des Carres Les Perdreaux, 45630 Beaulieu-sur-Loire</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="box-part text-center">
+                            <img src="/assets/images/mail.png">
+                            <div class="title">
+                                <h4>Mail</h4>
+                            </div>
+                            <div class="text">
+                                <p>magali.duval@elevage.fr</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="box-part text-center">
+                            <img src="/assets/images/facebook.png">
+                            <div class="title">
+                                <h4>Facebook</h4>
+                            </div>
+                            <div class="text">
+                                <p>Retrouvez nos actualitées sur <a href="https://www.facebook.com/Magaliduval4/" target="_blank"> facebook </a> </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="box-part text-center">
+                            <img src="/assets/images/pawprint.png">
+                            <div class="title">
+                                <h4>Chiots de france</h4>
+                            </div>
+                            <div class="text">
+                                <p>Venez voir nos autres chiens disponible sur <a href="https://www.chiots-de-france.com/" target="_blank">chiots de france</a> </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="box-part text-center">
+                            <img src="/assets/images/dog-and-man.png">
+                            <div class="title">
+                                <h4>CCCE</h4>
+                            </div>
+                            <div class="text">
+                                <p>Rejoignez nous au <a href="http://www.ccce.org/index.html" target="_blank"> club du chihuahua, du coton de tulear et des exotiques</a> </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+       <section class="contact container">
+        <h2 class="text-center">Contactez-moi</h2>
+        <form action="mailto:sandra.louchart@gmail.com" method="post" class="mx-md-5 mt-5 mb-3">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstname">Prénom :</label>
+                    <input type="text" class="form-control" name="firstname" id="firstname" placeholder="John" value="{{ control.lastname ?? '' }}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lastname">Nom :</label>
+                    <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Doe" value="{{ control.firstname ?? '' }}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email">E-mail :</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="john.doe@test.com" value="{{ control.email ?? '' }}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="phone">Téléphone :</label>
+                    <input type="tel" class="form-control" name="phone" id="phone"
+                           placeholder="0203040506" value="{{ control.phone ?? '' }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="topic">Sujet :</label>
+                <select class="form-control" name="topic" id="topic">
+                    <option>Sélectionnez un sujet</option>
+                    <option>Message</option>
+                    <option>Annonces</option>
+                    <option>Signaler une erreur</option>
+                    <option>Divers</option>
+                    <option>Etalons</option>
+                    <option>Pension</option>
+                    <option>Toilletteur</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message :</label>
+                <textarea class="form-control" rows="5" name="message" id="message" required>{{ control.message ?? '' }}</textarea>
+            </div>
+            <div class="form-check mt-5">
+                <input type="checkbox" class="form-check-input" name="policy" id="check">
+                <label class="form-check-label" for="check">J'ai lu et accepte la politique de confidentialité.</label>
+            </div>
+            <br>
+            <div class="button mt-4 d-flex flex-column flex-sm-row">
+                <button type="submit" class="btn">Envoyer</button>
+                <button type="reset" class="btn">Annuler</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}
