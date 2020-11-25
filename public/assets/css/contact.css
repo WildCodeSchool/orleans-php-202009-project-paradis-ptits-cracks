@@ -40,6 +40,12 @@ label{
     font-size: var(--fontsize-text);
 }
 
+input{
+    font-family: var(--font-text);
+    color: var(--dark-color);
+    font-size: var(--fontsize-text);
+}
+
 h2{
     font-family: var(--font-title);
     color: var(--main-color);

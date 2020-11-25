@@ -17,3 +17,5 @@ define('APP_DB_USER', 'user');
 define('APP_DB_PWD', 'password');
 define('APP_DB_HOST', 'localhost');
 define('APP_DB_NAME', 'database_name');
+define('MAIL_TO', 'user@test.com');
+define('MAILER_DSN', 'link-mailtrap');
