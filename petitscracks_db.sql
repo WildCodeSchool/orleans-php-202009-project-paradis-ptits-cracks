@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `petitscracks`.`dog` (
   CONSTRAINT `father_id`
     FOREIGN KEY (`father_id`)
     REFERENCES `petitscracks`.`dog` (`id`)
-    ON DELETE NO ACTIONa va
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
