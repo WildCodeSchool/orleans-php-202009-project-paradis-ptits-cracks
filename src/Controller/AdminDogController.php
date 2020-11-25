@@ -212,12 +212,12 @@ class AdminDogController extends AbstractController
         $maxSize = 1000000;
         $authorizedMimes = ['image/jpeg', 'image/png'];
 
-        if (empty($dog['age_category'])) {
-            $errors['age_category'] = 'Veuillez sélectionner une catégorie';
+        if (empty($dog['age_category_id'])) {
+            $errors['age_category_id'] = 'Veuillez sélectionner une catégorie';
         }
 
-        if (empty($dog['status_select'])) {
-            $errors['status_select'] = 'Veuillez sélectionner un statut';
+        if (empty($dog['status_id'])) {
+            $errors['status_id'] = 'Veuillez sélectionner un statut';
         }
 
         if (empty($dog['name'])) {
@@ -230,25 +230,25 @@ class AdminDogController extends AbstractController
             $errors['birthday'] = 'Veuillez ajouter la date de naissance';
         }
 
-        if (empty($dog['gender'])) {
-            $errors['gender'] = 'Veuillez préciser le sexe du chien';
+        if (empty($dog['gender_id'])) {
+            $errors['gender_id'] = 'Veuillez préciser le sexe du chien';
         }
 
-        if (empty($dog['color_select'])) {
-            $errors['color_select'] = 'Veuillez préciser la couleur du chien';
+        if (empty($dog['color_id'])) {
+            $errors['color_id'] = 'Veuillez préciser la couleur du chien';
         }
 
-        if (!empty($dog['chien_de_france'])) {
-            if (!filter_var($dog['chien_de_france'], FILTER_VALIDATE_URL)) {
-                $errors['chien_de_france2'] = 'Merci d\'ajouter une url valide vers www.chiens-de-france.com';
+        if (!empty($dog['link_chiendefrance'])) {
+            if (!filter_var($dog['link_chiendefrance'], FILTER_VALIDATE_URL)) {
+                $errors['link_chiendefrance1'] = 'Merci d\'ajouter une url valide vers www.chiens-de-france.com';
             }
 
-            if (!strstr($dog['chien_de_france'], 'chiens-de-france')) {
-                $errors['chien_de_france2'] = 'Merci d\'ajouter une url valide vers www.chiens-de-france.com';
+            if (!strstr($dog['link_chiendefrance'], 'chiens-de-france')) {
+                $errors['link_chiendefrance2'] = 'Merci d\'ajouter une url valide vers www.chiens-de-france.com';
             }
 
-            if (strlen($dog['chien_de_france']) > $maxLengthLong) {
-                $errors['chien_de_france'] = 'Le lien ne doit pas dépasser ' . $maxLengthLong . ' caractères.';
+            if (strlen($dog['link_chiendefrance']) > $maxLengthLong) {
+                $errors['link_chiendefrance3'] = 'Le lien ne doit pas dépasser ' . $maxLengthLong . ' caractères.';
             }
         }
 

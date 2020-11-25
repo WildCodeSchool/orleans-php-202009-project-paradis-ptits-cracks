@@ -198,22 +198,22 @@ class DogManager extends AbstractManager
      */
     private function bindDogValues(PDOStatement $statement, array $dog): void
     {
-        empty($dog['mother_select']) ? $dog['mother_select'] = null : $dog['mother_select'];
-        empty($dog['father_select']) ? $dog['father_select'] = null : $dog['father_select'];
+        empty($dog['mother_id']) ? $dog['mother_id'] = null : $dog['mother_id'];
+        empty($dog['father_id']) ? $dog['father_id'] = null : $dog['father_id'];
         empty($dog['isOnHomepage']) ? $dog['isOnHomepage'] = 0 : $dog['isOnHomepage'];
         $statement->bindValue('name', $dog['name'], \PDO::PARAM_STR);
         $statement->bindValue('picture', $dog['picture'], \PDO::PARAM_STR);
         $statement->bindValue('birthday', $dog['birthday']);
         $statement->bindValue('description', $dog['description'] ?? null, \PDO::PARAM_STR);
-        $statement->bindValue('link_chiendefrance', $dog['chien_de_france'] ?? null, \PDO::PARAM_STR);
+        $statement->bindValue('link_chiendefrance', $dog['link_chiendefrance'] ?? null, \PDO::PARAM_STR);
         $statement->bindValue('lof_number', $dog['lof_number'] ?? null, \PDO::PARAM_STR);
-        $statement->bindValue('is_dna_tested', $dog['dna_test'] ?? null, \PDO::PARAM_INT);
-        $statement->bindValue('gender_id', $dog['gender'], \PDO::PARAM_INT);
-        $statement->bindValue('color_id', $dog['color_select'], \PDO::PARAM_INT);
-        $statement->bindValue('age_category_id', $dog['age_category'], \PDO::PARAM_INT);
-        $statement->bindValue('status_id', $dog['status_select'], \PDO::PARAM_INT);
-        $statement->bindValue('mother_id', $dog['mother_select'], \PDO::PARAM_INT);
-        $statement->bindValue('father_id', $dog['father_select'], \PDO::PARAM_INT);
+        $statement->bindValue('is_dna_tested', $dog['is_dna_tested'] ?? null, \PDO::PARAM_INT);
+        $statement->bindValue('gender_id', $dog['gender_id'], \PDO::PARAM_INT);
+        $statement->bindValue('color_id', $dog['color_id'], \PDO::PARAM_INT);
+        $statement->bindValue('age_category_id', $dog['age_category_id'], \PDO::PARAM_INT);
+        $statement->bindValue('status_id', $dog['status_id'], \PDO::PARAM_INT);
+        $statement->bindValue('mother_id', $dog['mother_id'], \PDO::PARAM_INT);
+        $statement->bindValue('father_id', $dog['father_id'], \PDO::PARAM_INT);
         $statement->bindValue('isOnHomepage', $dog['isOnHomepage'], \PDO::PARAM_INT);
     }
 
