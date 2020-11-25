@@ -32,7 +32,7 @@
                                 <h4 class="card-title m-0"> {{ dog.name }} </h4>
                                 <p class="card-text m-0"> {{ dog.birthday }}</p>
                                 <p class="card-text m-0"> {{ dog.gender }}</p>
-                                <a href="#" class="btn btn-md dark-shadow button-secondary m-2" >Voir le chien</a>
+                                <a href="/Dog/show/{{ dog.id }}" class="btn btn-md dark-shadow button-secondary m-2" >Voir le chien</a>
                             </div>
                         </div>
                     </div>
@@ -49,13 +49,13 @@
                 {% for actuality in actualities %}
                     <div class="col-lg-6 col-12 mb-4 mt-2 ">
                         <div class="card mx-2 mb-5 border-0 rounded-0">
-                            <img src="/uploads/{{ actuality.image ?? '/assets/images/petits-crack_actu-default.jpg' }}" alt="actuality-picture" class="card-img-top align-self-center orange-solid rounded-0">
+                            <img src="/uploads/{{ actuality.image }}" alt="actuality-picture" class="card-img-top align-self-center orange-solid rounded-0 home-actuality-picture">
                             <div class="card-description mx-auto p-0 dark-shadow">
                             <div class="card-body ">
                                 <h4 class="card-title text-left text-truncate"> {{ actuality.title }} </h4>
                                 <p class="card-text small-p text-left"> {{ actuality.date }}</p>
                                 <p class="card-text small-p text-left text-justify text-truncate"> {{ actuality.description }}</p>
-                                <a href="#" class="btn btn-md dark-shadow button-secondary m-3" >En savoir plus</a>
+                                <a href="/actuality/show/{{ actuality.id }}" class="btn btn-md dark-shadow button-secondary m-3" >En savoir plus</a>
                             </div>
                             </div>
                         </div>
