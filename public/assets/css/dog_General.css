@@ -12,6 +12,7 @@
     width: 200px;
     height: 200px;
     object-fit: cover;
+
 }
 
 .cardDog{
@@ -34,7 +35,6 @@
 .femelle .cardDog{
     background-color: var(--secondary-color);
 }
-
 .birthday{
     font-size: 15px;
 }
