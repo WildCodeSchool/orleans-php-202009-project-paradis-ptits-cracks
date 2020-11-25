@@ -38,8 +38,10 @@ class DogManager extends AbstractManager
      */
     public function selectAllDogData(): array
     {
-        return $this->pdo->query("SELECT d.*, g.gender, c.dog_color, s.dog_status, m.name AS mothername,
-            f.name AS fathername, ac.category FROM dog d
+        return $this->pdo->query("SELECT d.id, d.name, d.picture, d.birthday, d.description, 
+            d.link_chiendefrance, d.lof_number, d.is_dna_tested, d.gender_id, d.color_id, d.color_id, d.age_category_id,
+            d.status_id, d.mother_id, d.father_id, d.isOnHomepage, g.gender, c.dog_color, s.dog_status, 
+            m.name AS mothername, f.name AS fathername, ac.category FROM dog d
             LEFT JOIN gender g ON g.id = d.gender_id
             LEFT JOIN status s ON s.id = d.status_id
             LEFT JOIN dog m ON m.id = d.mother_id
@@ -56,7 +58,9 @@ class DogManager extends AbstractManager
      */
     public function selectDogDataById(int $id): array
     {
-        $statement = $this->pdo->prepare("SELECT d.*, g.gender, c.dog_color, s.dog_status, 
+        $statement = $this->pdo->prepare("SELECT d.id, d.name, d.picture, d.birthday, d.description, 
+            d.link_chiendefrance, d.lof_number, d.is_dna_tested, d.gender_id, d.color_id, d.color_id, d.age_category_id,
+            d.status_id, d.mother_id, d.father_id, d.isOnHomepage, g.gender, c.dog_color, s.dog_status, 
             m.name AS mothername, f.name AS fathername, ac.category FROM dog d
             LEFT JOIN gender g ON g.id = d.gender_id
             LEFT JOIN status s ON s.id = d.status_id
@@ -78,9 +82,11 @@ class DogManager extends AbstractManager
      */
     public function selectAllAdultType(string $type): array
     {
-        return $this->pdo->query("SELECT * FROM dog 
-            LEFT JOIN gender ON gender.id = dog.gender_id
-            LEFT JOIN age_category ON age_category.id = dog.age_category_id
+        return $this->pdo->query("SELECT d.id, d.name, d.picture, d.birthday, d.description, 
+            d.link_chiendefrance, d.lof_number, d.is_dna_tested, d.gender_id, d.color_id, d.color_id, d.age_category_id,
+            d.status_id, d.mother_id, d.father_id, d.isOnHomepage FROM dog d
+            LEFT JOIN gender ON gender.id = d.gender_id
+            LEFT JOIN age_category ON age_category.id = d.age_category_id
             WHERE gender.label = '$type'
             AND age_category.label = 'adult'")->fetchAll();
     }
@@ -90,9 +96,11 @@ class DogManager extends AbstractManager
      */
     public function selectAllPuppies(): array
     {
-        return $this->pdo->query("SELECT * FROM dog 
-            LEFT JOIN gender ON gender.id = dog.gender_id
-            LEFT JOIN age_category ON age_category.id = dog.age_category_id
+        return $this->pdo->query("SELECT d.id, d.name, d.picture, d.birthday, d.description, 
+            d.link_chiendefrance, d.lof_number, d.is_dna_tested, d.gender_id, d.color_id, d.color_id, d.age_category_id,
+            d.status_id, d.mother_id, d.father_id, d.isOnHomepage FROM dog d
+            LEFT JOIN gender ON gender.id = d.gender_id
+            LEFT JOIN age_category ON age_category.id = d.age_category_id
             WHERE age_category.label = 'puppies'")->fetchAll();
     }
 
@@ -107,6 +115,25 @@ class DogManager extends AbstractManager
             LEFT JOIN gender g ON g.id = d.gender_id
             LEFT JOIN age_category ac ON ac.id = d.age_category_id
             WHERE ac.label = 'puppies'
+            ORDER BY d.id DESC
+            LIMIT :limit");
+        $statement->bindValue('limit', $limit, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    /**
+     * @param int $limit
+     * @return array
+     */
+    public function selectHomeDogs(int $limit): array
+    {
+        $statement = $this->pdo->prepare("SELECT d.id, d.name, d.picture, d.birthday, g.gender 
+            FROM " . self::TABLE . " d 
+            LEFT JOIN gender g ON g.id = d.gender_id
+            LEFT JOIN age_category ac ON ac.id = d.age_category_id
+            WHERE d.isOnHomePage = 1
             ORDER BY d.id DESC
             LIMIT :limit");
         $statement->bindValue('limit', $limit, \PDO::PARAM_INT);
@@ -141,9 +168,9 @@ class DogManager extends AbstractManager
     {
         $statement = $this->pdo->prepare("INSERT INTO dog
         (name, picture, birthday, description, link_chiendefrance, lof_number, is_dna_tested, gender_id, color_id, 
-        age_category_id, status_id, mother_id, father_id)
+        age_category_id, status_id, mother_id, father_id, isOnHomepage)
         VALUES (:name, :picture, :birthday, :description, :link_chiendefrance, :lof_number, :is_dna_tested, :gender_id, 
-        :color_id, :age_category_id, :status_id, :mother_id, :father_id)");
+        :color_id, :age_category_id, :status_id, :mother_id, :father_id, :isOnHomepage)");
         $this->bindDogValues($statement, $dog);
         $statement->execute();
     }
@@ -157,7 +184,7 @@ class DogManager extends AbstractManager
         $statement = $this->pdo->prepare("UPDATE dog SET name=:name, picture=:picture, birthday=:birthday, 
         description=:description, link_chiendefrance=:link_chiendefrance, lof_number=:lof_number, color_id=:color_id,
         is_dna_tested=:is_dna_tested, gender_id=:gender_id, age_category_id=:age_category_id, status_id=:status_id,
-        mother_id=:mother_id, father_id=:father_id
+        mother_id=:mother_id, father_id=:father_id, isOnHomepage=:isOnHomepage
         WHERE id=:id");
         $this->bindDogValues($statement, $dog);
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
@@ -173,6 +200,7 @@ class DogManager extends AbstractManager
     {
         empty($dog['mother_select']) ? $dog['mother_select'] = null : $dog['mother_select'];
         empty($dog['father_select']) ? $dog['father_select'] = null : $dog['father_select'];
+        empty($dog['isOnHomepage']) ? $dog['isOnHomepage'] = 0 : $dog['isOnHomepage'];
         $statement->bindValue('name', $dog['name'], \PDO::PARAM_STR);
         $statement->bindValue('picture', $dog['picture'], \PDO::PARAM_STR);
         $statement->bindValue('birthday', $dog['birthday']);
@@ -186,9 +214,11 @@ class DogManager extends AbstractManager
         $statement->bindValue('status_id', $dog['status_select'], \PDO::PARAM_INT);
         $statement->bindValue('mother_id', $dog['mother_select'], \PDO::PARAM_INT);
         $statement->bindValue('father_id', $dog['father_select'], \PDO::PARAM_INT);
+        $statement->bindValue('isOnHomepage', $dog['isOnHomepage'], \PDO::PARAM_INT);
     }
 
     /**
+     * Used in show to display or not the delete button (if a dog has puppies, not possible to delete it)
      * @param int $id
      * @return array
      */
