@@ -27,6 +27,7 @@
 }
 .titleDog{
     color: var(--dark-color);
+    font-size: calc(var(--fontsize-text)*2);
 }
 
 .femelle{
