@@ -58,5 +58,4 @@ h2{
     font-size: var(--fontsize-text);
     padding: var(--spacing1) var(--spacing2);
     margin: var(--spacing3);
-    text-align: center;
 }
