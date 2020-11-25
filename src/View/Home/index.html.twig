@@ -11,7 +11,7 @@
             <div class="d-flex flex-column m-5">
                 <h1 class="d-none">Elevage du paradis des petits cracks</h1>
                 <img src="/assets/images/logo-ptits-cracks-du-paradis.png" alt="logo-paradis des petits cracks" class="align-self-center m-5 logo">
-                <p class="header-p align-self-center text-center p-1">Élevage de <strong>chihuahuas poils courts et poils longs</strong> inscrit au <strong>LOF</strong></p>
+                <p class="header-p align-self-center text-center p-1">Élevage de <strong>chihuahuas poils courts et poils longs</strong> inscrits au <strong>LOF</strong></p>
                 <p class="header-p align-self-center text-center p-1">En <strong>région Centre</strong> à une heure de Paris et d’Orléans </p>
                 <a href="Breeding/index" class="btn btn-lg button-main align-self-center m-5 dark-shadow" >Plus d'informations</a>
             </div>
@@ -32,7 +32,7 @@
                                 <h4 class="card-title m-0"> {{ dog.name }} </h4>
                                 <p class="card-text m-0"> {{ dog.birthday }}</p>
                                 <p class="card-text m-0"> {{ dog.gender }}</p>
-                                <a href="/Dog/show/{{ dog.id }}" class="btn btn-md dark-shadow button-secondary m-2" >Voir le chien</a>
+                                <a href="#" class="btn btn-md dark-shadow button-secondary m-2" >Voir le chien</a>
                             </div>
                         </div>
                     </div>
@@ -44,12 +44,12 @@
 
     <section class="home-actualities">
         <div class="container text-center p-5">
-            <h2 class="m-5 pb-3"> Nos actualités</h2>
+            <h2 class="m-5 pb-3 text-white-shadow"> Nos actualités</h2>
             <div class="row justify-content-center">
                 {% for actuality in actualities %}
                     <div class="col-lg-6 col-12 mb-4 mt-2 ">
                         <div class="card mx-2 mb-5 border-0 rounded-0">
-                            <img src="{{ actuality.image ?? '/assets/images/petits-crack_actu-default.jpg' }}" alt="actuality-picture" class="card-img-top align-self-center orange-solid rounded-0">
+                            <img src="/uploads/{{ actuality.image ?? '/assets/images/petits-crack_actu-default.jpg' }}" alt="actuality-picture" class="card-img-top align-self-center orange-solid rounded-0">
                             <div class="card-description mx-auto p-0 dark-shadow">
                             <div class="card-body ">
                                 <h4 class="card-title text-left text-truncate"> {{ actuality.title }} </h4>
