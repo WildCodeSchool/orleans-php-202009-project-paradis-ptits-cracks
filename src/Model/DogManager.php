@@ -100,10 +100,12 @@ class DogManager extends AbstractManager
     {
         return $this->pdo->query("SELECT d.id, d.name, d.picture, d.birthday, d.description, 
             d.link_chiendefrance, d.lof_number, d.is_dna_tested, d.gender_id, d.color_id, d.color_id, d.age_category_id,
-            d.status_id, d.mother_id, d.father_id, d.isOnHomepage FROM dog d
+            d.status_id, d.mother_id, d.father_id, d.isOnHomepage, s.dog_status FROM dog d
             LEFT JOIN gender ON gender.id = d.gender_id
             LEFT JOIN age_category ON age_category.id = d.age_category_id
-            WHERE age_category.label = 'puppies'")->fetchAll();
+            LEFT JOIN status s ON s.id = d.status_id
+            WHERE age_category.label = 'puppies'
+            ORDER BY d.id DESC")->fetchAll();
     }
 
     /**
