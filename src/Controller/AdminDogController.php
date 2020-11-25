@@ -128,8 +128,6 @@ class AdminDogController extends AbstractController
         $dog = $dogManager->selectDogDataById($id);
         $initialImage = $dog['picture'];
 
-
-
         if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             $dog = array_map('trim', $_POST);
             $errors = $this->validator($dog, $_FILES['picture']);
