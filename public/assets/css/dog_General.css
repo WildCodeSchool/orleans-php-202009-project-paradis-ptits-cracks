@@ -11,7 +11,8 @@
 .card img{
     width: 200px;
     height: 200px;
- object-fit: cover;
+    object-fit: cover;
+    border: 5px solid var(--main-color) ;
 }
 
 .cardDog{
@@ -49,4 +50,14 @@
 
 .card-body a:hover{
     background-color: var(--main-color);
+}
+
+.button-dark {
+    background-color: var(--dark-color);
+    font-family: var(--font-text);
+    font-weight: 500;
+    letter-spacing: -1px;
+    color: var(--light-color);
+    font-size: var(--fontsize-small-text);
+    padding: var(--spacing1);
 }
