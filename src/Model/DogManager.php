@@ -148,10 +148,11 @@ class DogManager extends AbstractManager
      */
     public function selectLastDogs(int $limit): array
     {
-        $statement = $this->pdo->prepare("SELECT d.id, d.name, d.picture, d.birthday, g.gender 
+        $statement = $this->pdo->prepare("SELECT d.id, d.name, d.picture, d.birthday, s.dog_status, g.gender 
             FROM " . self::TABLE . " d 
             LEFT JOIN gender g ON g.id = d.gender_id
             LEFT JOIN age_category ac ON ac.id = d.age_category_id
+            LEFT JOIN status s ON s.id = d.status_id
             ORDER BY d.id DESC
             LIMIT :limit");
         $statement->bindValue('limit', $limit, \PDO::PARAM_INT);
