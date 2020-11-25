@@ -20,18 +20,18 @@
 
     <section class="home-puppies">
         <div class="container text-center mt-5 pt-4 mb-5 pb-5">
-            <h2 class="mt-5"> Nos chiots</h2>
+            <h2 class="mt-5"> Nos chiens</h2>
             <div class="row justify-content-center my-3">
-                {% for puppy in puppies %}
+                {% for dog in dogs %}
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="card mx-3 p-5 border-0">
                             <div class="thumbnail-container">
-                                <img src="{{ puppy.picture }}" alt="category icon" class="card-img-top align-self-center thumbnail  ">
+                                <img src="/uploads/{{ dog.picture }}" alt="category icon" class="card-img-top align-self-center thumbnail  ">
                             </div>
                             <div class="card-body text-center">
-                                <h4 class="card-title m-0"> {{ puppy.name }} </h4>
-                                <p class="card-text m-0"> {{ puppy.birthday }}</p>
-                                <p class="card-text m-0"> {{ puppy.gender }}</p>
+                                <h4 class="card-title m-0"> {{ dog.name }} </h4>
+                                <p class="card-text m-0"> {{ dog.birthday }}</p>
+                                <p class="card-text m-0"> {{ dog.gender }}</p>
                                 <a href="#" class="btn btn-md dark-shadow button-secondary m-2" >Voir le chien</a>
                             </div>
                         </div>

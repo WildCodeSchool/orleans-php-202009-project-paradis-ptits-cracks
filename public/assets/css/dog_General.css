@@ -33,9 +33,7 @@
 .femelle .cardDog{
     background-color: var(--secondary-color);
 }
-.forDog{
-    width: 90%;
-}
+
 .birthday{
     font-size: 15px;
 }

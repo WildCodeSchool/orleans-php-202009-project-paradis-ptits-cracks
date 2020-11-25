@@ -18,6 +18,8 @@ use App\Model\StatusManager;
 class AdminDogController extends AbstractController
 {
 
+
+
     /**
      * Display dog list on admin
      *
@@ -52,9 +54,10 @@ class AdminDogController extends AbstractController
 
         if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             $dog = array_map('trim', $_POST);
-            $errors = $this->validator($dog);
+            $errors = $this->validator($dog, $_FILES['picture']);
 
             if (empty($errors)) {
+                $dog['picture'] = $this->addPicture($_FILES['picture']);
                 $dogManager = new DogManager();
                 $dogManager -> saveDog($dog);
                 header('Location: /AdminDog/list');
@@ -107,17 +110,6 @@ class AdminDogController extends AbstractController
     {
         $errors = [];
 
-        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-            $dog = array_map('trim', $_POST);
-            $errors = $this->validator($dog);
-
-            if (empty($errors)) {
-                $dogManager = new DogManager();
-                $dogManager -> editDog($dog, $id);
-                header('Location: /AdminDog/show/' . $id);
-            }
-        }
-
         $genderManager = new GenderManager();
         $genders = $genderManager->selectAll();
 
@@ -134,6 +126,27 @@ class AdminDogController extends AbstractController
         $dogsAdultMales = $dogManager->selectAllAdultType('male');
         $dogsAdultFemales = $dogManager->selectAllAdultType('female');
         $dog = $dogManager->selectDogDataById($id);
+        $initialImage = $dog['picture'];
+
+
+
+        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+            $dog = array_map('trim', $_POST);
+            $errors = $this->validator($dog, $_FILES['picture']);
+
+            if (empty($errors)) {
+                if (!empty($_FILES['picture']['tmp_name'])) {
+                    $dog['picture'] = $this->addPicture($_FILES['picture']);
+                    unlink('uploads/' . $initialImage);
+                } else {
+                    $dog['picture'] = $initialImage;
+                }
+
+                $dogManager = new DogManager();
+                $dogManager -> editDog($dog, $id);
+                header('Location: /AdminDog/show/' . $id);
+            }
+        }
 
         return $this->twig->render('Admin/edit_dog.html.twig', [
             'genders' => $genders,
@@ -188,15 +201,18 @@ class AdminDogController extends AbstractController
      * Form post validation
      *
      * @param array $dog
+     * @param array $file
      * @return array $errors
      * @SuppressWarnings(PHPMD)
      */
 
-    private function validator(array $dog): array
+    private function validator(array $dog, array $file): array
     {
         $errors = [];
         $maxLengthShort = 100;
         $maxLengthLong = 255;
+        $maxSize = 1000000;
+        $authorizedMimes = ['image/jpeg', 'image/png'];
 
         if (empty($dog['age_category'])) {
             $errors['age_category'] = 'Veuillez sélectionner une catégorie';
@@ -214,18 +230,6 @@ class AdminDogController extends AbstractController
 
         if (empty($dog['birthday'])) {
             $errors['birthday'] = 'Veuillez ajouter la date de naissance';
-        }
-
-        if (empty($dog['picture'])) {
-            $errors['picture'] = 'Veuillez ajouter une photo';
-        }
-
-        if (!filter_var($dog['picture'], FILTER_VALIDATE_URL)) {
-            $errors['picture2'] = 'Merci d\'ajouter une url valide pour la photo';
-        }
-
-        if (strlen($dog['picture']) > $maxLengthLong) {
-            $errors['picture3'] = 'Le lien ne doit pas dépasser ' . $maxLengthLong . ' caractères.';
         }
 
         if (empty($dog['gender'])) {
@@ -254,6 +258,20 @@ class AdminDogController extends AbstractController
             $errors['lof_number'] = 'Le numéro de lof ne doit pas dépasser ' . $maxLengthShort . ' caractères.';
         }
 
+        if ($file['size'] > $maxSize) {
+            $errors['picture'] = 'Le fichier ne doit pas excéder ' . floor($maxSize / 1000000) . ' Mo';
+        }
+
+        if (!empty($file['tmp_name']) && !in_array(mime_content_type($file['tmp_name']), $authorizedMimes)) {
+            $errors['picture2'] = 'Le fichier doit être de type png ou jpeg';
+        }
         return $errors;
+    }
+
+    private function addPicture($picture): string
+    {
+        $filename = uniqid() . '.' . pathinfo($picture['name'], PATHINFO_EXTENSION);
+        move_uploaded_file($picture['tmp_name'], 'uploads/' . $filename);
+        return $filename;
     }
 }
