@@ -8,7 +8,7 @@
     <section class = "dog">
     <div class=" section card m-xl-5 ">
         <div class="card-body">
-            <h3 class="titleDog text-center">Nos Males</h3>
+            <h3 class="titleDog text-center p-4 pt-5">Nos Males</h3>
             <div class=" container-fluid row mx-auto justify-content-center">
             {% for male in males %}
                 {%include 'Dog/card.html.twig' with {'dog': male} %}
@@ -18,8 +18,9 @@
     </div>
         <div class=" section card m-xl-5">
         <div class="femelle card-body">
-        <h3 class="titleDog text-center">Nos Femelles</h3>
+        <h3 class="titleDog text-center p-4 pt-5">Nos Femelles</h3>
             <div class="forDog container-fluid row mx-auto justify-content-center ">
+
             {% for female in females %}
                 {%include 'Dog/card.html.twig' with {'dog': female} %}
                     {%  endfor %}
@@ -28,7 +29,7 @@
         </div>
         <div class=" section card m-xl-5">
         <div class="card-body">
-           <h3 class="titleDog text-center">Nos Chiots</h3>
+           <h3 class="titleDog text-center p-4 pt-5">Nos Chiots</h3>
            <div class="container-fluid row mx-auto justify-content-center">
                {% for puppie in puppies %}
                {%include 'Dog/card.html.twig' with {'dog': puppie}%}

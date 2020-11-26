@@ -30,6 +30,7 @@ body {
     padding-top: var(--body-padding-top);
     margin: 0;
     box-sizing: border-box;
+    background-color: var(--light-color);
 }
 
 h1, h2 {
@@ -56,21 +57,42 @@ p {
 
 .button-main {
     background-color: var(--main-color);
-    font-family: var(--font-title);
+    font-family: var(--font-text);
     font-size: var(--fontsize-text);
+    font-weight: 500;
+    letter-spacing: -1px;
     margin: var(--spacing3);
     padding: var(--spacing1) var(--spacing2);
 }
 
 .button-secondary {
     background-color: var(--secondary-color);
-    font-family: var(--font-title);
-    font-size: var(--fontsize-text);
+    font-family: var(--font-text);
+    font-weight: 500;
+    letter-spacing: -1px;
+    font-size: var(--fontsize-small-text);
+    padding: var(--spacing1);
+}
+
+.button-dark {
+    background-color: var(--dark-color);
+    font-family: var(--font-text);
+    font-weight: 500;
+    letter-spacing: -1px;
+    color: var(--light-color);
+    font-size: var(--fontsize-small-text);
     padding: var(--spacing1);
 }
 
 .dark-shadow {
     box-shadow: 1px 1px 5px var(--shadow-color);
+}
+
+.text-shadow {
+    text-shadow: 1px 1px 5px var(--shadow-color);
+}
+.text-white-shadow {
+    text-shadow: 1px 1px 3px var(--light-color);
 }
 
 .orange-solid {
