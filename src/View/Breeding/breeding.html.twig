@@ -1,135 +1,110 @@
 {% extends 'layout.html.twig' %}
+{% block stylesheet %}<link rel="stylesheet" href="/assets/css/breeding.css">{% endblock %}
 {% block content %}
-    <div class="container-fluids carousel-board">
-        <div class="row">
-            <div class="col-12 ">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <div>
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                    </div>
 
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block mx-auto" src="/assets/images/carousel_photo1.jpg" alt="First slide">
-                        </div>
-                        <div class="carousel-item ">
-                            <img class="d-block mx-auto" src="/assets/images/carousel_photo2.jpg" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block mx-auto" src="/assets/images/carousel_photo3.jpg" alt="Third slide">
-                        </div>
+
+
+    <div class="carousel-board section-carousel">
+        <div class="d-flex flex row justify-content-center">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div>
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                </div>
+
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="carouselImg" src="/assets/images/carousel_photo1.jpg" alt="First slide">
                     </div>
-                    <div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                            <img src="/assets/images/dog-pat-arrow-prev.png" alt="prev-icon">
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                            <img src="/assets/images/dog-pat-arrow-next.png" alt="prev-icon">
-                        </a>
+                    <div class="carousel-item ">
+                        <img class="carouselImg" src="/assets/images/carousel_photo2.jpg" alt="Second slide">
                     </div>
+                    <div class="carousel-item">
+                        <img class=" carouselImg" src="/assets/images/carousel_photo3.jpg" alt="Third slide">
+                    </div>
+                </div>
+                <div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <img src="/assets/images/dog-pat-arrow-prev.png" alt="prev-icon">
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <img src="/assets/images/dog-pat-arrow-next.png" alt="prev-icon">
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-fluids content-top-background" >
-        <div class="row">
-            <div class="col-12 top">
-                <img class="top-background img-fluid" src="/assets/images/top-background1.png" alt="top-background">
+
+    <section class="presentation">
+
+        <div class="row d-flex flex-column align-items-center align-content-center ">
+
+            <div class="col-12 headerPresentation d-flex flex-column align-items-center">
+                <h1 class="title">Présentation</h1>
+                <img class="mainImg img-fluid" src="/assets/images/dog_raiser.jpg" alt="raser_photo">
+            </div>
+
+            <div class="col-md-6 textPresentation text d-flex flex-column align-items-center">
+                <p>
+                    Passionnée de nature et d'animaux depuis ma plus tendre enfance,
+                    je suis tombée il y a quelques années déjà sous le charme de ce petit
+                    bout de chien extraordinaire et j'ai acquis ma première puce pour la plus grande
+                    joie de mes enfants en 2004. Je participe régulièrement à de nombreuses expositions
+                    canines avec ma fille à qui j'ai donné cette passion pour ce chien au grand coeur qu'est le chihuahua.
+                </p>
+                <p>
+                    Ainsi je suis membre du club du Chihuahua, du Coton de Tuléar et des Exotiques.
+                </p>
+                <p>
+                    Je vais essayer aussi modestement d'avoir de beaux petits lutins équilibrés,
+                    en bonne santé et bien dans "leurs pattes" pour que vous puissiez vivre un amour
+                    sans limite avec votre futur petit compagnon.
+                </p>
             </div>
         </div>
-    </div>
 
-    <div class="container">
-        <section>
-            <div class="row" id ="raiser-descript">
-                <div  class="col-12 d-flex ">
+    </section>
 
+    <section class="oursDogs">
 
+        <div class="row d-flex flex-column align-items-center align-content-center">
 
-                    <div class="d-flex flex-column">
-
-
-                        <div class="d-flex flex-column align-items-center presentation">
-                            <h2 class="title">Présentation</h2>
-                            <img class="img-fluid border breeder" src="/assets/images/dog_raiser.jpg" alt="raser_photo">
-                        </div>
-
-                        <div class="d-flex flex-column align-items-center text">
-                            <p>
-                                Passionnée de nature et d'animaux depuis ma plus tendre enfance,
-                                je suis tombée il y a quelques années déjà sous le charme de ce petit
-                                bout de chien extraordinaire et j'ai acquis ma première puce pour la plus grande
-                                joie de mes enfants en 2004. Je participe régulièrement à de nombreuses expositions
-                                canines avec ma fille à qui j'ai donné cette passion pour ce chien au grand coeur qu'est le chihuahua.
-                            </p>
-                            <p>
-                                Ainsi je suis membre du club du Chihuahua, du Coton de Tuléar et des Exotiques.
-                            </p>
-                            <p>
-                                Je vais essayer aussi modestement d'avoir de beaux petits lutins équilibrés,
-                                en bonne santé et bien dans "leurs pattes" pour que vous puissiez vivre un amour
-                                sans limite avec votre futur petit compagnon.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-
+            <div class="col-12 d-flex flex-column align-items-center headerPresentation presentation">
+                <h2>Mes Chiens</h2>
+                <h3 class="title">Chihuahuas Poils Longs Et Poils Courts</h3>
+                <img class="mainImg img-fluid " src="/assets/images/breeding_photo.jpg " alt='sight_breeding'>
             </div>
-        </section>
 
 
-        <div class="row d-flex flex-row-reverse align-content-end" id ="breeding-descript">
-            <section>
-                <div class="col-12 d-flex flex-row-reverse ">
 
-                    <div class="d-flex flex-column content-breeder">
-
-                        <div class="d-flex flex-column align-items-center presentation">
-                            <h2>Mes Chiens</h2>
-                            <h3 class="title">Chihuahuas Poils Longs Et Poils Courts</h3>
-                            <img class="img-fluid border breeding" src="/assets/images/breeding_photo.jpg " alt='sight_breeding'>
-                        </div>
-                        <div class="d-flex flex-column align-items-center text descript-breeding">
-                            <p>
-                                <span>Inscrits au livre des origines françaises.</span>
-                                <span>Excellentes origines.</span>
-                                <span>
+            <div class="col-md-6 d-flex flex-column align-items-center text textPresentation">
+                <p>
+                    <span>Inscrits au livre des origines françaises.</span>
+                    <span>Excellentes origines.</span>
+                    <span>
                                 Élevage situé en Région Centre, à 150 kms de Paris, 70 de Bourges,
                                 Nevers, Auxerre et à 150 kms d'Orléans.
                             </span>
-                                <span>Garantie de suivi et conseils toute la vie de votre petit compagnon.</span>
-                            </p>
-                            <p>
-                                Tous mes chiens adultes restants à l' élevage sont testés ADN,
-                                ce test sera fait aussi pour les futurs reproducteurs, ce qui permet
-                                de prouver la parenté de mes chiots, tous mes adultes reproducteurs sont
-                                testés rotules et ce vérifiés tous les ans à leur rappel de vaccin, je peux
-                                donc vous faire voir l' attestation rotules et la carte d' identification ADN
-                                des parents de votre futur chiot.
-                            </p>
-                        </div>
-                        <div class="d-flex justify-items-center">
-                            <a class="mx-auto" href="https://www.centrale-canine.fr/club-du-chihuahua-coton-de-tulear-et-des-exotiques" title="site du club"><img class="img-fluid mx-auto  banner" src="/assets/images/club_banner.jpg" alt="banner_club_chihuahua"></a>
-                        </div>
+                    <span>Garantie de suivi et conseils toute la vie de votre petit compagnon.</span>
+                </p>
+                <p>
+                    Tous mes chiens adultes restants à l' élevage sont testés ADN,
+                    ce test sera fait aussi pour les futurs reproducteurs, ce qui permet
+                    de prouver la parenté de mes chiots, tous mes adultes reproducteurs sont
+                    testés rotules et ce vérifiés tous les ans à leur rappel de vaccin, je peux
+                    donc vous faire voir l' attestation rotules et la carte d' identification ADN
+                    des parents de votre futur chiot.
+                </p>
+            </div>
 
-                    </div>
-
-                </div>
-            </section>
+            <div class="d-flex justify-items-center">
+                <a class="mx-auto" href="https://www.centrale-canine.fr/club-du-chihuahua-coton-de-tulear-et-des-exotiques" title="site du club"><img class="img-fluid mx-auto  banner" src="/assets/images/club_banner.jpg" alt="banner_club_chihuahua"></a>
+            </div>
         </div>
-    </div>
-
-    <div class="container-fluids content-bottom-background" >
-        <div class="col-12 bottom">
-            <img class="bottom-background img-fluid" src="/assets/images/bottom-background1.png" alt="bottom-background">
-        </div>
-    </div>
-
+    </section>
 
 {% endblock %}
 
