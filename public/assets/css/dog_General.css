@@ -11,7 +11,9 @@
 .card img{
     width: 200px;
     height: 200px;
- object-fit: cover;
+
+    object-fit: cover;
+
 }
 
 .cardDog{
@@ -34,9 +36,7 @@
 .femelle .cardDog{
     background-color: var(--secondary-color);
 }
-.forDog{
-    width: 90%;
-}
+
 .birthday{
     font-size: 15px;
 }
