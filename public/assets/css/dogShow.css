@@ -27,6 +27,7 @@ h3 {
     margin-bottom: var(--spacing4);
 }
 
+
 th {
     width: 30%;
     text-align: center;
@@ -43,6 +44,12 @@ td {
     background: var(--light-color);
     font-family: var(--font-text);
 }
+
+.table td, .table th  {
+    border: 1px solid var(--dark-color);
+
+}
+
 
 .link-data {
     color: var(--dark-color);
