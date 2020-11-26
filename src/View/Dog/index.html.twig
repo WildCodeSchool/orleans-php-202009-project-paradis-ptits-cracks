@@ -20,6 +20,7 @@
         <div class="femelle card-body">
         <h3 class="titleDog text-center p-4 pt-5">Nos Femelles</h3>
             <div class="forDog container-fluid row mx-auto justify-content-center ">
+
             {% for female in females %}
                 {%include 'Dog/card.html.twig' with {'dog': female} %}
                     {%  endfor %}

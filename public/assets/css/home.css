@@ -37,6 +37,12 @@
     background-color: var(--secondary-color);
 }
 
+.home-actuality-picture {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
 .card-description {
     width: 90%;
     margin-top: -3em;

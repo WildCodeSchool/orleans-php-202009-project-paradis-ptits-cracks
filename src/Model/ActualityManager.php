@@ -58,7 +58,7 @@ class ActualityManager extends AbstractManager
 
     public function selectLastActualities(int $limit): array
     {
-        $statement = $this->pdo->prepare("SELECT id, title, date, description FROM " . self::TABLE . " AS a
+        $statement = $this->pdo->prepare("SELECT id, title, date, description, image FROM " . self::TABLE . " AS a
             ORDER BY a.id DESC
             LIMIT :limit");
         $statement->bindValue('limit', $limit, \PDO::PARAM_INT);
