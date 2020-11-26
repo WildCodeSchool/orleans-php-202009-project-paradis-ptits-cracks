@@ -30,6 +30,7 @@ body {
     padding-top: var(--body-padding-top);
     margin: 0;
     box-sizing: border-box;
+    background-color: var(--light-color);
 }
 
 h1, h2 {
