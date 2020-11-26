@@ -7,17 +7,16 @@
     flex: 1 1 auto;
 }
 .actuality-text{
-    object-fit: contain;
+    object-fit: scale-down;
 }
 .img-actuality{
-    max-width: 600px;
-    max-height: calc(var(--max-height-card)*10);
-    object-fit: fill;
+    min-width: 400px;
+    height: 300px;
+    object-fit: cover;
 }
 .btn{
     background-color: var(--dark-color);
     border-color: var(--dark-color);
-    width: 130px;
     max-height: var(--max-height-card);
 }
 .btn:hover{
@@ -42,7 +41,7 @@
 }
 
 .actuality-text{
-    max-width: 550px;
+    max-width: 500px;
 }
 
 .descText{
@@ -50,4 +49,14 @@
 }
 .card-title-actuality{
     color: var(--dark-color);
+}
+
+.button-dark {
+    background-color: var(--dark-color);
+    font-family: var(--font-text);
+    font-weight: 500;
+    letter-spacing: -1px;
+    color: var(--light-color);
+    font-size: var(--fontsize-small-text);
+    padding: var(--spacing1);
 }
