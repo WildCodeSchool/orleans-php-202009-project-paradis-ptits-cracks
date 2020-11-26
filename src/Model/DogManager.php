@@ -84,11 +84,13 @@ class DogManager extends AbstractManager
     {
         return $this->pdo->query("SELECT d.id, d.name, d.picture, d.birthday, d.description, 
             d.link_chiendefrance, d.lof_number, d.is_dna_tested, d.gender_id, d.color_id, d.color_id, d.age_category_id,
-            d.status_id, d.mother_id, d.father_id, d.isOnHomepage FROM dog d
+            d.status_id, d.mother_id, d.father_id, d.isOnHomepage, s.dog_status FROM dog d
             LEFT JOIN gender ON gender.id = d.gender_id
             LEFT JOIN age_category ON age_category.id = d.age_category_id
+            LEFT JOIN status s ON s.id = d.status_id
             WHERE gender.label = '$type'
-            AND age_category.label = 'adult'")->fetchAll();
+            AND age_category.label = 'adult'
+            ORDER BY d.id DESC")->fetchAll();
     }
 
     /**
@@ -98,10 +100,12 @@ class DogManager extends AbstractManager
     {
         return $this->pdo->query("SELECT d.id, d.name, d.picture, d.birthday, d.description, 
             d.link_chiendefrance, d.lof_number, d.is_dna_tested, d.gender_id, d.color_id, d.color_id, d.age_category_id,
-            d.status_id, d.mother_id, d.father_id, d.isOnHomepage FROM dog d
+            d.status_id, d.mother_id, d.father_id, d.isOnHomepage, s.dog_status FROM dog d
             LEFT JOIN gender ON gender.id = d.gender_id
             LEFT JOIN age_category ON age_category.id = d.age_category_id
-            WHERE age_category.label = 'puppies'")->fetchAll();
+            LEFT JOIN status s ON s.id = d.status_id
+            WHERE age_category.label = 'puppies'
+            ORDER BY d.id DESC")->fetchAll();
     }
 
     /**
@@ -148,10 +152,11 @@ class DogManager extends AbstractManager
      */
     public function selectLastDogs(int $limit): array
     {
-        $statement = $this->pdo->prepare("SELECT d.id, d.name, d.picture, d.birthday, g.gender 
+        $statement = $this->pdo->prepare("SELECT d.id, d.name, d.picture, d.birthday, s.dog_status, g.gender 
             FROM " . self::TABLE . " d 
             LEFT JOIN gender g ON g.id = d.gender_id
             LEFT JOIN age_category ac ON ac.id = d.age_category_id
+            LEFT JOIN status s ON s.id = d.status_id
             ORDER BY d.id DESC
             LIMIT :limit");
         $statement->bindValue('limit', $limit, \PDO::PARAM_INT);
@@ -198,22 +203,22 @@ class DogManager extends AbstractManager
      */
     private function bindDogValues(PDOStatement $statement, array $dog): void
     {
-        empty($dog['mother_select']) ? $dog['mother_select'] = null : $dog['mother_select'];
-        empty($dog['father_select']) ? $dog['father_select'] = null : $dog['father_select'];
+        empty($dog['mother_id']) ? $dog['mother_id'] = null : $dog['mother_id'];
+        empty($dog['father_id']) ? $dog['father_id'] = null : $dog['father_id'];
         empty($dog['isOnHomepage']) ? $dog['isOnHomepage'] = 0 : $dog['isOnHomepage'];
         $statement->bindValue('name', $dog['name'], \PDO::PARAM_STR);
         $statement->bindValue('picture', $dog['picture'], \PDO::PARAM_STR);
         $statement->bindValue('birthday', $dog['birthday']);
         $statement->bindValue('description', $dog['description'] ?? null, \PDO::PARAM_STR);
-        $statement->bindValue('link_chiendefrance', $dog['chien_de_france'] ?? null, \PDO::PARAM_STR);
+        $statement->bindValue('link_chiendefrance', $dog['link_chiendefrance'] ?? null, \PDO::PARAM_STR);
         $statement->bindValue('lof_number', $dog['lof_number'] ?? null, \PDO::PARAM_STR);
-        $statement->bindValue('is_dna_tested', $dog['dna_test'] ?? null, \PDO::PARAM_INT);
-        $statement->bindValue('gender_id', $dog['gender'], \PDO::PARAM_INT);
-        $statement->bindValue('color_id', $dog['color_select'], \PDO::PARAM_INT);
-        $statement->bindValue('age_category_id', $dog['age_category'], \PDO::PARAM_INT);
-        $statement->bindValue('status_id', $dog['status_select'], \PDO::PARAM_INT);
-        $statement->bindValue('mother_id', $dog['mother_select'], \PDO::PARAM_INT);
-        $statement->bindValue('father_id', $dog['father_select'], \PDO::PARAM_INT);
+        $statement->bindValue('is_dna_tested', $dog['is_dna_tested'] ?? null, \PDO::PARAM_INT);
+        $statement->bindValue('gender_id', $dog['gender_id'], \PDO::PARAM_INT);
+        $statement->bindValue('color_id', $dog['color_id'], \PDO::PARAM_INT);
+        $statement->bindValue('age_category_id', $dog['age_category_id'], \PDO::PARAM_INT);
+        $statement->bindValue('status_id', $dog['status_id'], \PDO::PARAM_INT);
+        $statement->bindValue('mother_id', $dog['mother_id'], \PDO::PARAM_INT);
+        $statement->bindValue('father_id', $dog['father_id'], \PDO::PARAM_INT);
         $statement->bindValue('isOnHomepage', $dog['isOnHomepage'], \PDO::PARAM_INT);
     }
 

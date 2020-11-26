@@ -11,7 +11,6 @@
 
 {% block content %}
     <h1 class="admin-title"> Modifier une fiche </h1>
-
     <div class="container">
         <form action="" method="post" enctype="multipart/form-data">
 
@@ -22,7 +21,7 @@
             </ul>
 
             <div class="form-group">
-                <label for="dna_test">Afficher sur la page d'accueil </label>
+                <label for="isOnHomepage">Afficher sur la page d'accueil </label>
                 <input type="checkbox"
                        id="isOnHomepage"
                        name="isOnHomepage"
@@ -33,10 +32,10 @@
             <div class="form-group">
                 <span >Catégorie :</span>
                 {% for category in categories %}
-                        <label for="age_category">{{ category.category }}</label>
+                        <label for="age_category_id">{{ category.category }}</label>
                         <input type="radio"
-                               id="age_category"
-                               name="age_category"
+                               id="age_category_id"
+                               name="age_category_id"
                                value="{{ category.id }}"
                                 {{ category.id==dogData.age_category_id ? 'checked' : '' }}
                                required>
@@ -44,9 +43,9 @@
             </div>
 
             <div class="form-group">
-                <label for="status_select">Statut :</label>
-                <select name="status_select"
-                        id="status_select"
+                <label for="status_id">Statut :</label>
+                <select name="status_id"
+                        id="status_id"
                         class="form-control"
                         required>
                     <option value="">Choisir un statut</option>
@@ -92,10 +91,10 @@
             <div class="form-group">
                 <span>Sexe :</span>
                 {% for gender in genders %}
-                        <label for="gender">{{ gender.gender }}</label>
+                        <label for="gender_id">{{ gender.gender }}</label>
                         <input type="radio"
-                               id="gender"
-                               name="gender"
+                               id="gender_id"
+                               name="gender_id"
                                value="{{ gender.id }}"
                                 {{ gender.id == dogData.gender_id ? 'checked' : '' }}
                                required>
@@ -103,10 +102,10 @@
             </div>
 
             <div class="form-group">
-                <label for="color_select">Couleur :</label>
-                <select name="color_select"
+                <label for="color_id">Couleur :</label>
+                <select name="color_id"
                         class="form-control"
-                        id="color_select"
+                        id="color_id"
                         required>
                     <option value="">Choisir la couleur</option>
                     {% for color in colors %}
@@ -118,10 +117,10 @@
             </div>
 
             <div class="form-group">
-                <label for="mother_select">Mère :</label>
-                <select name="mother_select"
+                <label for="mother_id">Mère :</label>
+                <select name="mother_id"
                         class="form-control"
-                        id="mother_select">
+                        id="mother_id">
                     <option value="">Choisir la mère</option>
                     {% for adultFemale in adultFemales %}
                             <option value="{{ adultFemale.id }}"
@@ -132,10 +131,10 @@
             </div>
 
             <div class="form-group">
-                <label for="father_select">Père :</label>
-                <select name="father_select"
+                <label for="father_id">Père :</label>
+                <select name="father_id"
                         class="form-control"
-                        id="father_select">
+                        id="father_id">
                     <option value="">Choisir le père</option>
                     {% for adultMale in adultMales %}
                             <option value="{{ adultMale.id }}"
@@ -146,11 +145,11 @@
             </div>
 
             <div class="form-group">
-                <label for="chien_de_france">Lien Chien de France :</label>
+                <label for="link_chiendefrance">Lien Chien de France :</label>
                 <input type="url"
                        class="form-control"
-                       id="chien_de_france"
-                       name="chien_de_france"
+                       id="link_chiendefrance"
+                       name="link_chiendefrance"
                        value="{{ dogData.link_chiendefrance }}"
                        placeholder="https://www.chiens-de-france.com/">
             </div>
@@ -170,14 +169,14 @@
 
                 <input type="radio"
                        id="dna_test"
-                       name="dna_test"
+                       name="is_dna_tested"
                        value="1"
-                        {{ dogData.dna_test == 1 ? 'checked'}}>
-                <label for="dna_test">Oui</label>
+                        {{ dogData.is_dna_tested == 1 ? 'checked'}}>
+                <label for="is_dna_tested">Oui</label>
                 <input type="radio"
-                       id="dna_test"
-                       name="dna_test"
-                       value="0" {{ dogData.dna_test == 0 ? 'checked'}}>
+                       id="is_dna_tested"
+                       name="is_dna_tested"
+                       value="0" {{ dogData.is_dna_tested == 0 ? 'checked'}}>
                 <label for="dna_test">Non</label>
             </div>
 

@@ -1,80 +1,80 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Nos Chiens | {{ details.name }}{% endblock %}
+
 {% block stylesheet %}
     <link rel="stylesheet" href="/assets/css/dogShow.css">
 {% endblock %}
 
 {% block content %}
 
-    <section class="main-info">
-        <div class="row content-top-parent mb-1 mx-auto">
-            <div class="col-12 mb-1 mb-top ">
-                <a href="/" class="d-flex justify-content-center align-items-center btn btn-primary btn-lg active"  id="override" role="button" aria-pressed="true">Back</a>
+    <section class="main-info p-5">
+        <div class="row mb-1 mx-auto">
+            <div class="col-12 margin-top ">
+                <a href="/Dog/index" class="btn btn-lg button-main px-4 dark-shadow"  id="override" role="button" aria-pressed="true">Back</a>
             </div>
-            <div class="col-12 d-flex flex-column">
+            <div class="d-flex flex-column justify-content-center container">
                 <div class="d-flex  flex-column align-items-center">
-                    <img src="{{ details.picture }}" alt="dogs-photo" id="border" class="d-flex align-items-center justify-content-center individual-dog-picture img-fluid">
-                    <h1 class="d-flex justify-content-center border rounded border-warning title-content-name "><span>{{ details.name }}</span></h1>
-                    <h2 class="pb-5">{{ details.dog_status }}</h2>
+                    <h1 class="text-white-shadow text-center">{{ details.name }}</h1>
+                    <img src="/uploads/{{ details.picture }}" alt="dogs-photo" id="border" class="d-flex align-items-center justify-content-center individual-dog-picture img-fluid dark-shadow margin-top">
+                    <h3>{{ details.dog_status }}</h3>
+                    <p>Date de naissance : {{ details.birthday}}</p>
+                    <p class="text-justify m-5">{{ details.description }}</p>
+
                 </div>
             </div>
         </div>
     </section>
-
-    <section class="secondary-info mb-5">
-        <h2 class="pt-5">Informations</h2>
-        <div class="row content-data d-flex justify-content-center">
-            <div class="col-lg-6 col-md-12 d-flex flex-column align-items-center table-responsive">
-
-                <table class="table table-bordered content-table">
-                    <thead>
-                    <tr>
-                        <th class="characteristic description" id="d1" headers="blank" scope="row" colspan="2">Description</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% if details.description is not empty or null %}
-                        <tr>
-                            <td class="text" headers="d01 d1" colspan="2">{{ details.description }}</td>
-                        </tr>
-                    {% endif %}
-                    </tbody>
-                </table>
-                <table class="table table-bordered content-table rounded ">
+    <section class="secondary-info py-5">
+        <h2 class="p-5 text-center text-white-shadow">Informations détaillées</h2>
+        <div class="row content-data d-flex justify-content-center pb-5">
+            <div class="col-lg-9 col-md-12 d-flex flex-column align-items-center table-responsive">
+                <table class="table ">
                     <tbody>
                     <tr>
-                        <th class="characteristic" scope="row">Age</th>
+                        <th class="characteristic" scope="row">Date de naissance</th>
                         <td class="text">{{ details.birthday}}</td>
                     </tr>
+
                     <tr>
-                        <th class="characteristic" scope="row">Color</th>
+                        <th class="characteristic" scope="row">Couleur</th>
                         <td class="text">{{ details.dog_color}}</td>
                     </tr>
-                    {% if  details.lof_number is not empty %}
-                        <tr>
-                            <th class="characteristic" scope="row">Numéro de LOF</th>
-                            <td class="text">{{ details.lof_number}}</td>
-                        </tr>
-                    {% endif %}
+
                     <tr>
-                        <th class="characteristic" scope="row">Test ADN</th>
-                        <td class="text">{{ details.is_dna_tested}}</td>
+                        <th class="characteristic" scope="row">Inscrit au LOF</th>
+                        {% if  details.lof_number is not empty %}
+                            <td class="text">{{ details.lof_number}}</td>
+                        {% else %}
+                            <td class="text">En cours</td>
+                        {% endif %}
                     </tr>
+
+                    <tr>
+                        <th class="characteristic" scope="row">Tests ADN</th>
+                        {% if details.is_dna_tested == 1 %}
+                            <td class="text">Oui</td>
+                        {% else %}
+                            <td class="text">Non</td>
+                        {% endif %}
+                    </tr>
+
                     {% if  details.link_chiendefrance is not empty or null%}
                         <tr>
-                            <th class="characteristic" scope="row">Liens Chien de France</th>
-                            <td class="text"><a class="link-data" href="{{ details.link_chiendefrance}}">Cliquer ici pour voir sa fiche sur le site Chien de France</a></td>
+                            <th class="characteristic" scope="row">Lien Chien de France</th>
+                            <td class="text text-decoration-none"><a class="link-data" href="{{ details.link_chiendefrance}}" target="_blank">Voir le pedigree complet</a></td>
                         </tr>
                     {% endif %}
+
                     {% if  details.fathername is not empty or null %}
                         <tr>
-                            <th class="characteristic" scope="row">Pere</th>
+                            <th class="characteristic" scope="row">Père</th>
                             <td class="text">{{ details.fathername}}</td>
                         </tr>
                     {% else %}
                         <tr>
-                            <th class="characteristic" scope="row">Pere</th>
-                            <td class="text">Non spécifié</td>
+                            <th class="characteristic" scope="row">Père</th>
+                            <td class="text">Non précisé</td>
                         </tr>
                     {% endif %}
                     {% if  details.mothername is not null or null%}
@@ -85,46 +85,51 @@
                     {% else %}
                         <tr>
                             <th class="characteristic" scope="row">Mère</th>
-                            <td class="text">Non spécifié</td>
+                            <td class="text">Non précisé</td>
                         </tr>
                     {% endif %}
                     </tbody>
                 </table>
             </div>
         </div>
-
     </section>
 
-    <section class="parents-info">
-    <h2 class="pt-5">Parents</h2>
-        <div class="row  d-flex content-parent mx-auto">
-            <div class="col-6 d-flex flex-column  father-content mx-auto ">
-                <div class="border rounded-top title-parent">
-                    <h3>Père</h3>
-                </div>
-                <div class="border-right orange-solid border-picture2">
-                    {% if details.father_id is not empty or null %}
-                        <a href="/Individual/index/{{ details.father_id }}" title="father_picture"><img src="{{ details.fatherpicture }}" alt="father" class=" border img-fluid parent-img "></a>
-                    {% else %}
-                        <img src="/assets/images/unknown_dog.jpeg" alt="father" class=" border img-fluid parent-img unknow">
-                    {% endif %}
+    {% if father or mother is not empty%}
+        <section class="parents-info py-5">
+            <h2 class="p-5 text-center text-white-shadow">Parents</h2>
 
-                </div>
+            <div class="row justify-content-center mx-auto container">
+                {% if father is not empty%}
+                    <div class="col-lg-6 col-12 mb-4 mt-2 parent-container p-3">
+                        <div class="card mx-2 mb-5 border-0 rounded-0">
+                            <img src="/uploads/{{father.picture}}" alt="{{father.name}}-picture" class="card-img-top align-self-center orange-solid rounded-0">
+                            <div class="card-description mx-auto p-0 dark-shadow">
+                                <div class="card-body text-center">
+                                    <h3 class="card-title text-center"> Père</h3>
+                                    <h4 class="card-title text-center"> {{father.name}} </h4>
+                                    <a href="/Dog/show/{{ father.id }}" class="btn btn-md dark-shadow button-secondary m-3" >En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if mother is not empty %}
+                    <div class="col-lg-6 col-12 mb-4 mt-2 p-3">
+                        <div class="card mx-2 mb-5 border-0 rounded-0">
+                            <img src="/uploads/{{mother.picture}}" alt="{{mother.name}}-picture" class="card-img-top align-self-center orange-solid rounded-0">
+                            <div class="card-description mx-auto p-0 dark-shadow">
+                                <div class="card-body text-center">
+                                    <h3 class="card-title">Mère</h3>
+                                    <h4 class="card-title"> {{mother.name}} </h4>
+                                    <a href="/Dog/show/{{ mother.id }}" class="btn btn-md dark-shadow button-secondary m-3" >En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
-
-            <div class="col-6 d-flex flex-column mother-content mx-auto">
-                <div class="border rounded-top title-parent">
-                    <h3>Mère</h3>
-                </div>
-                <div class="border-right orange-solid border-picture2">
-                    {% if details.mother_id is not empty or null %}
-                        <a href="/Individual/index/{{ details.mother_id }}" title="mother_picture"><img src="{{ details.motherpicture }}" alt="mother" class="border img-fluid parent-img"></a>
-                    {% else %}
-
-                        <img src="/assets/images/unknown_dog.jpeg" alt="mother" class="border img-fluid parent-img unknow">
-                    {% endif %}
-                </div>
-            </div>
-        </div>
+        </section>
+    {% endif %}
 
 {% endblock %}

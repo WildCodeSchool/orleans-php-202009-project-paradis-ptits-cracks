@@ -1,0 +1,21 @@
+body {
+    background-color: var(--light-color);
+}
+
+.container {
+    max-width: 1200px;
+}
+
+.actuality-image {
+    max-width: 600px;
+}
+
+.button-main {
+    background-color: var(--main-color);
+    font-family: var(--font-text);
+    font-size: var(--fontsize-text);
+    font-weight: 500;
+    letter-spacing: -1px;
+    margin: var(--spacing3);
+    padding: var(--spacing1) var(--spacing2);
+}

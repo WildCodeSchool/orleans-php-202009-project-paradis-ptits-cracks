@@ -1,21 +1,23 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheet %}<link rel="stylesheet" href="/assets/css/actuality-show.css">{% endblock %}
 
-{% block title %}Description actualité{% endblock %}
-
-
+{% block title %}Actualité | {{ actuality.title }}{% endblock %}
 
 {% block content %}
-    <div>
-        <h1 class="text-center m-5">{{ actuality.title }}</h1>
-    </div>
     <div class="container">
-        <div class="card">
-            <img src="https://via.placeholder.com/500" class="img-fluid" alt="{{ actuality.title }}">
+        <div class="my-5 pt-5 text-center">
+            <h1 class="text-center ">{{ actuality.title }}</h1>
+            <h3>{{ actuality.date }}</h3>
+
         </div>
-        <p class="mt-5 mb-5">{{ actuality.description }}</p>
+        <div class="justify-content-center text-center py-5">
+            <img src="/uploads/{{ actuality.image }}" class="img-fluid actuality-image orange-solid" alt="{{ actuality.title }}">
+        </div>
+        <p class="my-5 text-justify">{{ actuality.description }}</p>
     </div>
+
     <div class="d-flex justify-content-center m-5">
-        <a href="/actuality/index" class="btn btn-warning ">Retour à la liste des actualités</a>
+        <a href="/actuality/index" class="btn btn-warning button-main">Retour à la liste des actualités</a>
     </div>
 {% endblock %}
