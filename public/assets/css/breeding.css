@@ -22,10 +22,11 @@ a.carousel-control-next, a.carousel-control-prev {
 
  .mainImg {
      object-fit: cover;
-     width: 600px;
-     height: 400px;
+     max-width: 500px;
+     height: auto;
+     margin-bottom: var(--spacing4);
  }
-.headerPresentation {
+.presentation-picture {
     background-color: var(--secondary-color);
     padding: var(--spacing3);
 }
