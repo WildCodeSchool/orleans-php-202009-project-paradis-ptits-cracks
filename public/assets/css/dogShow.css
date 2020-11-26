@@ -4,170 +4,96 @@
 }
 
 .main-info, .parents-info {
-    background-color: var(--secondary-color);
-}
-
-.secondary-info {
     background-color: var(--light-color);
 }
 
-.footer {
-    margin-bottom: 0;
+.secondary-info {
+    background-color: var(--secondary-color);
 }
 
-
-.mb-1, .individual-dog-picture {
-    margin-bottom: var(--spacing4);
+h3 {
+    font-size: calc(var(--fontsize-main-title) * 0.8);
 }
 
-.mb-top {
+.margin-top {
     margin-top: var(--spacing4);
 }
 .individual-dog-picture {
-    width: calc(var(--spacing4)*10);
-    height: calc(var(--spacing4)*10);
+    width: calc(var(--spacing4)*12);
+    height: calc(var(--spacing4)*12);
     border: var(--spacing1) solid var(--main-color);
     border-radius: 50%;
-}
-
-.parent-img, .individual-dog-picture {
     object-fit: cover;
-}
-
-.unknow {
-    filter: sepia(100%);
-}
-
-.fact {
-    margin-top: var(--spacing3);
-}
-
-.btn-primary {
-    margin-left: var(--spacing4);
-    width: 100px;
-    height: calc(var(--spacing1)*5);
-
-}
-
-.btn-primary:not(:disabled):not(.disabled).active {
-    text-align: center;
-    background-color: var(--main-color) ;
-    border-color: var(--main-color) ;
+    margin-bottom: var(--spacing4);
 }
 
 th {
     width: 30%;
     text-align: center;
+    border: 1px solid var(--dark-color);
+    background-color: var(--main-color);
+    font-family: var(--font-title);
+    font-size: var(--font-medium-title);
 }
 
 td {
     font-size: large;
-}
-
-.father-content, .mother-content {
-    max-width: max-content;
-}
-
-.mother-content {
-    padding-right: var(--spacing2);
-}
-.title-parent .h2 {
-    color: var(--light-color);
-}
-.title-parent {
-    height: calc(var(--spacing1)*5);
-    margin-bottom: var(--spacing2);
-}
-
-.title-content-name, .title-parent {
-    background-color: var(--light-color);
-    box-shadow: 2px 2px var(--spacing1) var(--spacing1) var(--box-shadow-color) inset;
-}
-
-.recorded-content {
-    width: 100%;
-    margin: 0;
+    border: 1px solid var(--dark-color);
     text-align: center;
-}
-.recorded-content {
-    padding: 0;
-}
-
-#id, .text {
-    text-align: center;
-    font-size: var(--font-medium-title);
-    font-style: var(--font-text);
-}
-
-.content-parent {
-    background-color: var(--secondary-color);
-    border: 1px solid unset;
-    padding: calc(var(--spacing4)*2);
-    width: 70%;
-}
-.content-top-parent {
-    background-color: var(--secondary-color);
-    border: 1px solid unset;
-}
-
-.characteristic {
-    background-color: var(--secondary-color);
-    box-shadow: 1px 0 1px 1px var(--box-shadow-color);
-}
-
-.description {
-    text-align: center;
-}
-
-h2, h3 {
-    font-style: var(--font-title);
-    color: var(--dark-color);
-    text-align: center;
-}
-
-span {
-    margin: var(--spacing2) var(--spacing1);
-}
-
-h3 {
-    color: var(--dark-color);
-}
-
-.content-table {
-    box-shadow: 0 0 var(--spacing3) calc(var(--spacing1)/2) var(--box-shadow-color);
-}
-
-.content-data {
-    margin-top: var(--spacing3);
-    margin-bottom: 0;
-}
-
-th {
-    font-family: var(--font-title);
-    font-size: var(--font-text);
-}
-
-td {
-    font-family: var(--font-text);
     background: var(--light-color);
-}
-
-tr:hover {
-    color: var(--dark-color)
+    font-family: var(--font-text);
 }
 
 .link-data {
-    color: var(--main-color);
+    color: var(--dark-color);
 }
 
 .link-data:hover {
-    color: var(--dark-color);
+    text-decoration: underline;
 }
 
-caption {
+.button-main {
+    background-color: var(--main-color);
+    font-family: var(--font-text);
+    font-size: var(--fontsize-text);
     color: var(--dark-color);
+    font-weight: 500;
+    letter-spacing: -1px;
+    margin: var(--spacing3);
+    padding: var(--spacing1) var(--spacing2);
 }
 
-.orange-solid {
-    box-shadow: var(--spacing1) var(--spacing1) 0px var(--main-color);
+.text-white-shadow {
+    text-shadow: 1px 1px 3px var(--light-color);
 }
+
+.card-description {
+    width: 90%;
+    margin-top: -3em;
+    background-color: var(--light-color);
+}
+.card {
+    background: transparent;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.button-secondary {
+    background-color: var(--secondary-color);
+    font-family: var(--font-text);
+    font-weight: 500;
+    letter-spacing: -1px;
+    font-size: var(--fontsize-small-text);
+    padding: var(--spacing1);
+}
+
+
+
+
+
+
+

@@ -26,9 +26,19 @@ class DogController extends AbstractController
      */
     public function show(int $id)
     {
-        $individualDog = new DogManager();
-        $details = $individualDog->selectDogDataById($id);
-        return $this->twig->render('Dog/show.html.twig', ["details" => $details]);
+        $dog = new DogManager();
+        $details = $dog->selectDogDataById($id);
+        if ($details['father_id'] !== null) {
+            $father = $dog->selectDogDataById($details['father_id']);
+        }
+        if ($details['mother_id'] !== null) {
+            $mother = $dog->selectDogDataById($details['mother_id']);
+        }
+        return $this->twig->render('Dog/show.html.twig', [
+            "details" => $details,
+            "father" => $father ?? [],
+            "mother" => $mother ?? [],
+            ]);
     }
 
    /**
